@@ -1,0 +1,205 @@
+{
+  "not_accuracy_certification": true,
+  "notice": "Functional probes only. HTTP 200 establishes request handling, not answer correctness. Inspect answers against expected observations. These probes do not certify native accuracy retention, 128K recall, or production quality.",
+  "model": "qwen-lab",
+  "base_url": "http://127.0.0.1:8000",
+  "assets_only": false,
+  "assets": {
+    "image": {
+      "path": "/home/ben/qwen-lab/results/modality-fp8-mtp3_assets/image_probe.png",
+      "bytes": 10369,
+      "sha256": "d0ced8afceb19d3c0d0d984f70b3c42d2982c5e75aa715e6d24e2e5bb72fa770"
+    },
+    "video": {
+      "path": "/home/ben/qwen-lab/results/modality-fp8-mtp3_assets/temporal_order.mp4",
+      "bytes": 19041,
+      "sha256": "e535c1c2fbf6d961a272be23906cd309d7ee65fe1a48b991bc5ffb56ecc9c900"
+    },
+    "video_encoder": {
+      "backend": "PyAV",
+      "codec": "libx264"
+    },
+    "video_spec": {
+      "duration_seconds": 6,
+      "fps": 4,
+      "resolution": [
+        800,
+        500
+      ],
+      "frame_count": 24,
+      "expected_order": [
+        "FIRST: red square",
+        "MIDDLE: green circle",
+        "LAST: blue triangle"
+      ]
+    }
+  },
+  "results": [
+    {
+      "probe": "text",
+      "expected": {
+        "answer": 391
+      },
+      "correctness": "requires_answer_review",
+      "status": "api_accepted",
+      "http_status": 200,
+      "raw_response_file": "/home/ben/qwen-lab/results/modality-fp8-mtp3_assets/text_response.txt",
+      "response": {
+        "id": "chatcmpl-a64d855ea7ac1786",
+        "object": "chat.completion",
+        "created": 1789721361,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "\n\n391",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - Question: \"What is 17 multiplied by 23? Give the answer.\"\n   - Operation: Multiplication\n   - Numbers: 17 and 23\n   - Request: Direct answer\n\n2.  **Perform Calculation:**\n   - 17 \u00d7 23\n   - Break it down: (10 + 7) \u00d7 23 = 10\u00d723 + 7\u00d723 = 230 + 161 = 391\n   - Alternatively: 17 \u00d7 (20 + 3) = 17\u00d720 + 17\u00d73 = 340 + 51 = 391\n   - Check: 17 \u00d7 23 = 391 (verified)\n\n3.  **Formulate Response:**\n   - Keep it direct as requested: \"391\"\n   - Can add a brief confirmation if needed, but the prompt says \"Give the answer.\" so just the number is fine.\n\n   Draft: 391\n\n4.  **Final Output Generation:**\n   - Output matches the draft. No extra fluff.\u2705\n"
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-c29ed90c",
+        "usage": {
+          "prompt_tokens": 25,
+          "total_tokens": 303,
+          "completion_tokens": 278,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 272
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "seconds": 3.5023998390097404
+    },
+    {
+      "probe": "image",
+      "expected": {
+        "access_code": "7319",
+        "left": "red square",
+        "right": "blue circle"
+      },
+      "correctness": "requires_answer_review",
+      "status": "api_accepted",
+      "http_status": 200,
+      "raw_response_file": "/home/ben/qwen-lab/results/modality-fp8-mtp3_assets/image_response.txt",
+      "response": {
+        "id": "chatcmpl-bb67896fa89213d4",
+        "object": "chat.completion",
+        "created": 1789721365,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "\n\nThe access code is 7319.\n\nFrom left to right, the shapes are a red square and a blue circle.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "The user wants me to extract information from the image.\n1.  **Read the access code:** I see the text \"ACCESS CODE: 7319\" at the top. So the code is 7319.\n2.  **Identify shapes and colors from left to right:**\n    *   On the left, there is a red square.\n    *   On the right, there is a blue circle.\n\nSo the final response should state the code and then describe the shapes.\n"
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-c29ed90c",
+        "usage": {
+          "prompt_tokens": 432,
+          "total_tokens": 570,
+          "completion_tokens": 138,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 108
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "seconds": 6.534421463002218
+    },
+    {
+      "probe": "video",
+      "expected": {
+        "chronological_order": [
+          "FIRST: red square",
+          "MIDDLE: green circle",
+          "LAST: blue triangle"
+        ]
+      },
+      "correctness": "requires_answer_review",
+      "status": "api_accepted",
+      "http_status": 200,
+      "raw_response_file": "/home/ben/qwen-lab/results/modality-fp8-mtp3_assets/video_response.txt",
+      "response": {
+        "id": "chatcmpl-b05be7f68e50fba6",
+        "object": "chat.completion",
+        "created": 1789721371,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "\n\nThe video's events are outlined chronologically below:\n- **00:00 - 00:01**: The word \"FIRST\" appears in the top left corner, accompanied by a red square in the center.\n- **00:02 - 00:03**: The scene transitions to show the word \"MIDDLE\" in the top left, with a green circle in the center.\n- **00:04 - 00:05**: Finally, the word \"LAST\" is displayed in the top left corner, alongside a blue triangle in the center.",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": "The user wants a chronological description of the video.\n\n1.  **Analyze the first scene (00:00 - 00:01):**\n    *   **Text:** \"FIRST\" is visible in the top left corner.\n    *   **Shape:** A red square is in the center.\n    *   **Action:** The scene is static.\n\n2.  **Analyze the second scene (00:02 - 00:03):**\n    *   **Text:** \"MIDDLE\" is visible in the top left corner.\n    *   **Shape:** A green circle is in the center.\n    *   **Action:** The scene is static.\n\n3.  **Analyze the third scene (00:04 - 00:05):**\n    *   **Text:** \"LAST\" is visible in the top left corner.\n    *   **Shape:** A blue triangle is in the center.\n    *   **Action:** The scene is static.\n\n4.  **Synthesize the description:** Combine these observations into a coherent chronological list.\n"
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-c29ed90c",
+        "usage": {
+          "prompt_tokens": 2494,
+          "total_tokens": 2861,
+          "completion_tokens": 367,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 238
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "seconds": 5.191899487996125
+    }
+  ],
+  "all_three_modalities_api_accepted": true
+}

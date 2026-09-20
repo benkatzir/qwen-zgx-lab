@@ -1,0 +1,710 @@
+{
+  "metadata": {
+    "event": "metadata",
+    "utc": "2026-09-18T08:41:40Z",
+    "hostname": "5a845788942c",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130",
+    "vllm": "0.28.0",
+    "gpu": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ],
+    "args": {
+      "batches": [
+        45,
+        50
+      ],
+      "query_lengths": [
+        1,
+        4,
+        8,
+        16
+      ],
+      "layers": 30,
+      "state_dtype": "float32",
+      "timing": "both",
+      "warmup": 3,
+      "repeats": 7,
+      "max_measurement_seconds": 30,
+      "memory_cap_gib": 12,
+      "seed": 73021,
+      "skip_reference_check": false,
+      "output": "/lab/results/gdn-fp32.json"
+    },
+    "packed_kernel": {
+      "callable": "vllm.third_party.flash_linear_attention.ops.fused_recurrent.fused_recurrent_gated_delta_rule_packed_decode",
+      "signature": "(mixed_qkv: torch.Tensor, a: torch.Tensor, b: torch.Tensor, A_log: torch.Tensor, dt_bias: torch.Tensor, scale: float, initial_state: torch.Tensor, out: torch.Tensor, ssm_state_indices: torch.Tensor, use_qk_l2norm_in_kernel: bool = False) -> tuple[torch.Tensor, torch.Tensor]",
+      "source_path": "/usr/local/lib/python3.12/dist-packages/vllm/third_party/flash_linear_attention/ops/fused_recurrent.py",
+      "source_sha256": "00a3b971b0dbb6ed26e246970a0e1a21a9a174030974685bdd3f0c8ab5fb4bfe"
+    },
+    "spec_kernel": {
+      "callable": "vllm.third_party.flash_linear_attention.ops.fused_sigmoid_gating.fused_sigmoid_gating_delta_rule_update",
+      "signature": "(A_log: torch.Tensor, a: torch.Tensor, b: torch.Tensor, dt_bias: torch.Tensor, q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, beta: float = 1.0, threshold: float = 20.0, scale: float = None, initial_state: torch.Tensor = None, inplace_final_state: bool = True, cu_seqlens: torch.Tensor | None = None, ssm_state_indices: torch.Tensor | None = None, num_accepted_tokens: torch.Tensor | None = None, use_qk_l2norm_in_kernel: bool = False, is_kda: bool = False)",
+      "source_path": "/usr/local/lib/python3.12/dist-packages/vllm/third_party/flash_linear_attention/ops/fused_sigmoid_gating.py",
+      "source_sha256": "000ab8996af9788fdb8843a6a3b91833e7a14c8acc0e1ea073a536330f64cb6f"
+    },
+    "limitations": [
+      "Only GDN post-convolution state update/gating and its wrapper copies/allocations; excludes convolution, output norm/gate, projections, MoE, full attention, drafting, sampling and vision.",
+      "State buffers for one layer are reused30times; not full-model capacity. Distinct state/checkpoint slots per request.",
+      "q1 and q>1 paths match v0.28.0 installed Qwen GDN dispatch at value/key-head ratio2. CUDA fused MTP requires ratio8 and is not selected.",
+      "Repeated inputs/state updates are a synthetic kernel workload, not real-model decoding or acceptance.",
+      "FP32 is native recurrent state; BF16 option changes model precision and requires separate quality evaluation.",
+      "Nominal state payload bandwidth is not hardware-counter DRAM traffic.",
+      "Manual fixed-shape graph timings do not establish stock end-to-end graph capture/performance.",
+      "Torch allocator limit does not limit native allocations outside its allocator."
+    ]
+  },
+  "results": [
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 1,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.08984375,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 1,
+      "kernel": "packed_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 1,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 1.52587890625e-05,
+          "relative_rmse": 4.6977424062788486e-05,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.1920928955078125e-07,
+          "relative_rmse": 6.08539423296861e-08,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          27.013408660888672,
+          25.93027114868164,
+          25.95916748046875,
+          25.72710418701172,
+          26.048959732055664,
+          25.512575149536133,
+          25.507999420166016
+        ],
+        "block_gpu_ms_median": 25.93027114868164,
+        "one_layer_gpu_ms_median": 0.8643423716227213,
+        "state_only_all_accepted_tps_per_stream": 38.564965027403595,
+        "state_only_all_accepted_tps_aggregate": 1735.423426233162,
+        "nominal_state_read_write_payload_GBps": 218.36680255030367,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          25.387008666992188,
+          25.403392791748047,
+          25.3853759765625,
+          25.777727127075195,
+          26.216768264770508,
+          25.38982391357422,
+          25.39664077758789
+        ],
+        "block_gpu_ms_median": 25.39664077758789,
+        "one_layer_gpu_ms_median": 0.846554692586263,
+        "state_only_all_accepted_tps_per_stream": 39.37528623401577,
+        "state_only_all_accepted_tps_aggregate": 1771.8878805307097,
+        "nominal_state_read_write_payload_GBps": 222.9550927458443,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.10260915756225586,
+      "torch_peak_reserved_GiB": 0.11328125
+    },
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 4,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.353515625,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 4,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 4,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 9.5367431640625e-07,
+          "relative_rmse": 1.232816885021748e-06,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "relative_rmse": 9.307196791041861e-08,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          65.395263671875,
+          65.35196685791016,
+          65.54937744140625,
+          66.12086486816406,
+          65.34966278076172,
+          65.37753295898438,
+          66.13215637207031
+        ],
+        "block_gpu_ms_median": 65.395263671875,
+        "one_layer_gpu_ms_median": 2.1798421223958333,
+        "state_only_all_accepted_tps_per_stream": 61.1665092455359,
+        "state_only_all_accepted_tps_aggregate": 2752.4929160491156,
+        "nominal_state_read_write_payload_GBps": 216.4648508954338,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          65.0271987915039,
+          65.03641510009766,
+          65.01545715332031,
+          65.01376342773438,
+          64.99734497070312,
+          65.78028869628906,
+          65.00028991699219
+        ],
+        "block_gpu_ms_median": 65.01545715332031,
+        "one_layer_gpu_ms_median": 2.167181905110677,
+        "state_only_all_accepted_tps_per_stream": 61.52383102632266,
+        "state_only_all_accepted_tps_aggregate": 2768.5723961845197,
+        "nominal_state_read_write_payload_GBps": 217.72939266761844,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.40514659881591797,
+      "torch_peak_reserved_GiB": 0.4375
+    },
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 8,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.705078125,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 8,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 8,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 6.103515625e-05,
+          "relative_rmse": 5.7245757488999516e-05,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 2.384185791015625e-07,
+          "relative_rmse": 1.0355983448562256e-07,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          122.38162994384766,
+          121.39453125,
+          120.66722869873047,
+          120.66915130615234,
+          120.6615982055664,
+          120.68418884277344,
+          121.53334045410156
+        ],
+        "block_gpu_ms_median": 120.68418884277344,
+        "one_layer_gpu_ms_median": 4.022806294759115,
+        "state_only_all_accepted_tps_per_stream": 66.28871666380711,
+        "state_only_all_accepted_tps_aggregate": 2982.99224987132,
+        "nominal_state_read_write_payload_GBps": 211.13285049457218,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          120.44873809814453,
+          121.22412872314453,
+          121.32438659667969,
+          126.22943878173828,
+          120.42793273925781,
+          121.27334594726562,
+          120.55094146728516
+        ],
+        "block_gpu_ms_median": 121.22412872314453,
+        "one_layer_gpu_ms_median": 4.040804290771485,
+        "state_only_all_accepted_tps_per_stream": 65.99346255785967,
+        "state_only_all_accepted_tps_aggregate": 2969.7058151036854,
+        "nominal_state_read_write_payload_GBps": 210.19245152252594,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.8071761131286621,
+      "torch_peak_reserved_GiB": 0.84375
+    },
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 16,
+      "state_dtype": "float32",
+      "state_pool_GiB": 1.408203125,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 16,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 16,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 3.0517578125e-05,
+          "relative_rmse": 2.7632760975393467e-05,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "relative_rmse": 1.195061400949271e-07,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          235.80972290039062,
+          235.032958984375,
+          240.1192626953125,
+          235.82127380371094,
+          234.98538208007812,
+          235.7512969970703,
+          234.9496612548828
+        ],
+        "block_gpu_ms_median": 235.7512969970703,
+        "one_layer_gpu_ms_median": 7.85837656656901,
+        "state_only_all_accepted_tps_per_stream": 67.86813139016932,
+        "state_only_all_accepted_tps_aggregate": 3054.06591255762,
+        "nominal_state_read_write_payload_GBps": 204.1542889182837,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          235.37945556640625,
+          234.73703002929688,
+          239.70693969726562,
+          234.67987060546875,
+          236.26307678222656,
+          234.6763153076172,
+          235.63955688476562
+        ],
+        "block_gpu_ms_median": 235.37945556640625,
+        "one_layer_gpu_ms_median": 7.845981852213542,
+        "state_only_all_accepted_tps_per_stream": 67.97534628287052,
+        "state_only_all_accepted_tps_aggregate": 3058.8905827291733,
+        "nominal_state_read_write_payload_GBps": 204.47680229433388,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 1.613128662109375,
+      "torch_peak_reserved_GiB": 1.65625
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 1,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.099609375,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 1,
+      "kernel": "packed_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 1,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 5.960464477539063e-08,
+          "relative_rmse": 5.9472164082308154e-08,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          28.08905601501465,
+          28.08892822265625,
+          28.097503662109375,
+          28.09539222717285,
+          28.195968627929688,
+          28.661439895629883,
+          28.67500877380371
+        ],
+        "block_gpu_ms_median": 28.097503662109375,
+        "one_layer_gpu_ms_median": 0.9365834554036458,
+        "state_only_all_accepted_tps_per_stream": 35.59035037509545,
+        "state_only_all_accepted_tps_aggregate": 1779.5175187547723,
+        "nominal_state_read_write_payload_GBps": 223.9151234094965,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          27.97123146057129,
+          28.019296646118164,
+          27.995424270629883,
+          28.003103256225586,
+          27.999296188354492,
+          27.987167358398438,
+          28.01113510131836
+        ],
+        "block_gpu_ms_median": 27.999296188354492,
+        "one_layer_gpu_ms_median": 0.9333098729451498,
+        "state_only_all_accepted_tps_per_stream": 35.715183455787056,
+        "state_only_all_accepted_tps_aggregate": 1785.759172789353,
+        "nominal_state_read_write_payload_GBps": 224.70050524401225,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.11249017715454102,
+      "torch_peak_reserved_GiB": 0.123046875
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 4,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.392578125,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 4,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 4,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 9.313225746154785e-10,
+          "relative_rmse": 1.250952896825197e-09,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "relative_rmse": 9.898715802592051e-08,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          72.72982025146484,
+          72.62822723388672,
+          72.6377944946289,
+          72.65433502197266,
+          72.70140838623047,
+          72.63906860351562,
+          73.39180755615234
+        ],
+        "block_gpu_ms_median": 72.65433502197266,
+        "one_layer_gpu_ms_median": 2.4218111673990887,
+        "state_only_all_accepted_tps_per_stream": 55.0552145139074,
+        "state_only_all_accepted_tps_aggregate": 2752.76072569537,
+        "nominal_state_read_write_payload_GBps": 216.48591230300613,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          72.45238494873047,
+          72.4504623413086,
+          72.46627044677734,
+          73.10765075683594,
+          73.29222106933594,
+          72.5728988647461,
+          72.47148895263672
+        ],
+        "block_gpu_ms_median": 72.47148895263672,
+        "one_layer_gpu_ms_median": 2.415716298421224,
+        "state_only_all_accepted_tps_per_stream": 55.19411920202405,
+        "state_only_all_accepted_tps_aggregate": 2759.7059601012024,
+        "nominal_state_read_write_payload_GBps": 217.03210776143086,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.4445161819458008,
+      "torch_peak_reserved_GiB": 0.4765625
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 8,
+      "state_dtype": "float32",
+      "state_pool_GiB": 0.783203125,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 8,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 8,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 1.52587890625e-05,
+          "relative_rmse": 1.210499249282293e-05,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "relative_rmse": 1.1256513943180835e-07,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          134.2810516357422,
+          136.06297302246094,
+          137.80227661132812,
+          135.26048278808594,
+          134.30026245117188,
+          134.99017333984375,
+          134.30963134765625
+        ],
+        "block_gpu_ms_median": 134.99017333984375,
+        "one_layer_gpu_ms_median": 4.499672444661458,
+        "state_only_all_accepted_tps_per_stream": 59.26357305920072,
+        "state_only_all_accepted_tps_aggregate": 2963.1786529600363,
+        "nominal_state_read_write_payload_GBps": 209.73046629642005,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          134.77069091796875,
+          134.71559143066406,
+          133.83389282226562,
+          134.65606689453125,
+          133.7981414794922,
+          133.82077026367188,
+          133.83465576171875
+        ],
+        "block_gpu_ms_median": 133.83465576171875,
+        "one_layer_gpu_ms_median": 4.461155192057292,
+        "state_only_all_accepted_tps_per_stream": 59.77524994903653,
+        "state_only_all_accepted_tps_aggregate": 2988.762497451826,
+        "nominal_state_read_write_payload_GBps": 211.54126215564312,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 0.8862218856811523,
+      "torch_peak_reserved_GiB": 0.921875
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 16,
+      "state_dtype": "float32",
+      "state_pool_GiB": 1.564453125,
+      "per_request_one_layer_state_bytes": 2097152,
+      "layer_calls": 30,
+      "previous_accepted_positions": 16,
+      "kernel": "sigmoid_gating_recurrent_triton",
+      "new_checkpoint_writes_per_request_per_layer": 16,
+      "independent_reference": {
+        "scope": "First request, one layer/pass, all checkpoint states and output positions.",
+        "output": {
+          "max_abs_error": 3.0517578125e-05,
+          "relative_rmse": 1.8091001038555987e-05,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "relative_rmse": 1.228979584766421e-07,
+          "finite": true
+        },
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        },
+        "note": "Kernel-math check only, not task accuracy or permission to reduce state precision.",
+        "passed": true
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          262.5954895019531,
+          260.8885498046875,
+          263.18218994140625,
+          260.9315185546875,
+          266.3403625488281,
+          260.8957824707031,
+          261.52423095703125
+        ],
+        "block_gpu_ms_median": 261.52423095703125,
+        "one_layer_gpu_ms_median": 8.717474365234375,
+        "state_only_all_accepted_tps_per_stream": 61.17979944515665,
+        "state_only_all_accepted_tps_aggregate": 3058.9899722578325,
+        "nominal_state_read_write_payload_GBps": 204.4834461583271,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "graph_vs_eager_same_start": {
+        "passed": true,
+        "output": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        },
+        "checkpoints": {
+          "max_abs_error": 0.0,
+          "relative_rmse": 0.0,
+          "finite": true
+        }
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          261.3255310058594,
+          261.38970947265625,
+          261.36468505859375,
+          267.32843017578125,
+          261.1760559082031,
+          260.4858093261719,
+          261.457763671875
+        ],
+        "block_gpu_ms_median": 261.36468505859375,
+        "one_layer_gpu_ms_median": 8.712156168619792,
+        "state_only_all_accepted_tps_per_stream": 61.21714567678896,
+        "state_only_all_accepted_tps_aggregate": 3060.857283839448,
+        "nominal_state_read_write_payload_GBps": 204.60826981277611,
+        "payload_note": "One state read plus q checkpoint writes per layer; not hardware-counter DRAM traffic."
+      },
+      "finite_output": true,
+      "torch_peak_allocated_GiB": 1.7704873085021973,
+      "torch_peak_reserved_GiB": 1.814453125
+    }
+  ],
+  "errors": []
+}

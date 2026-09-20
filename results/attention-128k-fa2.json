@@ -1,0 +1,609 @@
+{
+  "metadata": {
+    "event": "metadata",
+    "utc": "2026-09-18T08:04:33Z",
+    "hostname": "aea4d1c4cb44",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "flashinfer": "0.6.16.post3",
+    "gpu": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ],
+    "device_total_GiB": 121.62528610229492,
+    "l2_cache_size_bytes_if_exposed": 25165824,
+    "args": {
+      "batches": [
+        1,
+        8,
+        50
+      ],
+      "query_lengths": [
+        1,
+        4,
+        8
+      ],
+      "context": 131072,
+      "layers": 10,
+      "page_size": 128,
+      "backend": "auto",
+      "kernel": "auto",
+      "decode_use_tensor_cores": 1,
+      "timing": "both",
+      "warmup": 3,
+      "repeats": 7,
+      "max_measurement_seconds": 30,
+      "workspace_mib": 128,
+      "memory_cap_gib": 12,
+      "skip_reference_check": false,
+      "seed": 73021,
+      "output": "/lab/results/attention-128k-fa2.json"
+    },
+    "flashinfer_decode_init_signature": "(self, float_workspace_buffer: torch.Tensor, kv_layout: str = 'NHD', use_cuda_graph: bool = False, use_tensor_cores: bool = False, paged_kv_indptr_buffer: Optional[torch.Tensor] = None, paged_kv_indices_buffer: Optional[torch.Tensor] = None, paged_kv_last_page_len_buffer: Optional[torch.Tensor] = None, backend: str = 'auto', jit_args: Optional[List[Any]] = None) -> None",
+    "flashinfer_decode_plan_signature": "(self, indptr: torch.Tensor, indices: torch.Tensor, last_page_len: torch.Tensor, num_qo_heads: int, num_kv_heads: int, head_dim: int, page_size: int, *deprecated_positional_args: Any, **kwargs: Any) -> None",
+    "flashinfer_prefill_init_signature": "(self, float_workspace_buffer: torch.Tensor, kv_layout: str = 'NHD', use_cuda_graph: bool = False, qo_indptr_buf: Optional[torch.Tensor] = None, paged_kv_indptr_buf: Optional[torch.Tensor] = None, paged_kv_indices_buf: Optional[torch.Tensor] = None, paged_kv_last_page_len_buf: Optional[torch.Tensor] = None, custom_mask_buf: Optional[torch.Tensor] = None, mask_indptr_buf: Optional[torch.Tensor] = None, backend: str = 'auto', jit_args: Optional[List[Any]] = None, jit_kwargs: Optional[Dict[str, Any]] = None) -> None",
+    "flashinfer_prefill_plan_signature": "(self, qo_indptr: torch.Tensor, paged_kv_indptr: torch.Tensor, paged_kv_indices: torch.Tensor, paged_kv_last_page_len: torch.Tensor, num_qo_heads: int, num_kv_heads: int, head_dim_qk: int, page_size: int, head_dim_vo: Optional[int] = None, custom_mask: Optional[torch.Tensor] = None, packed_custom_mask: Optional[torch.Tensor] = None, causal: bool = False, pos_encoding_mode: str = 'NONE', use_fp16_qk_reduction: bool = False, sm_scale: Optional[float] = None, window_left: int = -1, logits_soft_cap: Optional[float] = None, rope_scale: Optional[float] = None, rope_theta: Optional[float] = None, q_data_type: Union[str, torch.dtype] = 'float16', kv_data_type: Union[str, torch.dtype, NoneType] = None, o_data_type: Union[str, torch.dtype, NoneType] = None, non_blocking: bool = True, prefix_len_ptr: Optional[torch.Tensor] = None, token_pos_in_items_ptr: Optional[torch.Tensor] = None, token_pos_in_items_len: int = 0, max_item_len_ptr: Optional[torch.Tensor] = None, seq_lens: Optional[torch.Tensor] = None, seq_lens_q: Optional[torch.Tensor] = None, block_tables: Optional[torch.Tensor] = None, max_token_per_sequence: Optional[int] = None, max_sequence_kv: Optional[int] = None, fixed_split_size: Optional[int] = None, disable_split_kv: bool = False) -> None",
+    "limitations": [
+      "Measured attention kernel only; excludes weights, projections, recurrent layers, vision, drafting, scheduling and prefill.",
+      "One layer cache reused ten times; request caches are distinct. No full-model memory/capacity claim.",
+      "GPU-event elapsed time and effective payload bandwidth, not profiler DRAM counters.",
+      "q>1 rates assume all positions yield accepted tokens; actual speculative acceptance is not measured.",
+      "No positional encoding inside kernel: matches attention after externally applied RoPE.",
+      "Torch memory fraction cap does not govern allocations made outside the Torch allocator."
+    ]
+  },
+  "results": [
+    {
+      "event": "case_result",
+      "batch": 1,
+      "query_length": 1,
+      "historical_tokens": 131072,
+      "kv_length": 131073,
+      "full_attention_layer_calls": 10,
+      "kernel": "decode",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 0.1251220703125,
+      "one_layer_valid_kv_payload_bytes": 134218752,
+      "full_10_layer_distinct_cache_GiB_projected": 1.250009536743164,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.77257776260376e-05,
+        "relative_rmse": 0.0032773863058537245,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          6.035327911376953,
+          6.449920177459717,
+          5.993887901306152,
+          5.908736228942871,
+          5.931392192840576,
+          6.0972161293029785,
+          6.048192024230957
+        ],
+        "block_gpu_ms_median": 6.035327911376953,
+        "block_gpu_ms_p95": 6.344108963012696,
+        "one_attention_layer_ms_median": 0.6035327911376953,
+        "effective_kv_payload_GBps": 222.38849979798056,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 165.69108003476336,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 165.69108003476336,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.24141311645507812
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          5.906112194061279,
+          5.911839962005615,
+          5.9073920249938965,
+          5.91977596282959,
+          5.920191764831543,
+          5.918015956878662,
+          6.19868803024292
+        ],
+        "block_gpu_ms_median": 5.918015956878662,
+        "block_gpu_ms_p95": 6.115139150619507,
+        "one_attention_layer_ms_median": 0.5918015956878662,
+        "effective_kv_payload_GBps": 226.79687411791124,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 168.97554979345304,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 168.97554979345304,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.23672063827514647
+      },
+      "torch_peak_allocated_GiB": 0.820521354675293,
+      "torch_peak_reserved_GiB": 0.875
+    },
+    {
+      "event": "case_result",
+      "batch": 1,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 0.1251220703125,
+      "one_layer_valid_kv_payload_bytes": 134221824,
+      "full_10_layer_distinct_cache_GiB_projected": 1.2500381469726562,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.994418799877167e-05,
+        "relative_rmse": 0.0032697259448468685,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          6.306687831878662,
+          6.2707200050354,
+          6.494239807128906,
+          6.425631999969482,
+          6.292287826538086,
+          6.459807872772217,
+          6.373119831085205
+        ],
+        "block_gpu_ms_median": 6.373119831085205,
+        "block_gpu_ms_p95": 6.4839102268219,
+        "one_attention_layer_ms_median": 0.6373119831085206,
+        "effective_kv_payload_GBps": 210.60615139437118,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 627.6360881353279,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 627.6360881353279,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.06373119831085206
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          6.24835205078125,
+          6.216832160949707,
+          6.2251200675964355,
+          6.214176177978516,
+          6.232255935668945,
+          6.461984157562256,
+          6.3652801513671875
+        ],
+        "block_gpu_ms_median": 6.232255935668945,
+        "block_gpu_ms_p95": 6.432972955703735,
+        "one_attention_layer_ms_median": 0.6232255935668946,
+        "effective_kv_payload_GBps": 215.36635431130313,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 641.8221654067319,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 641.8221654067319,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.06232255935668945
+      },
+      "torch_peak_allocated_GiB": 0.8855843544006348,
+      "torch_peak_reserved_GiB": 0.939453125
+    },
+    {
+      "event": "case_result",
+      "batch": 1,
+      "query_length": 8,
+      "historical_tokens": 131072,
+      "kv_length": 131080,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 0.1251220703125,
+      "one_layer_valid_kv_payload_bytes": 134225920,
+      "full_10_layer_distinct_cache_GiB_projected": 1.2500762939453125,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 9.74014401435852e-05,
+        "relative_rmse": 0.0032793437130749226,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          6.610752105712891,
+          6.465856075286865,
+          6.533408164978027,
+          6.763264179229736,
+          6.478943824768066,
+          6.4549760818481445,
+          6.543583869934082
+        ],
+        "block_gpu_ms_median": 6.533408164978027,
+        "block_gpu_ms_p95": 6.717510557174682,
+        "one_attention_layer_ms_median": 0.6533408164978027,
+        "effective_kv_payload_GBps": 205.4454835984542,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 1224.4757709894136,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1224.4757709894136,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.03266704082489014
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          6.312448024749756,
+          6.3473920822143555,
+          6.313151836395264,
+          6.3396477699279785,
+          6.309760093688965,
+          6.329696178436279,
+          6.321119785308838
+        ],
+        "block_gpu_ms_median": 6.321119785308838,
+        "block_gpu_ms_p95": 6.345068788528442,
+        "one_attention_layer_ms_median": 0.6321119785308837,
+        "effective_kv_payload_GBps": 212.34516123545026,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 1265.5985445162917,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1265.5985445162917,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.03160559892654419
+      },
+      "torch_peak_allocated_GiB": 0.9809904098510742,
+      "torch_peak_reserved_GiB": 1.03515625
+    },
+    {
+      "event": "case_result",
+      "batch": 8,
+      "query_length": 1,
+      "historical_tokens": 131072,
+      "kv_length": 131073,
+      "full_attention_layer_calls": 10,
+      "kernel": "decode",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 1.0009765625,
+      "one_layer_valid_kv_payload_bytes": 1073750016,
+      "full_10_layer_distinct_cache_GiB_projected": 10.000076293945312,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.717629730701447e-05,
+        "relative_rmse": 0.003201542655006051,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          45.12284851074219,
+          44.76105499267578,
+          44.85891342163086,
+          44.32499313354492,
+          44.369537353515625,
+          44.723358154296875,
+          46.428192138671875
+        ],
+        "block_gpu_ms_median": 44.76105499267578,
+        "block_gpu_ms_p95": 46.03658905029297,
+        "one_attention_layer_ms_median": 4.476105499267578,
+        "effective_kv_payload_GBps": 239.88487674736373,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 22.34084965521097,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 178.72679724168776,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 1.7904421997070314
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          44.290401458740234,
+          44.73040008544922,
+          44.354976654052734,
+          44.31020736694336,
+          44.304351806640625,
+          44.84931182861328,
+          44.2592658996582
+        ],
+        "block_gpu_ms_median": 44.31020736694336,
+        "block_gpu_ms_p95": 44.813638305664064,
+        "one_attention_layer_ms_median": 4.431020736694336,
+        "effective_kv_payload_GBps": 242.32565808325398,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 22.568163396726227,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 180.54530717380982,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 1.7724082946777344
+      },
+      "torch_peak_allocated_GiB": 1.7287359237670898,
+      "torch_peak_reserved_GiB": 1.78125
+    },
+    {
+      "event": "case_result",
+      "batch": 8,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 1.0009765625,
+      "one_layer_valid_kv_payload_bytes": 1073774592,
+      "full_10_layer_distinct_cache_GiB_projected": 10.00030517578125,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 7.397402077913284e-05,
+        "relative_rmse": 0.0031419226434081793,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          47.2716178894043,
+          47.17824172973633,
+          46.52067184448242,
+          46.86307144165039,
+          46.51897430419922,
+          46.64089584350586,
+          46.851905822753906
+        ],
+        "block_gpu_ms_median": 46.851905822753906,
+        "block_gpu_ms_p95": 47.243605041503905,
+        "one_attention_layer_ms_median": 4.685190582275391,
+        "effective_kv_payload_GBps": 229.18482677358134,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 85.37539572312075,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 683.003165784966,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.46851905822753903
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          46.60940933227539,
+          46.45075225830078,
+          46.49824142456055,
+          46.45462417602539,
+          47.15849685668945,
+          46.48863983154297,
+          46.44793701171875
+        ],
+        "block_gpu_ms_median": 46.48863983154297,
+        "block_gpu_ms_p95": 46.993770599365234,
+        "one_attention_layer_ms_median": 4.648863983154297,
+        "effective_kv_payload_GBps": 230.97569554431965,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 86.04252596966631,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 688.3402077573305,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.4648863983154297
+      },
+      "torch_peak_allocated_GiB": 1.762983798980713,
+      "torch_peak_reserved_GiB": 1.814453125
+    },
+    {
+      "event": "case_result",
+      "batch": 8,
+      "query_length": 8,
+      "historical_tokens": 131072,
+      "kv_length": 131080,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 1.0009765625,
+      "one_layer_valid_kv_payload_bytes": 1073807360,
+      "full_10_layer_distinct_cache_GiB_projected": 10.0006103515625,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 0.00010675378143787384,
+        "relative_rmse": 0.003181083593517542,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          47.491905212402344,
+          46.6959342956543,
+          46.622718811035156,
+          46.405120849609375,
+          46.430912017822266,
+          48.053184509277344,
+          47.688289642333984
+        ],
+        "block_gpu_ms_median": 46.6959342956543,
+        "block_gpu_ms_p95": 47.943716049194336,
+        "one_attention_layer_ms_median": 4.669593429565429,
+        "effective_kv_payload_GBps": 229.95735628742582,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 171.3211250758615,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1370.569000606892,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.23347967147827148
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          46.34841537475586,
+          46.375648498535156,
+          46.7309455871582,
+          46.63398361206055,
+          46.62627029418945,
+          46.43574523925781,
+          46.353214263916016
+        ],
+        "block_gpu_ms_median": 46.43574523925781,
+        "block_gpu_ms_p95": 46.701856994628905,
+        "one_attention_layer_ms_median": 4.643574523925781,
+        "effective_kv_payload_GBps": 231.24585477572552,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 172.2810726689193,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1378.2485813513545,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.23217872619628907
+      },
+      "torch_peak_allocated_GiB": 1.858809471130371,
+      "torch_peak_reserved_GiB": 1.912109375
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 1,
+      "historical_tokens": 131072,
+      "kv_length": 131073,
+      "full_attention_layer_calls": 10,
+      "kernel": "decode",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 6.256103515625,
+      "one_layer_valid_kv_payload_bytes": 6710937600,
+      "full_10_layer_distinct_cache_GiB_projected": 62.5004768371582,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.26780092716217e-05,
+        "relative_rmse": 0.0023838442284613848,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          314.4338684082031,
+          310.6160888671875,
+          311.0401611328125,
+          310.1313171386719,
+          314.6697082519531,
+          312.9934997558594,
+          313.176025390625
+        ],
+        "block_gpu_ms_median": 312.9934997558594,
+        "block_gpu_ms_p95": 314.5989562988281,
+        "one_attention_layer_ms_median": 31.299349975585937,
+        "effective_kv_payload_GBps": 214.41140487692724,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 3.1949545303018057,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 159.74772651509028,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 12.519739990234376
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          310.6578674316406,
+          310.6291198730469,
+          310.10870361328125,
+          310.876708984375,
+          312.15472412109375,
+          315.1677551269531,
+          311.0176086425781
+        ],
+        "block_gpu_ms_median": 310.876708984375,
+        "block_gpu_ms_p95": 314.2638458251953,
+        "one_attention_layer_ms_median": 31.0876708984375,
+        "effective_kv_payload_GBps": 215.8713536927367,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 3.2167092969652513,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 160.83546484826257,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 12.435068359375002
+      },
+      "torch_peak_allocated_GiB": 6.983687400817871,
+      "torch_peak_reserved_GiB": 7.037109375
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 6.256103515625,
+      "one_layer_valid_kv_payload_bytes": 6711091200,
+      "full_10_layer_distinct_cache_GiB_projected": 62.50190734863281,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.17150217294693e-05,
+        "relative_rmse": 0.00233956566080451,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          382.8636169433594,
+          380.8880920410156,
+          383.0034484863281,
+          382.1369323730469,
+          385.9585266113281,
+          382.1857604980469,
+          381.9102478027344
+        ],
+        "block_gpu_ms_median": 382.1857604980469,
+        "block_gpu_ms_p95": 385.07200317382814,
+        "one_attention_layer_ms_median": 38.21857604980469,
+        "effective_kv_payload_GBps": 175.59762538652447,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 10.46611468409337,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 523.3057342046685,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 3.821857604980469
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          382.4791564941406,
+          381.6641540527344,
+          382.5423583984375,
+          383.895751953125,
+          382.0733337402344,
+          383.6610107421875,
+          382.0381164550781
+        ],
+        "block_gpu_ms_median": 382.4791564941406,
+        "block_gpu_ms_p95": 383.82532958984376,
+        "one_attention_layer_ms_median": 38.24791564941406,
+        "effective_kv_payload_GBps": 175.46292617654868,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 10.458086230540195,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 522.9043115270097,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 3.824791564941406
+      },
+      "torch_peak_allocated_GiB": 7.020040988922119,
+      "torch_peak_reserved_GiB": 7.072265625
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 8,
+      "historical_tokens": 131072,
+      "kv_length": 131080,
+      "full_attention_layer_calls": 10,
+      "kernel": "prefill",
+      "backend_requested": "auto",
+      "backend_resolved": "fa2",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 6.256103515625,
+      "one_layer_valid_kv_payload_bytes": 6711296000,
+      "full_10_layer_distinct_cache_GiB_projected": 62.503814697265625,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.106123328208923e-05,
+        "relative_rmse": 0.0023353861179202795,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          387.3550720214844,
+          390.3439636230469,
+          387.9566955566406,
+          384.8936767578125,
+          388.3804016113281,
+          385.77105712890625,
+          389.59613037109375
+        ],
+        "block_gpu_ms_median": 387.9566955566406,
+        "block_gpu_ms_p95": 390.11961364746094,
+        "one_attention_layer_ms_median": 38.79566955566406,
+        "effective_kv_payload_GBps": 172.9908537954378,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 20.620858182436038,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1031.0429091218018,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 1.9397834777832033
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          388.1273498535156,
+          385.6788024902344,
+          388.04925537109375,
+          390.91131591796875,
+          386.1473693847656,
+          386.7823791503906,
+          388.0644836425781
+        ],
+        "block_gpu_ms_median": 388.04925537109375,
+        "block_gpu_ms_p95": 390.0761260986328,
+        "one_attention_layer_ms_median": 38.804925537109376,
+        "effective_kv_payload_GBps": 172.94959098895703,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 20.6159395727987,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1030.7969786399349,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 1.9402462768554687
+      },
+      "torch_peak_allocated_GiB": 7.11801815032959,
+      "torch_peak_reserved_GiB": 7.166015625
+    }
+  ],
+  "errors": []
+}

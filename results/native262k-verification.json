@@ -1,0 +1,51 @@
+{
+  "verified_utc": "2026-09-18T12:12:14.940528+00:00",
+  "health_http_status": 200,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen-lab",
+        "object": "model",
+        "created": 1789733534,
+        "owned_by": "vllm",
+        "root": "/lab/models/unsloth",
+        "parent": null,
+        "max_model_len": 262144,
+        "permission": [
+          {
+            "id": "modelperm-b682228c7c70d598",
+            "object": "model_permission",
+            "created": 1789733534,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "generation_smoke_pass": true,
+  "smoke_observed_response": {
+    "id": "chatcmpl-aea73377f7986896",
+    "model": "qwen-lab",
+    "created": 1789733491,
+    "content": "READY.",
+    "finish_reason": "stop",
+    "system_fingerprint": "vllm-0.28.0-55e172c2",
+    "usage": {
+      "prompt_tokens": 17,
+      "completion_tokens": 3,
+      "total_tokens": 20
+    }
+  },
+  "smoke_note": "Prompt asked for exactly READY with thinking disabled for this request. Response was READY. with a terminal period, so the initial strict string assertion rejected punctuation; generation itself succeeded and no second request was needed. This is a serving functionality check, not an accuracy certification.",
+  "only_launch_arg_changed": "--max-model-len 139264 -> 262144",
+  "full_262k_benchmark_performed": false
+}

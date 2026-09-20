@@ -1,0 +1,2062 @@
+{
+  "started_utc": "2026-09-18T08:21:50.659652+00:00",
+  "config": {
+    "base_url": "http://127.0.0.1:8000",
+    "model": "qwen-lab",
+    "concurrency": 50,
+    "prompt_tokens": 2048,
+    "output_tokens": 512,
+    "out": "/home/ben/qwen-lab/results/fp8-mtp3-c50-2k.json",
+    "timeout": 7200,
+    "metrics_interval": 1,
+    "target_tps": 40,
+    "min_overlap_seconds": 5,
+    "seed": 17491,
+    "warm_prefixes": false,
+    "admission_barrier": false,
+    "admission_timeout": 30,
+    "api_key_env": "VLLM_API_KEY",
+    "image_smoke": null,
+    "image_question": "Describe the visible objects and their colors precisely."
+  },
+  "trace": "/home/ben/qwen-lab/results/fp8-mtp3-c50-2k.trace.jsonl",
+  "fatal_error": null,
+  "summary": {
+    "strict_throughput_pass": false,
+    "checks": {
+      "all_requests_completed_with_exact_token_counts": true,
+      "all_stream_decode_overlap_at_least_min_seconds": true,
+      "every_stream_at_target_tps_during_overlap": false,
+      "scheduler_metrics_available": true,
+      "all_streams_observed_running_during_overlap": true,
+      "no_observed_queueing_during_overlap": true,
+      "no_observed_preemptions": true
+    },
+    "not_validated": [
+      "base-model accuracy retention",
+      "multimodal quality",
+      "representative real-world prompt distribution"
+    ],
+    "all_stream_overlap_seconds": 24.10032052799943,
+    "all_stream_overlap_start": 66547.518780838,
+    "all_stream_overlap_end": 66571.619101366,
+    "minimum_stream_overlap_tps": 14.522628427010948,
+    "aggregate_overlap_output_tps": 922.394371235581,
+    "aggregate_e2e_output_tps": 544.531752314977,
+    "wall_seconds": 47.01286911399802,
+    "total_output_tokens": 25600,
+    "metrics": {
+      "max_running": 50.0,
+      "max_waiting": 0.0,
+      "max_waiting_during_overlap": 0.0,
+      "min_running_during_overlap": 50.0,
+      "preemptions_delta": 0.0,
+      "max_cache_usage_fraction": 0.20570085218924483,
+      "scrape_count": 49,
+      "scrape_errors": []
+    },
+    "measurement_notes": [
+      "Synthetic text prompts; exact token-ID inputs; unique initial 256-token hashes.",
+      "ignore_eos=True forces the requested output length; this measures decoding throughput, not useful-answer quality.",
+      "Per-stream decode TPS excludes all tokens in the first received token event.",
+      "Overlap rates count exact tokens arriving in (latest first token, earliest last token].",
+      "SSE token-event times are receive times, not exact server generation times.",
+      "Scheduler metrics are sampled and may miss short queueing or occupancy changes.",
+      "Admission queueing before common decoding is descriptive; queueing during overlap fails.",
+      "Strict pass is a throughput result only, and does not establish accuracy or multimodality."
+    ]
+  },
+  "requests": [
+    {
+      "request": 0,
+      "start": 66531.787341332,
+      "end": 66572.135325153,
+      "first_token": 66547.499669597,
+      "last_token": 66572.135287824,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 143,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   The user provided an \"Archive identity\" string (hash-like) and a series of records (Record 1 to Record 27).\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements in Records:*\n        *   Locations: harbor, river, hill, village, forest, orchard, garden.\n        *   Actions: measured water flow, compared written records, reviewed daily observations, interviewed field team, checked instruments.\n        *   Days: Various days (e.g., 248, 278, 239, 195, 267, 48, 99, 103, 284, 249, 299, 133, 109, 165, 295, 171, 137, 323, 280, 333, 96, 9, 15, 108, 159, 101, 66).\n        *   Observation Counts: Various numbers (e.g., 670, 310, 360, 444, 353, 134, 764, 419, 878, 669, 481, 500, 566, 73, 702, 737, 663, 615, 183, 171, 728, 589, 705, 871, 507, 235, 707).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points",
+      "e2e_seconds": 40.34798382098961,
+      "ttft_seconds": 15.712328264999087,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.742325006483863,
+      "all_stream_overlap_tokens": 503,
+      "all_stream_overlap_tps": 20.87109171081859
+    },
+    {
+      "request": 1,
+      "start": 66531.787619225,
+      "end": 66572.133634725,
+      "first_token": 66547.517803653,
+      "last_token": 66572.133563524,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 142,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the context.\n    *   *Structure:* Each record follows a pattern: \"Record [N] for archive 1: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Locations:* Forest, Orchard, Garden, Hill, Harbor, River, Village.\n    *   *Actions:* Measured water flow, Compared written records, Reviewed daily observations, Interviewed field team, Checked instruments.\n    *   *Days:* Various days (e.g., 25, 210, 47, 340, 3, 76, 126, 357, 172, 237, 106, 92, 63, 167, 310, 16, 194, 338, 181, 119, 39, 321).\n    *   *Observation Counts:* Various numbers (375, 892, 203, 659, 39, 408, 565, 767, 215, 654, 886, 446, 401, 169, 353, 845, 32, 34, 442, 998, 581, 340, 939, 281, 45, 287, 944).\n    *   *Key Phrases:* \"kept the original notes so that another researcher could examine the same evidence,\" \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize Themes for the Explanation:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Specific topics to cover: Observations, Comparisons, Uncertainty, Replication, Clear Communication.\n    *   I need to",
+      "e2e_seconds": 40.346015500006615,
+      "ttft_seconds": 15.730184428000939,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.759058533149613,
+      "all_stream_overlap_tokens": 506,
+      "all_stream_overlap_tps": 20.995571383050113
+    },
+    {
+      "request": 2,
+      "start": 66531.787764332,
+      "end": 66574.669478639,
+      "first_token": 66547.509401109,
+      "last_token": 66574.669354557,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 161,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) which seems irrelevant to the content but sets the context.\n    *   The core content is \"Record 1 for archive 2\" through \"Record 27 for archive 2\" (though Record 27 is cut off, it ends with \"Unexpected results\").\n    *   Each record follows a pattern:\n        *   Location: garden, forest, hill, orchard, river, village.\n        *   Action: measured water flow, compared written records, checked instruments, interviewed field team, reviewed daily observations.\n        *   Day: Various days (e.g., 356, 37, 42, 318, etc.).\n        *   Observation Count: Various numbers (e.g., 791, 904, 210, etc.).\n        *   Standard Phrase: \"They recorded [N] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n\n2.  **Identify Key Themes for the Output:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Specific topics to discuss: observations, comparisons, uncertainty, replication, clear communication.\n    *   Must use examples from the archive.\n\n3.  **Drafting the Content - Section by Section (Mental Outline & Example Mapping):**\n    *   *Introduction:* Need to explain that careful research is like building a sturdy bridge. Every observation is a plank. The archive shows a team doing this systematically.\n    *   *Observations:*\n        *   Concept: Gathering data carefully.\n        *   Archive Examples: \"measured water flow,\" \"checked instruments,\" \"interviewed field team.\"\n        *   Specifics: Record 1 (garden, day 356, 791 observations), Record 9 (hill, day 140, 941 observations). High numbers show thoroughness.\n        *   Plain language: \"Counting every drop,\" \"Checking the tools.\"\n    *   *Comparisons:*\n        *   Concept: Looking at data against other data to",
+      "e2e_seconds": 42.881714307004586,
+      "ttft_seconds": 15.72163677700155,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.81446523751465,
+      "all_stream_overlap_tokens": 451,
+      "all_stream_overlap_tps": 18.713444058805536
+    },
+    {
+      "request": 3,
+      "start": 66531.787880222,
+      "end": 66572.1325829,
+      "first_token": 66547.505961594,
+      "last_token": 66572.132475298,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 142,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"archive\" with 27 records.\n    *   Each record follows a pattern: \"Record X for archive 3: The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: garden, harbor, forest, hill, river, orchard, village.\n        *   Action: checked instruments, measured water flow, reviewed daily observations, interviewed field team, compared written records.\n        *   Day: Various days (77, 207, 281, 123, 292, 329, 238, 88, 354, 232, 81, 88, 299, 363, 188, 299, 361, 116, 127, 267, 93, 280, 85, 320, 275, 203, 273).\n        *   Observations: Various counts (224, 488, 710, 424, 831, 384, 462, 406, 800, 466, 323, 498, 480, 451, 317, 688, 737, 462, 634, 725, 804, 195, 585, 655, 828, 772, 922).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\"\n        *   Record 27 ends abruptly: \"Record 27 for archive 3: The team near the garden interviewed the",
+      "e2e_seconds": 40.34470267800498,
+      "ttft_seconds": 15.718081372004235,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.74999352900462,
+      "all_stream_overlap_tokens": 510,
+      "all_stream_overlap_tps": 21.16154427935881
+    },
+    {
+      "request": 4,
+      "start": 66531.788047281,
+      "end": 66577.652427816,
+      "first_token": 66547.416133183,
+      "last_token": 66577.652356247,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 199,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nThe fictional archive provided offers a fascinating glimpse into the mechanics of rigorous scientific inquiry. While the records may appear repetitive at first glance, they collectively illustrate a robust framework for ensuring that research findings are not just fleeting impressions, but reliable, verifiable truths. The core lesson from these records is that careful observation is the foundation of reliable decision-making, but it is only through systematic verification, transparency, and the handling of uncertainty that observations become knowledge.\n\n### The Foundation: Meticulous Observation\n\nEvery record in the archive begins with an act of observation. Whether a team is \"reviewing daily observations,\" \"checking instruments,\" \"interviewing the field team,\" or \"comparing written records,\" the primary activity is gathering data. The sheer volume of data points—ranging from 23 observations in Record 13 to 918 in Record 25—highlights that reliable decisions are rarely based on a single glance. Instead, they are built on a substantial body of evidence.\n\nFor instance, consider Record 25, where the team near the village recorded 918 observations. This high number suggests a period of intense scrutiny or a complex phenomenon being studied. In contrast, Record 13, with only 23 observations, might indicate a brief check or a specific, narrow inquiry. In both cases, the act of recording is crucial. Without these numbers, the observations would vanish into memory, leaving no basis for future analysis. Careful observation means paying attention to detail, quantifying what is seen or heard, and ensuring that the data collected is sufficient to support a conclusion.\n\n### The Critical Role of Comparison and Verification\n\nA key feature of the archive is the variety of methods used to validate the initial observations. Records do not just list raw data; they describe actions taken to ensure that data is accurate. This is seen in records where teams \"checked ",
+      "e2e_seconds": 45.86438053500024,
+      "ttft_seconds": 15.628085901989834,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.900258968138875,
+      "all_stream_overlap_tokens": 350,
+      "all_stream_overlap_tps": 14.522628427010948
+    },
+    {
+      "request": 5,
+      "start": 66531.788167891,
+      "end": 66577.652242101,
+      "first_token": 66547.506677894,
+      "last_token": 66577.652115299,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 198,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nThe fictional research archive provided offers a consistent, repetitive, and highly structured view of scientific inquiry. While the data points vary in quantity and location, the procedural narrative remains identical across all 27 records. This uniformity serves as an excellent case study for understanding how careful research practice transforms raw data into reliable knowledge. Below is a detailed, continuous explanation of these practices, drawing directly from the examples in the archive.\n\n### The Foundation: Meticulous Observation\n\nThe first pillar of reliable decision-making is careful observation. In the archive, every record begins with a specific action: reviewing daily observations, checking instruments, comparing written records, or interviewing field teams. These are not passive activities; they are active engagements with reality.\n\nFor example, **Record 1** describes a team near the river reviewing daily observations on day 275, resulting in 276 recorded observations. Similarly, **Record 9** details a team near the forest checking instruments on day 102, yielding 985 observations. The sheer volume of data in Record 9 suggests a complex system requiring high-resolution monitoring, while the lower count in **Record 3** (31 observations near the orchard on day 199) might indicate a simpler system or a focused, targeted inquiry.\n\nThe key takeaway is that observation is the raw material of science. Without it, there is no evidence to analyze. The archive shows that teams are not guessing; they are systematically gathering data from diverse environments—rivers, forests, orchards, harbors, villages, and gardens. This diversity ensures that findings are not limited to a single context, increasing the generalizability of the results.\n\n### Verification and Replication: The Role of Original Notes\n\nA critical feature of the archive is the statement: *\"They kept the original notes so that another researcher could examine the same evidence.\"* Th",
+      "e2e_seconds": 45.86407420999603,
+      "ttft_seconds": 15.718510002989206,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.951155597268148,
+      "all_stream_overlap_tokens": 360,
+      "all_stream_overlap_tps": 14.937560667782689
+    },
+    {
+      "request": 6,
+      "start": 66531.788273381,
+      "end": 66573.92602984,
+      "first_token": 66547.509743563,
+      "last_token": 66573.925991472,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 155,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) which seems irrelevant to the content but might be a distractor or metadata. I should ignore it for the content generation.\n    *   The core content is \"Record 1 for archive 6\" through \"Record 27 for archive 6\".\n    *   Each record follows a pattern:\n        *   Location: forest, village, garden, orchard, harbor, river, hill.\n        *   Action: measured water flow, checked instruments, reviewed daily observations, interviewed field team, compared written records.\n        *   Day: Various days (e.g., day 263, day 357, day 173, etc.).\n        *   Observation Count: Various numbers (e.g., 560, 997, 565, 765, 687, 556, 961, 903, 369, 703, 70, 673, 594, 908, 523, 362, 238, 174, 492, 255, 877, 467, 10, 831, 618, 258, 837).\n        *   Standard Phrase: \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   Standard Phrase: \"Unexpected results were checked before the report was revised.\"\n    *   Record 27 is cut off: \"They recorded 837 observations and\". This is a minor detail, but the pattern is clear.\n\n2.  **Identify Key Themes for the Output:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Specific topics to discuss: observations, comparisons, uncertainty, replication, clear communication.\n    *   Must use examples from the archive.\n\n3.  **Drafting the Content - Section by Section (Mental Outline & Example Mapping):**\n    *   *Introduction:* Need to explain that careful research isn't just about getting answers; it's about the process. The archive",
+      "e2e_seconds": 42.137756459007505,
+      "ttft_seconds": 15.72147018200485,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.34415522447774,
+      "all_stream_overlap_tokens": 468,
+      "all_stream_overlap_tps": 19.418828868117497
+    },
+    {
+      "request": 7,
+      "start": 66531.788380023,
+      "end": 66574.297068077,
+      "first_token": 66547.501157863,
+      "last_token": 66574.296998156,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 158,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) which seems irrelevant to the content but establishes context.\n    *   The core content is \"Record 1 for archive 7\" through \"Record 27 for archive 7\".\n    *   Each record follows a pattern:\n        *   Location: e.g., \"near the hill\", \"near the forest\", \"near the harbor\", \"near the orchard\", \"near the river\", \"near the village\", \"near the garden\".\n        *   Action: e.g., \"checked the instruments\", \"compared written records\", \"reviewed the daily observations\", \"interviewed the field team\", \"measured water flow\".\n        *   Day: e.g., \"day 81\", \"day 101\", etc.\n        *   Observation Count: e.g., \"459 observations\", \"944 observations\", etc.\n        *   Standard Phrase: \"They recorded [X] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n        *   Record 27 is cut off: \"They recorded 618 observations and kept the original notes so that another researcher\". This is a minor detail but worth noting if I need to quote it, though the pattern is clear.\n\n2.  **Analyze the Request:**\n    *   Goal: Write an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Requirements:\n        *   Detailed, continuous explanation.\n        *   Discuss: observations, comparisons, uncertainty, replication, clear communication.\n        *   Use examples from the archive.\n        *   Plain language (accessible, not overly technical jargon, though the archive itself is repetitive).\n\n3.  **Synthesize the Narrative (Drafting Phase):**\n    *   *Theme:* Careful research leads to reliable decisions. The archive shows a process of gathering data, checking it, keeping records, and handling surprises.\n    *   *Structure:*\n        *   Introduction: What is careful research? It's about building trust in what we know.\n       ",
+      "e2e_seconds": 42.50868805398932,
+      "ttft_seconds": 15.71277783998812,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.07012410927528,
+      "all_stream_overlap_tokens": 468,
+      "all_stream_overlap_tps": 19.418828868117497
+    },
+    {
+      "request": 8,
+      "start": 66531.788481353,
+      "end": 66576.619721539,
+      "first_token": 66547.415627062,
+      "last_token": 66576.619592193,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 184,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nThe archive provided offers a fascinating, albeit repetitive, glimpse into the mechanics of rigorous scientific inquiry. At first glance, the records may seem monotonous, but they collectively illustrate a robust framework for ensuring that research findings are not just data points, but reliable truths. The core theme running through every single record is the commitment to **careful observation**, **verification**, and **transparency**. To understand how this supports reliable decisions, we must look at the specific practices highlighted in these entries: the volume and nature of observations, the critical role of checking unexpected results, the importance of keeping original notes for replication, and the variety of methods used to gather data.\n\n### The Power of Detailed Observation\n\nThe first pillar of reliable decision-making is the quality and quantity of observation. In the archive, we see teams near various locations—gardens, rivers, forests, villages, hills, orchards, and harbors—engaging in different types of measurements. Some teams measured water flow, others checked instruments, reviewed daily observations, or interviewed field teams. What unites them is the sheer number of observations recorded.\n\nFor instance, Record 5 shows a team near the forest recording **951 observations** on day 179. Record 17 shows a team near the garden recording **857 observations** on day 270. Record 24 shows a team near the orchard recording **809 observations** on day 99. These high numbers are not accidental; they represent a deliberate effort to capture a comprehensive picture of the phenomenon being studied. In research, small sample sizes can lead to skewed conclusions. By collecting hundreds or even thousands of data points, researchers reduce the impact of random errors or anomalies. If a single measurement is off due to a glitch, it is diluted within a large dataset. This density of observation allows researchers to identify patterns, trends, and",
+      "e2e_seconds": 44.831240186002105,
+      "ttft_seconds": 15.627145709004253,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 17.497623959888234,
+      "all_stream_overlap_tokens": 381,
+      "all_stream_overlap_tps": 15.808918373403346
+    },
+    {
+      "request": 9,
+      "start": 66531.788588587,
+      "end": 66577.919309004,
+      "first_token": 66547.501767761,
+      "last_token": 66577.919121481,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 203,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nThe archive provided, specifically Archive 9, offers a fascinating glimpse into the mechanics of rigorous scientific inquiry. While the records may appear repetitive at first glance, they collectively illustrate a robust framework for ensuring that research findings are not just data points, but reliable evidence capable of supporting sound decisions. By examining the specific actions taken by various teams—those near the forest, orchard, hill, garden, river, harbor, and village—we can construct a clear picture of how careful observation, verification, and communication work together to minimize error and maximize trust in results.\n\nAt the heart of this process is the concept of **detailed observation**. In the archive, every record begins with a specific action: measuring water flow, reviewing daily observations, interviewing field teams, checking instruments, or comparing written records. These are not vague activities; they are precise, actionable steps. For instance, Record 4 describes a team near the hill measuring water flow on day 45, while Record 9 details a team near the forest checking instruments on day 151. The importance of these specific actions lies in their granularity. By focusing on distinct variables like water flow or instrument calibration, researchers avoid the trap of generalization. When a decision needs to be made—such as whether a water treatment facility is functioning correctly or if a forest ecosystem is under stress—having specific, granular data allows for targeted interventions rather than broad, potentially ineffective guesses.\n\nHowever, observation alone is not enough. The archive highlights a critical second step: **verification and the handling of uncertainty**. A recurring phrase in nearly every record is, \"Unexpected results were checked before the report was revised.\" This is a vital safeguard against bias and error. In science, anomalies are not mistakes to be hidden; they are clues that something might be ",
+      "e2e_seconds": 46.1307204170007,
+      "ttft_seconds": 15.71317917399574,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.79962052925275,
+      "all_stream_overlap_tokens": 369,
+      "all_stream_overlap_tps": 15.310999684477256
+    },
+    {
+      "request": 10,
+      "start": 66531.788688092,
+      "end": 66572.137139966,
+      "first_token": 66547.518780838,
+      "last_token": 66572.137113838,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 143,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   *Input:* A list of 27 records from \"Archive 10\".\n    *   *Structure of each record:* \"Record [N] for archive 10: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements:*\n        *   Locations: Forest, Orchard, Harbor, Village, River, Hill, Garden.\n        *   Actions: Measured water flow, Checked instruments, Compared written records, Interviewed field team, Reviewed daily observations.\n        *   Days: Various numbers (e.g., 335, 203, 312, 318, 247, 88, 13, 248, 232, 156, 33, 60, 363, 255, 31, 359, 207, 141, 169, 299, 69, 16, 321, 291, 53, 5, 27).\n        *   Observation Counts: Various numbers (e.g., 969, 141, 815, 368, 210, 593, 911, 733, 804, 215, 840, 479, 326, 833, 29, 129, 790, 287, 690, 15, 627, 809, 848, 671, 194, 420).\n        *   *Recurring Phrases:* \"kept the original notes so that another researcher could examine the same evidence\" and \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize the Narrative/Theme:**\n    *   The archive describes a systematic research process.\n    *   *Core themes:*\n        *",
+      "e2e_seconds": 40.3484518740006,
+      "ttft_seconds": 15.730092746001901,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.75688877877635,
+      "all_stream_overlap_tokens": 502,
+      "all_stream_overlap_tps": 20.829598486741418
+    },
+    {
+      "request": 11,
+      "start": 66531.788792478,
+      "end": 66573.654408313,
+      "first_token": 66547.503380061,
+      "last_token": 66573.654211605,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 153,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   *Goal:* Understand the structure and content of the provided archive to extract examples for the explanation.\n    *   *Structure:* The archive consists of 26 records. Each record follows a pattern: \"Record [N] for archive 11: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements per Record:*\n        *   Location: village, hill, garden, orchard, river, harbor, forest.\n        *   Action: reviewed daily observations, compared written records, interviewed field team, measured water flow, checked instruments.\n        *   Day: Various days (1, 34, 36, 51, 77, 81, 83, 89, 106, 152, 156, 178, 211, 232, 247, 248, 257, 263, 283, 296, 316, 339, 349, 352, 357, 365).\n        *   Count: Number of observations (ranges from 105 to 931).\n        *   *Recurring Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency**.\n        *   *Recurring Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **Uncertainty/Error Checking/Verification**.\n        *   *Actions:* \"measured water flow\", \"checked instruments\", \"compared written records\", \"interviewed field team\", \"reviewed daily observations\". -> These are types of **Observations/Methods**.\n\n2.  **Map Archive Elements to Themes:**\n    *   *Theme 1: Observations.*\n        *   Examples: \"measured water flow\" (Records 7, 13, 14, 15, 16, 26), \"checked instruments\" (Record ",
+      "e2e_seconds": 41.86561583500588,
+      "ttft_seconds": 15.714587583002867,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.54048761853741,
+      "all_stream_overlap_tokens": 469,
+      "all_stream_overlap_tps": 19.46032209219467
+    },
+    {
+      "request": 12,
+      "start": 66531.788925073,
+      "end": 66572.939449053,
+      "first_token": 66547.516329228,
+      "last_token": 66572.939414141,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 148,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a \"fictional research archive\" with 27 records.\n    *   Each record follows a pattern: \"Record [N] for archive 12: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: village, hill, harbor, garden, orchard, river, forest.\n        *   Action: reviewed daily observations, checked instruments, interviewed field team, compared written records, measured water flow.\n        *   Day: Various days (e.g., 326, 278, 204, 202, 69, 116, 357, 91, 302, 203, 121, 180, 274, 346, 19, 220, 138, 92, 12, 129, 331, 190, 31, 166, 204, 223, 126).\n        *   Count: Various numbers of observations (e.g., 344, 305, 75, 676, 265, 766, 500, 717, 859, 336, 265, 408, 95, 608, 523, 866, 843, 414, 313, 175, 147, 369, 400, 347, 522, 927, 126).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency/Documentation**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This",
+      "e2e_seconds": 41.15052398000262,
+      "ttft_seconds": 15.727404155011754,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.09984239712691,
+      "all_stream_overlap_tokens": 483,
+      "all_stream_overlap_tps": 20.04122722927511
+    },
+    {
+      "request": 13,
+      "start": 66531.789034915,
+      "end": 66572.309378338,
+      "first_token": 66547.50631728,
+      "last_token": 66572.309340769,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 144,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a list of records from \"Archive 13\".\n    *   Each record follows a pattern: \"Record X for archive 13: The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: hill, harbor, river, garden, forest, orchard, village.\n        *   Action: measured water flow, interviewed field team, reviewed daily observations, checked instruments, compared written records.\n        *   Day: Various days (e.g., 364, 276, 249, 72, 62, 43, 78, 142, 51, 184, 328, 284, 70, 204, 76, 229, 64, 100, 54, 168, 37, 65, 101, 176, 296, 220).\n        *   Observations: Various counts (e.g., 339, 71, 104, 314, 277, 346, 807, 760, 574, 463, 93, 888, 587, 432, 525, 187, 786, 754, 822, 592, 590, 18, 619, 157, 644, 333, 887).\n        *   Standard phrase: \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   Standard phrase: \"Unexpected results were checked before the report was revised.\"\n        *   Record 27 ends abruptly: \"They recorded 887\". This is a minor detail, likely a truncation, but the pattern holds.\n\n2",
+      "e2e_seconds": 40.520343423006125,
+      "ttft_seconds": 15.717282365003484,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.60232697947348,
+      "all_stream_overlap_tokens": 501,
+      "all_stream_overlap_tps": 20.788105262664242
+    },
+    {
+      "request": 14,
+      "start": 66531.789142213,
+      "end": 66572.630217896,
+      "first_token": 66547.511211284,
+      "last_token": 66572.630135558,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 146,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"archive\" with a long list of records.\n    *   Each record follows a pattern: \"Record [N] for archive 14: The team near the [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: village, forest, harbor, garden, hill, orchard, river.\n        *   Action: measured water flow, checked instruments, compared written records, interviewed field team, reviewed daily observations.\n        *   Day: Various days (e.g., 15, 291, 6, 293, 330, 148, 201, 322, 151, 97, 303, 285, 138, 307, 127, 132, 233, 50, 320, 284, 73, 205, 238, 49, 209, 315, 307).\n        *   Count: Various numbers of observations (e.g., 58, 923, 396, 410, 415, 107, 775, 223, 710, 333, 188, 392, 382, 30, 894, 832, 247, 230, 309, 719, 99, 191, 265, 565, 977, 198, 307).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to transparency, reproducibility, and auditability.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to handling",
+      "e2e_seconds": 40.84107568299805,
+      "ttft_seconds": 15.722069070994621,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.343227855850998,
+      "all_stream_overlap_tokens": 487,
+      "all_stream_overlap_tps": 20.207200125583803
+    },
+    {
+      "request": 15,
+      "start": 66531.78924183,
+      "end": 66572.479026587,
+      "first_token": 66547.500797905,
+      "last_token": 66572.478950138,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 145,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided archive records to understand the context, patterns, and specific details.\n    *   *Structure:* Each record follows a pattern: \"Record [N] for archive 15: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Locations:* harbor, river, hill, forest, village, orchard, garden.\n    *   *Actions:* checked instruments, measured water flow, interviewed field team, reviewed daily observations, compared written records.\n    *   *Days:* Various days (e.g., 128, 155, 187, 330, 82, 338, 242, 348, 341, 133, 183, 276, 334, 363, 298, 151, 206, 40, 271, 141, 359, 249, 42, 34, 92, 52).\n    *   *Observation Counts:* Vary widely (e.g., 873, 207, 899, 863, 220, 122, 657, 510, 649, 326, 560, 751, 899, 782, 195, 661, 340, 989, 43, 101, 50, 456, 792, 87, 950, 393, 52).\n    *   *Key Phrases:* \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize Themes for the Explanation:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable",
+      "e2e_seconds": 40.689784756992594,
+      "ttft_seconds": 15.711556074995315,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.457878358386463,
+      "all_stream_overlap_tokens": 496,
+      "all_stream_overlap_tps": 20.580639142278372
+    },
+    {
+      "request": 16,
+      "start": 66531.789343608,
+      "end": 66573.373706234,
+      "first_token": 66547.503047399,
+      "last_token": 66573.373630281,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 151,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a list of records from \"archive 16\".\n    *   Each record follows a pattern: \"Record X for archive 16: The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: forest, hill, village, river, orchard, harbor, garden.\n        *   Action: checked instruments, compared written records, reviewed daily observations, interviewed field team, measured water flow.\n        *   Day: Various numbers (6, 267, 311, 66, 44, 195, 64, 320, 362, 273, 119, 128, 190, 157, 95, 362, 196, 204, 192, 115, 57, 322, 144, 259, 204, 55, 322...).\n        *   Observations count: Various numbers (65, 988, 191, 829, 252, 988, 186, 945, 560, 941, 562, 17, 877, 934, 791, 165, 730, 102, 892, 92, 695, 271, 43, 723, 805, 433, 322...).\n        *   *Crucial Phrase 1:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency/Documentation**.\n        *   *Crucial Phrase 2:* \"Unexpected results were checked before the report was revised.\" -> This points to **Handling Uncertainty/Verification/Integrity**.",
+      "e2e_seconds": 41.58436262598843,
+      "ttft_seconds": 15.713703790999716,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.75216415999819,
+      "all_stream_overlap_tokens": 477,
+      "all_stream_overlap_tps": 19.792267884812063
+    },
+    {
+      "request": 17,
+      "start": 66531.789444682,
+      "end": 66574.669836101,
+      "first_token": 66547.508388003,
+      "last_token": 66574.669792084,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 161,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   *Goal:* Understand the content of the archive to extract themes for the explanation.\n    *   *Structure:* The archive consists of 27 records (plus a cut-off Record 27). Each record follows a pattern:\n        *   Location: forest, village, orchard, harbor, hill, river, garden.\n        *   Action: measured water flow, compared written records, checked instruments, interviewed field team, reviewed daily observations.\n        *   Day: Various days (e.g., 117, 8, 325, 121, 43, 75, etc.).\n        *   Observations: Number of observations recorded (e.g., 406, 301, 203, etc.).\n        *   Standard Phrase: \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   Standard Phrase: \"Unexpected results were checked before the report was revised.\"\n    *   *Key Themes Identified:*\n        *   *Observation:* High numbers of observations (ranging from 161 to 976). This suggests thoroughness.\n        *   *Replication/Verification:* \"kept the original notes so that another researcher could examine the same evidence.\" This is about transparency and reproducibility.\n        *   *Handling Anomalies:* \"Unexpected results were checked before the report was revised.\" This is about uncertainty, error checking, and not ignoring outliers.\n        *   *Methods:* Measuring, comparing, checking instruments, interviewing, reviewing. This shows diverse methods and cross-verification.\n        *   *Locations:* Multiple locations imply broad coverage or comparison across contexts.\n        *   *Days:* Various days imply longitudinal study or repeated measures over time.\n\n2.  **Plan the Response:**\n    *   *Constraint:* \"Write an extended plain-language account of how careful observations support reliable decisions.\"\n    *   *Constraint:* \"Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n    *   *Structure:*\n      ",
+      "e2e_seconds": 42.88039141900663,
+      "ttft_seconds": 15.718943321000552,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.813460396826777,
+      "all_stream_overlap_tokens": 444,
+      "all_stream_overlap_tps": 18.422991490265318
+    },
+    {
+      "request": 18,
+      "start": 66531.78954814,
+      "end": 66577.869654207,
+      "first_token": 66547.510537496,
+      "last_token": 66577.869582366,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 202,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\n\n</think>\n\nThe fictional archive labeled \"18\" presents a consistent, repetitive pattern of scientific activity that, while seemingly monotonous, actually illustrates the foundational pillars of reliable research. Each record follows an identical structure: a team at a specific location (village, orchard, forest, harbor, garden, hill, or river) performs a specific action (interviewing, comparing records, measuring water flow, reviewing observations, or checking instruments) on a specific day, records a certain number of observations, preserves the original notes for independent examination, and verifies unexpected results before finalizing a report. This uniformity is not a lack of creativity but a demonstration of rigorous methodology. To understand how careful observations support reliable decisions, we must look beyond the individual data points and examine the systemic practices described in these records.\n\nThe first and most critical element highlighted in every single record is the preservation of original notes. The phrase \"kept the original notes so that another researcher could examine the same evidence\" speaks directly to the principle of transparency and replicability. In science, a decision or conclusion is only as strong as the evidence supporting it. If the evidence is lost, altered, or hidden, the conclusion becomes an opinion rather than a fact. By keeping the raw data, the researchers allow for independent verification. This is crucial because human memory is fallible, and initial interpretations can be biased. When a second researcher can look at the same notes, they can check for errors, confirm measurements, or offer a different perspective. This practice transforms a single person’s observation into a shared, verifiable truth. For example, in Record 1, the team near the village recorded 502 observations. The sheer volume of data suggests a complex environment, but without the original notes, those 502 points would be just numbe",
+      "e2e_seconds": 46.08010606699099,
+      "ttft_seconds": 15.72098935599206,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.831886582340807,
+      "all_stream_overlap_tokens": 363,
+      "all_stream_overlap_tps": 15.062040340014212
+    },
+    {
+      "request": 19,
+      "start": 66531.78965011,
+      "end": 66573.926849182,
+      "first_token": 66547.517425199,
+      "last_token": 66573.926801581,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 155,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive Identity\" string (hashes) and then a series of records (Record 1 to Record 27) from \"Archive 19\".\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Actions:* compared written records, interviewed the field team, reviewed the daily observations, checked the instruments, measured water flow.\n    *   *Key Locations:* garden, hill, forest, village, river, harbor, orchard.\n    *   *Key Numbers:* Varying observation counts (e.g., 241, 537, 129, 104, 762, 490, 927, 590, 174, 776, 762, 610, 441, 400, 621, 733, 949, 17, 300, 55, 959, 91, 412, 379, 153, 900).\n    *   *Recurring Phrases:* \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n    *   *Record 27 is cut off:* \"The team near the garden checked the instruments on day 69. They\" -> This is a fragment, but the pattern holds.\n\n2.  **Synthesize the \"Fictional Research Archive\" Theme:**\n    *   The archive describes a rigorous research process.\n    *   *Core themes evident in the text:*\n        *   **Observation:** Every record mentions recording observations.\n        *   **Documentation/Transparency:** \"kept the original notes so that another researcher could examine the same evidence.\" This screams replication and auditability.\n        *   **Verification/Quality Control:** \"Unexpected results were checked before the report was revised.\" This addresses uncertainty and error checking.\n        *  ",
+      "e2e_seconds": 42.137199071992654,
+      "ttft_seconds": 15.72777508899162,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.349188432496206,
+      "all_stream_overlap_tokens": 466,
+      "all_stream_overlap_tps": 19.335842419963146
+    },
+    {
+      "request": 20,
+      "start": 66531.7897844,
+      "end": 66572.136957547,
+      "first_token": 66547.516688338,
+      "last_token": 66572.136927195,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 143,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the pattern and content.\n    *   *Record 1:* Forest, day 88, compared written records, 552 obs, kept notes, checked unexpected results.\n    *   *Record 2:* Village, day 97, compared written records, 898 obs, kept notes, checked unexpected results.\n    *   *Record 3:* Orchard, day 321, measured water flow, 304 obs, kept notes, checked unexpected results.\n    *   *... (Scanning through records 4-27) ...*\n    *   *Pattern Recognition:* Every record follows a very similar structure:\n        *   Location: Forest, Village, Orchard, Harbor, Hill, River.\n        *   Action: Compared written records, measured water flow, reviewed daily observations, interviewed field team, checked instruments.\n        *   Day: Various days (e.g., 88, 97, 321, 303, 323, 4, 264, 198, 277, 146, 322, 136, 203, 310, 171, 268, 324, 92, 336, 111, 125, 22, 122, 48, 134, 142).\n        *   Observations: Various counts (552, 898, 304, 517, 668, 698, 54, 401, 223, 634, 185, 506, 506, 556, 575, 252, 65, 966, 994, 888, 944, 949, 503, 775, 365, 109).\n        *   *Crucial Constant:* \"kept the original notes so that another researcher could",
+      "e2e_seconds": 40.34717314700538,
+      "ttft_seconds": 15.726903938004398,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.755281984391722,
+      "all_stream_overlap_tokens": 500,
+      "all_stream_overlap_tps": 20.746612038587067
+    },
+    {
+      "request": 21,
+      "start": 66531.789886706,
+      "end": 66575.319360433,
+      "first_token": 66547.513190182,
+      "last_token": 66575.319233919,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 167,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hash-like) and then \"Record 1\" through \"Record 27\" for \"archive 21\".\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Day Number]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key actions:* interviewed, reviewed, checked instruments, compared written records, measured water flow.\n    *   *Key locations:* orchard, forest, garden, river, hill, harbor, village.\n    *   *Key metrics:* Day numbers (varying), Observation counts (varying, some very low like 3, 12, 27, some high like 965, 916).\n    *   *Recurring phrases:* \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n    *   *Record 27 is cut off:* \"They recorded 3\". This is a detail to note, though the prompt asks for an explanation based on the archive, so I should mention the cutoff or just focus on the complete records. The prompt asks for an \"extended plain-language account\", so I need to synthesize the themes.\n\n2.  **Identify Themes for the Explanation:**\n    *   The prompt asks for: \"observations, comparisons, uncertainty, replication, and clear communication\".\n    *   *Observations:* The core of every record. \"Recorded X observations\". High counts vs. low counts.\n    *   *Comparisons:* \"Compared written records\", \"Reviewed daily observations\".\n    *   *Uncertainty:* \"Unexpected results were checked\". This implies that surprises happen, and the process handles them.\n    *   *Replication/Verification:* \"Kept the original notes so that another researcher could examine the same evidence.\" This is about transparency and reproducibility.\n    *   *Clear Communication:* \"Report was revised\", \"Interviewed\", \"Recorde",
+      "e2e_seconds": 43.52947372700146,
+      "ttft_seconds": 15.723303475999273,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.37729972782974,
+      "all_stream_overlap_tokens": 428,
+      "all_stream_overlap_tps": 17.75909990503053
+    },
+    {
+      "request": 22,
+      "start": 66531.789989876,
+      "end": 66572.787967375,
+      "first_token": 66547.514956724,
+      "last_token": 66572.787935439,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 147,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"archive\" with 27 records.\n    *   Each record follows a pattern: \"Record [N] for archive 22: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: orchard, harbor, hill, forest, garden, village, river.\n        *   Action: measured water flow, interviewed field team, checked instruments, reviewed daily observations, compared written records.\n        *   Day: Various days (e.g., 206, 326, 301, 4, 278, 100, 183, 88, 206, 242, 268, 65, 177, 102, 143, 16, 64, 20, 6, 325, 285, 71, 336, 315, 22, 73).\n        *   Count: Various numbers of observations (e.g., 695, 289, 356, 24, 461, 949, 452, 654, 171, 842, 909, 876, 333, 993, 36, 815, 724, 472, 519, 124, 436, 959, 843, 894, 748, 563).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **replication**, **transparency**, and **auditability**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **handling uncertainty**, **checking anomalies**, and **rigor**.",
+      "e2e_seconds": 40.99797749900608,
+      "ttft_seconds": 15.72496684800717,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.21922329625008,
+      "all_stream_overlap_tokens": 495,
+      "all_stream_overlap_tps": 20.539145918201196
+    },
+    {
+      "request": 23,
+      "start": 66531.790099142,
+      "end": 66577.333525868,
+      "first_token": 66547.512463258,
+      "last_token": 66577.333250279,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 193,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\n**The Foundation of Trust: How Careful Observation Leads to Reliable Decisions**\n\nIn the world of research, whether studying rivers, forests, or orchards, the ultimate goal is not just to collect data, but to make decisions that are safe, effective, and true to reality. The fictional archive provided offers a window into a rigorous scientific process. By examining the habits of the teams described in these records, we can understand how careful observation, verification, and clear communication transform raw information into reliable knowledge.\n\n**1. The Power of Detailed Observation**\nThe first step in any reliable study is paying close attention to the world. In the archive, we see teams recording hundreds of observations. For example, on day 121, the team near the orchard recorded 956 observations, while the team near the river measured water flow on day 15 and recorded 822 observations. These numbers are not just statistics; they represent a commitment to detail.\n\nWhy does this matter? Imagine a doctor diagnosing a patient. If they only note that the patient \"feels sick,\" the diagnosis might be wrong. But if they carefully record temperature, heart rate, and specific symptoms, they can make a much better decision. Similarly, the research teams in the archive do not guess. They count, measure, and note specific details. This thoroughness ensures that no important clue is missed. When decisions are based on a large, detailed set of facts, they are far more likely to be correct than decisions based on vague impressions.\n\n**2. Verification and Checking for Uncertainty**\nScience is full of surprises, and sometimes data looks wrong or unexpected. The archive highlights a crucial habit: \"Unexpected results were checked before the report was revised.\" This step is vital because it prevents errors from becoming accepted facts.\n\nConsider Record 23, where the team near the hill recorded only 64 observations on day 56, compared to Record 4, where the tea",
+      "e2e_seconds": 45.54342672599887,
+      "ttft_seconds": 15.722364115994424,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 17.13569798275631,
+      "all_stream_overlap_tokens": 371,
+      "all_stream_overlap_tps": 15.393986132631605
+    },
+    {
+      "request": 24,
+      "start": 66531.790211384,
+      "end": 66573.374609064,
+      "first_token": 66547.510094977,
+      "last_token": 66573.374574136,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 151,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   The user provided a list of records from \"Archive 24\".\n    *   Each record follows a pattern: `Record N for archive 24: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n    *   Key elements in every record:\n        *   *Location:* Hill, Harbor, Forest, Village, Garden, River, Orchard.\n        *   *Action:* Measured water flow, Checked instruments, Compared written records, Reviewed daily observations, Interviewed field team.\n        *   *Day:* Various days (e.g., 321, 160, 92, 226, 342, 215, 41, 192, 123, 277, 155, 104, 220, 100, 363, 252, 242, 188, 118, 252, 328, 224, 188).\n        *   *Observation Count:* Various numbers (e.g., 299, 945, 699, 323, 178, 209, 444, 195, 331, 210, 782, 434, 686, 29, 103, 440, 659, 363, 428, 182, 808, 265, 318, 92, 886, 211).\n        *   *Standard Phrase 1:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to *Replication/Transparency*.\n        *   *Standard Phrase 2:* \"Unexpected results were checked before the report was revised.\" -> This points to *Uncertainty/Error Checking/Verification*.\n\n2.  **Synthesize the Themes for the Explanation",
+      "e2e_seconds": 41.584397680009715,
+      "ttft_seconds": 15.719883593003033,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.75682544614822,
+      "all_stream_overlap_tokens": 474,
+      "all_stream_overlap_tps": 19.66778821258054
+    },
+    {
+      "request": 25,
+      "start": 66531.790312361,
+      "end": 66577.814188564,
+      "first_token": 66547.507351377,
+      "last_token": 66577.814111026,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 201,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\n\n</think>\n\nThe fictional research archive labeled \"Archive 25\" presents a consistent pattern of scientific rigor across various field locations, including harbors, orchards, rivers, forests, hills, gardens, and villages. Each record, from Record 1 through Record 27, follows an identical procedural template: a specific activity is performed on a specific day, a certain number of observations are recorded, original notes are preserved for independent verification, and unexpected results are checked before any report is revised. This uniformity is not merely administrative; it illustrates the foundational pillars of reliable decision-making in research: careful observation, systematic comparison, management of uncertainty, replication, and clear communication.\n\n**The Foundation: Careful Observation**\n\nAt the heart of every record is the act of observation. Whether the team is \"measuring water flow,\" \"checking instruments,\" \"interviewing the field team,\" or \"reviewing daily observations,\" the primary output is a quantified set of data points. For instance, Record 14 near the harbor involved 964 observations, while Record 6 near the forest involved only 11. This variation in volume is significant. It demonstrates that careful observation is not about generating a fixed number of data points, but about capturing what is necessary for the specific task at hand.\n\nIn Record 1, the team measured water flow and recorded 267 observations. In Record 5, another team near the forest measured water flow but recorded only 211. The difference in numbers does not imply one team was more careful than the other; rather, it suggests that the conditions, tools, or scope of the measurement differed. What remains constant is the commitment to recording the evidence. Without these raw observations, there is no basis for decision-making. A decision to divert water, adjust irrigation, or repair equipment cannot be made reliably if the underlying data is missing or vague. The",
+      "e2e_seconds": 46.023876203005784,
+      "ttft_seconds": 15.717039016002673,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.860924952656912,
+      "all_stream_overlap_tokens": 368,
+      "all_stream_overlap_tps": 15.269506460400082
+    },
+    {
+      "request": 26,
+      "start": 66531.790416155,
+      "end": 66572.938942149,
+      "first_token": 66547.502565199,
+      "last_token": 66572.938860452,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 148,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) and a series of records (Record 1 to Record 27, though Record 27 is cut off).\n    *   The records follow a pattern: \"Record N for archive 26: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: forest, orchard, river, hill, harbor, garden.\n        *   Action: reviewed daily observations, compared written records, checked instruments, interviewed field team, measured water flow.\n        *   Day: Various numbers (e.g., 329, 253, 206, 11, 43, 182, 94, 73, 346, 313, 157, 137, 297, 323, 339, 188, 159, 167, 128, 8, 187, 111, 268, 220).\n        *   Count: Various numbers (e.g., 616, 755, 554, 148, 376, 112, 490, 517, 16, 261, 732, 242, 38, 798, 699, 62, 155, 256, 701, 565, 742, 315, 481, 288, 543).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **Handling Uncertainty/Verification**.\n\n2. ",
+      "e2e_seconds": 41.148525994009105,
+      "ttft_seconds": 15.712149044004036,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.089403543922277,
+      "all_stream_overlap_tokens": 487,
+      "all_stream_overlap_tps": 20.207200125583803
+    },
+    {
+      "request": 27,
+      "start": 66531.790518205,
+      "end": 66573.925896622,
+      "first_token": 66547.509053647,
+      "last_token": 66573.925814013,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 155,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the context, patterns, and specific details.\n    *   *Archive Identity:* f8bfcf9aa8... (This seems like a hash or ID, likely irrelevant to the narrative but good to note as metadata).\n    *   *Archive Number:* 27.\n    *   *Structure:* Each record follows a pattern: \"Record [N] for archive 27: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Locations:* Hill, River, Forest, Village, Orchard, Harbor, Garden.\n    *   *Actions:* Compared written records, measured water flow, checked instruments, interviewed the field team, reviewed daily observations.\n    *   *Days:* Various days (57, 58, 59, 60, 69, 74, 97, 112, 124, 149, 153, 163, 187, 188, 208, 219, 238, 239, 241, 251, 281, 284, 291, 302, 314, 338, 346, 360).\n    *   *Observation Counts:* Range from 46 to 986.\n    *   *Key Phrases:* \"kept the original notes so that another researcher could examine the same evidence,\" \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize Themes for the Explanation:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Required topics: Observations, comparisons, uncertainty, replication, clear communication.\n    *   Must use examples from the archive.\n\n    *   *Theme 1: Observations.*\n        *   The archive is full of \"observations.\"\n        *   Examples: \"measured water flow,\" \"checked instruments",
+      "e2e_seconds": 42.13537841699144,
+      "ttft_seconds": 15.718535441992572,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.343779968479364,
+      "all_stream_overlap_tokens": 459,
+      "all_stream_overlap_tps": 19.04538985142293
+    },
+    {
+      "request": 28,
+      "start": 66531.790651039,
+      "end": 66573.519011778,
+      "first_token": 66547.507689543,
+      "last_token": 66573.518934449,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 152,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided archive records to understand the context, patterns, and specific details.\n    *   *Archive ID:* 452fc803d7... (This seems like a hash, likely irrelevant for the content analysis but good to note).\n    *   *Structure:* Each record follows a pattern: \"Record [N] for archive 28: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Locations:* orchard, river, hill, village, garden, harbor, forest.\n    *   *Actions:* reviewed daily observations, interviewed field team, checked instruments, measured water flow, compared written records.\n    *   *Days:* Various days (e.g., 340, 341, 350, 107, 200, 293, 167, 156, 306, 323, 228, 149, 313, 308, 303, 145, 100, 69, 273, 216, 110, 197, 256, 14, 70, 223, 27...). Note: Record 27 is cut off (\"The team near\").\n    *   *Observation Counts:* Vary widely (e.g., 266, 627, 148, 886, 613, 853, 870, 146, 164, 115, 147, 921, 842, 775, 127, 716, 455, 929, 474, 180, 228, 641, 636, 152, 248, 830).\n    *   *Key Ph",
+      "e2e_seconds": 41.72836073899816,
+      "ttft_seconds": 15.717038503993535,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.645349611156746,
+      "all_stream_overlap_tokens": 466,
+      "all_stream_overlap_tps": 19.335842419963146
+    },
+    {
+      "request": 29,
+      "start": 66531.790753841,
+      "end": 66571.61919364,
+      "first_token": 66547.505573651,
+      "last_token": 66571.619101366,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 141,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   *Input:* A list of 27 records from \"Archive 29\".\n    *   *Structure of each record:* \"Record X for archive 29: The team near [Location] [Action] on day [Day Number]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements:*\n        *   Locations: Harbor, Village, Hill, Garden, Orchard, River, Forest.\n        *   Actions: Reviewed daily observations, compared written records, measured water flow, checked instruments, interviewed field team.\n        *   Day Numbers: Various (e.g., 267, 229, 357, 112, 129, 329, 66, 354, 60, 129, 20, 169, 247, 218, 48, 148, 123, 79, 351, 230, 118, 34, 166, 8, 338, 240, 278).\n        *   Observation Counts: Various (e.g., 647, 412, 739, 524, 206, 342, 537, 533, 806, 983, 811, 730, 278, 27, 245, 709, 252, 587, 697, 661, 833, 385, 95, 467, 970, 968, 130).\n        *   *Recurring Phrases:* \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize the Narrative/Theme:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions",
+      "e2e_seconds": 39.828439798991894,
+      "ttft_seconds": 15.714819809989422,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 21.19142441701209,
+      "all_stream_overlap_tokens": 511,
+      "all_stream_overlap_tps": 21.203037503435983
+    },
+    {
+      "request": 30,
+      "start": 66531.790857715,
+      "end": 66575.01140883,
+      "first_token": 66547.518147163,
+      "last_token": 66575.011347389,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 164,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the context, patterns, and specific details.\n    *   *Archive Header:* \"Archive identity 66e24dd22e...\" followed by a list of hashes. This seems like metadata, likely irrelevant to the narrative but confirms it's a structured archive.\n    *   *Records 1-27:* All records follow a very similar template:\n        *   \"The team near [Location] [Action] on day [Day Number].\"\n        *   \"They recorded [Number] observations...\"\n        *   \"...and kept the original notes so that another researcher could examine the same evidence.\"\n        *   \"Unexpected results were checked before the report was revised.\"\n    *   *Locations:* Hill, River, Orchard, Village, Garden, Forest, Harbor.\n    *   *Actions:* Measured water flow, Checked instruments, Reviewed daily observations, Interviewed field team, Compared written records.\n    *   *Observation Counts:* Vary widely (e.g., Record 1: 60, Record 3: 973, Record 21: 27, Record 26: 917).\n    *   *Days:* Vary widely (e.g., Record 25: day 30, Record 15: day 365, Record 4: day 94).\n    *   *Key Themes in Text:*\n        *   \"Kept original notes\" -> Replication, transparency, audit trail.\n        *   \"Another researcher could examine\" -> Peer review, reproducibility.\n        *   \"Unexpected results were checked\" -> Error checking, handling anomalies, reliability.\n        *   \"Report was revised\" -> Iterative improvement, correction.\n\n2.  **Synthesize the Narrative Requirements:**\n    *   *Goal:* Write an extended plain-language account of how careful observations support reliable decisions.\n    *   *Topics to Cover:* Observations, comparisons, uncertainty, replication, clear communication.\n    *   *Constraint:* Use examples from the archive.\n    *   *Style:* Detailed, continuous explanation, plain language.\n\n3.  **Drafting - Section by Section (Mental Outline & Integration of Examples):**\n    ",
+      "e2e_seconds": 43.220551115009584,
+      "ttft_seconds": 15.727289448012016,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.586413942345235,
+      "all_stream_overlap_tokens": 426,
+      "all_stream_overlap_tps": 17.67611345687618
+    },
+    {
+      "request": 31,
+      "start": 66531.790959221,
+      "end": 66577.964421792,
+      "first_token": 66547.500439274,
+      "last_token": 66577.964349599,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 204,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\n**The Foundation of Trust: How Careful Observation Builds Reliable Decisions**\n\nIn the world of research and decision-making, the difference between a guess and a fact often lies not in the complexity of the tools used, but in the rigor of the process. The fictional archive provided offers a consistent, repetitive, and highly structured model of scientific practice. By examining the records from this archive, we can see a clear blueprint for how careful observations support reliable decisions. This process rests on four pillars: meticulous data collection, rigorous verification, the management of uncertainty, and transparent communication.\n\n**1. The Discipline of Observation: Recording Everything**\n\nThe first step in reliable research is the act of observation itself. In the archive, every record begins with a specific action: reviewing daily observations, comparing written records, checking instruments, interviewing field teams, or measuring water flow. These are not vague activities; they are concrete, actionable tasks.\n\nFor example, Record 4 describes a team near the garden checking instruments and recording 997 observations. Record 19 shows a team near the harbor measuring water flow and recording 890 observations. The sheer volume of data—ranging from 60 observations in Record 2 to nearly 1,000 in Record 4—highlights a critical principle: reliability is built on quantity and consistency. You cannot make a sound decision based on a single glance. You need a robust dataset.\n\nThe archive emphasizes that these observations are not just noted down; they are *recorded*. This distinction is vital. A memory is fragile; a record is durable. By explicitly stating that \"they recorded [number] observations,\" the archive underscores that the raw data is the foundation upon which all future conclusions are built. Without this initial, careful capture of reality, any subsequent analysis is built on sand.\n\n**2. Verification and the Management of Uncertainty",
+      "e2e_seconds": 46.17346257099416,
+      "ttft_seconds": 15.70948005298851,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.77394643525167,
+      "all_stream_overlap_tokens": 359,
+      "all_stream_overlap_tps": 14.896067443705515
+    },
+    {
+      "request": 32,
+      "start": 66531.791065495,
+      "end": 66573.229286256,
+      "first_token": 66547.510861198,
+      "last_token": 66573.229221999,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 150,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a list of records from \"Archive 32\".\n    *   Each record follows a pattern: \"Record [N] for archive 32: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: orchard, harbor, garden, river, forest, village, hill.\n        *   Action: reviewed daily observations, checked instruments, measured water flow, interviewed field team, compared written records.\n        *   Day: Various days (8, 23, 293, 321, 85, 356, 13, 222, 315, 29, 36, 161, 21, 168, 244, 293, 329, 120, 24, 159, 171, 232, 160, 39, 58, 102, 81).\n        *   Count: Various numbers of observations (800, 567, 54, 352, 24, 987, 32, 536, 322, 38, 407, 433, 387, 963, 171, 769, 318, 931, 219, 355, 98, 514, 848, 733, 652, 252, 922).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\"\n        *   *Note:* Record 27 is cut off (\"They recorded 922 observations and kept the original notes and kept the original notes",
+      "e2e_seconds": 41.43822076100332,
+      "ttft_seconds": 15.719795703000273,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.869073458987707,
+      "all_stream_overlap_tokens": 487,
+      "all_stream_overlap_tps": 20.207200125583803
+    },
+    {
+      "request": 33,
+      "start": 66531.791173545,
+      "end": 66575.011158618,
+      "first_token": 66547.51529537,
+      "last_token": 66575.011091368,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 164,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"archive\" with a long list of records (Record 1 to Record 27, though Record 27 is cut off).\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Day Number]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: village, forest, harbor, river, hill, garden, orchard.\n        *   Action: measured water flow, checked instruments, interviewed field team, reviewed daily observations, compared written records.\n        *   Day: Various numbers (e.g., 325, 62, 26, 240, 48, etc.).\n        *   Observations: Various counts (e.g., 855, 126, 913, 299, etc.).\n        *   Standard phrase: \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   Standard phrase: \"Unexpected results were checked before the report was revised.\"\n\n2.  **Synthesize the Theme:**\n    *   The archive is clearly a fictional representation of rigorous research practices.\n    *   The repetitive structure emphasizes consistency, transparency, verification, and documentation.\n    *   The prompt asks for an \"extended plain-language account of how careful observations support reliable decisions\" based on this archive.\n    *   Specific topics to cover: observations, comparisons, uncertainty, replication, clear communication.\n\n3.  **Drafting the Response - Section by Section (Mental Outline & Content Generation):**\n    *   *Introduction:* Start by explaining that the archive shows a pattern of careful work. The goal is to translate the technical-sounding repetitive records into a narrative about why this matters.\n    *   *Observations:*\n        *   *Concept:* Gathering data is the foundation.\n        *   *Archive Evidence:* Mention the counts. \"Record 1 had ",
+      "e2e_seconds": 43.21998507299577,
+      "ttft_seconds": 15.724121824998292,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.584659270721513,
+      "all_stream_overlap_tokens": 436,
+      "all_stream_overlap_tps": 18.091045697647925
+    },
+    {
+      "request": 34,
+      "start": 66531.791274139,
+      "end": 66575.118211468,
+      "first_token": 66547.512812432,
+      "last_token": 66575.118136427,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 165,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the context and extract key themes.\n    *   *Record 1:* Harbor, day 340, water flow, 493 obs, original notes kept, unexpected results checked.\n    *   *Record 2:* Village, day 290, water flow, 658 obs, original notes kept, unexpected results checked.\n    *   *Record 3:* Harbor, day 213, reviewed daily obs, 68 obs, original notes kept, unexpected results checked.\n    *   *... (Scanning through records 4-26) ...*\n    *   *Common patterns:*\n        *   Locations: Harbor, Village, Forest, Hill, Orchard, River, Garden.\n        *   Actions: Measured water flow, reviewed daily observations, interviewed field team, compared written records, checked instruments.\n        *   Metrics: \"Recorded X observations\" (varies widely: 35 to 939).\n        *   *Crucial Repetitive Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Verification/Transparency**.\n        *   *Crucial Repetitive Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **Handling Uncertainty/Anomalies/Rigor**.\n        *   *Record 27:* Cuts off at \"interviewed the field team on\". -> End of archive.\n\n2.  **Synthesize Themes for the Explanation:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   Key topics requested: Observations, Comparisons, Uncertainty, Replication, Clear Communication.\n    *   I need to map the archive details to these topics.\n\n    *   *Observations:*\n        *   Archive shows teams measuring water flow, checking instruments, reviewing daily logs.\n        *   Numbers vary (35 to 939). This suggests that observation counts aren't the only metric; quality and context matter.\n        *   Example: Record 1 (493 obs), Record 21 (939 obs). High numbers show thoroughness, but Recor",
+      "e2e_seconds": 43.32693732899497,
+      "ttft_seconds": 15.721538293000776,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.510922026946456,
+      "all_stream_overlap_tokens": 445,
+      "all_stream_overlap_tps": 18.46448471434249
+    },
+    {
+      "request": 35,
+      "start": 66531.791376668,
+      "end": 66575.747042435,
+      "first_token": 66547.504083561,
+      "last_token": 66575.746919329,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 172,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a \"fictional research archive\" with 27 records.\n    *   Each record follows a pattern: \"Record [N] for archive 35: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: orchard, village, garden, hill, forest, river, harbor.\n        *   Action: compared written records, checked instruments, reviewed daily observations, measured water flow, interviewed field team.\n        *   Day: varies (e.g., 316, 51, 342, 2, 337, etc.).\n        *   Count: varies (e.g., 87, 643, 583, 997, 7... wait, Record 7 ends with \"7\". Record 27 ends with \"7\". This might be a truncation or just a low number. I should note this but it doesn't change the core message.)\n        *   Standard phrase: \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to *replication*, *transparency*, *auditability*.\n        *   Standard phrase: \"Unexpected results were checked before the report was revised.\" -> This points to *uncertainty*, *error checking*, *rigor*, *handling anomalies*.\n\n2.  **Synthesize the Core Themes:**\n    *   The prompt asks for an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   It specifically asks to discuss: observations, comparisons, uncertainty, replication, and clear communication.\n    *   It asks to use examples from the archive.\n\n    *   *Observations:* The records mention recording observations. The counts vary. This shows data collection is ongoing and quantitative.\n    *   *Comparisons:* Some records mention \"compared written records\" or \"reviewed daily observations.\" This suggests cross-checking data over time or between sources.\n    *   *Unc",
+      "e2e_seconds": 43.955665767003666,
+      "ttft_seconds": 15.71270689299854,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.093084001816543,
+      "all_stream_overlap_tokens": 438,
+      "all_stream_overlap_tps": 18.174032145802272
+    },
+    {
+      "request": 36,
+      "start": 66531.791504095,
+      "end": 66575.403590594,
+      "first_token": 66547.514295817,
+      "last_token": 66575.403490705,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 168,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) which seems irrelevant to the content but might be a distractor or formatting artifact. I should ignore it for the content generation.\n    *   The core content is \"Record 1 for archive 36\" through \"Record 27 for archive 36\".\n    *   Each record follows a pattern:\n        *   Location: \"team near the [orchard/village/river/garden/hill/harbor/forest]\".\n        *   Action: \"interviewed the field team\", \"compared written records\", \"checked the instruments\", \"measured water flow\", \"reviewed the daily observations\".\n        *   Day: Various days (e.g., day 41, day 22, day 167, etc.).\n        *   Observation Count: Various numbers (e.g., 110, 119, 808, etc.).\n        *   Standard Phrase: \"They recorded [N] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key themes emerging from the records:\n        *   *Observations:* Every record mentions recording observations.\n        *   *Original Notes:* Every record mentions keeping original notes for examination by another researcher. This points to transparency, auditability, and reproducibility.\n        *   *Unexpected Results:* Every record mentions checking unexpected results before revision. This points to handling anomalies, avoiding bias, and rigorous verification.\n        *   *Actions:* Interviews, comparisons, instrument checks, measurements, reviews. These are methods of data collection and validation.\n        *   *Locations:* Multiple locations suggest a distributed effort or replication across different sites.\n        *   *Days:* Different days suggest longitudinal study or repeated measures.\n\n2.  **Synthesize the Narrative for the \"Extended Plain-Language Account\":**\n    *   *Goal:* Write a detailed, continuous explanation of careful research practice.\n    *   *Top",
+      "e2e_seconds": 43.61208649899345,
+      "ttft_seconds": 15.722791722000693,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.32250812733404,
+      "all_stream_overlap_tokens": 422,
+      "all_stream_overlap_tps": 17.510140560567486
+    },
+    {
+      "request": 37,
+      "start": 66531.791604912,
+      "end": 66576.307684922,
+      "first_token": 66547.507023036,
+      "last_token": 66576.3075742,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 179,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nHere's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A fictional research archive with 27 records (though the prompt says \"Record 27 for archive 37: The team near the orchard\" and then cuts off, followed by \"End of archive.\"). Each record follows a strict template:\n     - Location: near the [village/forest/garden/river/hill/harbor/orchard]\n     - Action: interviewed/measured/compared/reviewed/check the [field team/water flow/daily observations/instruments/written records]\n     - Day: [varies]\n     - Observations recorded: [varies number]\n     - Standard phrase: \"They recorded [X] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Task:** After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss: observations, comparisons, uncertainty, replication, and clear communication. Use examples from the archive.\n   - **Constraints:** Plain language, extended explanation, continuous (not bullet points), cover specific themes, use archive examples.\n\n2.  **Deconstruct Themes & Requirements:**\n   - **Observations:** The core of the archive. Each record mentions recording a specific number of observations. Need to explain how careful, systematic observation builds a foundation for decisions.\n   - **Comparisons:** Several records mention \"compared written records\" or \"reviewed daily observations.\" Explain how comparing data points, records, or measurements helps spot patterns, errors, or changes.\n   - **Uncertainty:** The archive mentions \"Unexpected results were checked before the report was revised.\" This directly ties to handling uncertainty, questioning anomalies, and not rushing to conclusions.\n   - **Replication/Verification:** \"kept the original notes so that another researcher could examine the same evidence.\" This is about transparency, auditability, and re",
+      "e2e_seconds": 44.516080009998404,
+      "ttft_seconds": 15.715418124003918,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 17.742716001868068,
+      "all_stream_overlap_tokens": 407,
+      "all_stream_overlap_tps": 16.887742199409875
+    },
+    {
+      "request": 38,
+      "start": 66531.79170661,
+      "end": 66577.465770396,
+      "first_token": 66547.515613504,
+      "last_token": 66577.465663306,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 195,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nIn the world of research, whether it involves studying forests, rivers, or village water systems, the quality of a decision is only as good as the quality of the evidence behind it. The fictional archive provided offers a clear window into how rigorous scientific practice works in the field. By examining the daily logs of various teams—those near the forest, the harbor, the orchard, and the river—we can see a consistent pattern of behavior that transforms raw data into reliable knowledge. This process relies on four pillars: careful observation, rigorous comparison, the management of uncertainty, and clear communication.\n\nFirst, let us look at the foundation of all research: **careful observation**. In the archive, every single record begins with a specific action taken by a team. Whether it is \"measuring water flow,\" \"interviewing the field team,\" or \"checking the instruments,\" these are deliberate acts of gathering information. For instance, on day 95, the team near the river measured water flow and recorded 919 observations. On day 10, the team near the orchard interviewed the field team and recorded 954 observations. The sheer volume of these numbers—ranging from a low of 49 observations (Record 6, harbor, day 46) to a high of 954 (Record 9, orchard, day 10)—shows that observation is not a passive act. It is an active, detailed process. The researchers did not just glance at the water; they counted, measured, and noted specific details. This attention to detail ensures that the data is rich enough to support complex decisions later on.\n\nHowever, gathering data is only the first step. The second pillar is **comparison and verification**. The archive repeatedly highlights that teams did not just collect data in isolation; they actively compared it against other sources. Records 1, 3, 6, 8, 11, 14, 20, and 25 all mention that teams \"compared written records.\" This is crucial because it prevents errors. If one team records a water flow rate, comp",
+      "e2e_seconds": 45.674063785991166,
+      "ttft_seconds": 15.723906893996173,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 17.061741245118753,
+      "all_stream_overlap_tokens": 366,
+      "all_stream_overlap_tps": 15.186520012245733
+    },
+    {
+      "request": 39,
+      "start": 66531.791807252,
+      "end": 66575.011612753,
+      "first_token": 66547.514645231,
+      "last_token": 66575.011549056,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 164,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a \"fictional research archive\" with 27 records.\n    *   Each record follows a pattern: \"Record X for archive 39: The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: garden, hill, forest, orchard, river, village, harbor.\n        *   Action: measured water flow, checked instruments, compared written records, interviewed field team, reviewed daily observations.\n        *   Day: Various numbers (e.g., 314, 18, 320, 141, etc.).\n        *   Observations count: Various numbers (e.g., 342, 698, 423, 89, etc.).\n        *   Standard phrase: \"kept the original notes so that another researcher could examine the same evidence.\"\n        *   Standard phrase: \"Unexpected results were checked before the report was revised.\"\n        *   Record 27 is incomplete: \"Record 27 for archive 39: The team near the forest measured water flow on day 197.\" It lacks the observation count and the standard phrases. This might be a trap or just an anomaly, but the prompt asks for an explanation based on the archive, so I should note the pattern.\n\n2.  **Synthesize the Core Themes:**\n    *   The archive is repetitive, which emphasizes consistency.\n    *   Themes emerging:\n        *   *Observation:* Measuring, checking, reviewing, interviewing. Recording counts.\n        *   *Documentation/Transparency:* \"kept the original notes so that another researcher could examine the same evidence.\" This is about reproducibility and audit trails.\n        *   *Verification/Sanity Check:* \"Unexpected results were checked before the report was revised.\" This is about handling anomalies, avoiding bias, ensuring accuracy.\n        *   *Variety of Methods:* Different actions (measuring,",
+      "e2e_seconds": 43.21980550100852,
+      "ttft_seconds": 15.722837979003089,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.583910510514784,
+      "all_stream_overlap_tokens": 452,
+      "all_stream_overlap_tps": 18.75493728288271
+    },
+    {
+      "request": 40,
+      "start": 66531.791908886,
+      "end": 66575.009415661,
+      "first_token": 66547.503735955,
+      "last_token": 66575.009115609,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 164,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a list of records from \"archive 40\".\n    *   Each record follows a pattern: \"Record [N] for archive 40: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: harbor, garden, forest, hill, village, river.\n        *   Action: checked instruments, compared written records, reviewed daily observations, measured water flow, interviewed field team.\n        *   Day: Various numbers (e.g., 154, 336, 74, 243, etc.).\n        *   Count: Number of observations (e.g., 534, 687, 70, 981, etc.).\n        *   *Crucial Phrase 1:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency/Documentation**.\n        *   *Crucial Phrase 2:* \"Unexpected results were checked before the report was revised.\" -> This points to **Handling Uncertainty/Verification/Error Checking**.\n        *   *Crucial Phrase 3:* \"recorded [Count] observations.\" -> This points to **Observation/Data Collection**.\n        *   *Crucial Phrase 4:* Actions like \"compared written records\", \"checked instruments\", \"reviewed daily observations\" -> This points to **Comparison/Verification/Careful Practice**.\n\n2.  **Synthesize the Theme:**\n    *   The prompt asks for an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   The archive records are repetitive but emphasize specific behaviors: keeping notes for others, checking unexpected results, recording counts, performing various checks (instruments, records, flow, interviews).\n    *   The core message is that reliability comes from:\n        *   Detailed observation (recording counts).\n        *   Transparency (keeping notes f",
+      "e2e_seconds": 43.217506774992216,
+      "ttft_seconds": 15.711827068997081,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.578183847233696,
+      "all_stream_overlap_tokens": 439,
+      "all_stream_overlap_tps": 18.215525369879447
+    },
+    {
+      "request": 41,
+      "start": 66531.792016776,
+      "end": 66572.308244095,
+      "first_token": 66547.505202316,
+      "last_token": 66572.308170862,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 144,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided archive records to understand the context and extract relevant details.\n    *   *Structure:* Each record follows a pattern: \"Record X for archive 41: The team near [Location] [Action] on day [Day]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Locations:* village, forest, garden, hill, river, orchard.\n    *   *Actions:* interviewed the field team, checked the instruments, measured water flow, compared written records, reviewed the daily observations.\n    *   *Days:* Various days (e.g., 220, 219, 131, 110, 332, 136, 101, 10, 206, 119, 85, 37, 328, 242, 307, 292, 215, 235, 51, 326, 239, 341, 29, 318, 287, 2).\n    *   *Observations:* Various counts (272, 813, 626, 771, 297, 278, 953, 172, 776, 492, 382, 992, 630, 148, 354, 676, 993, 713, 565, 274, 964, 384, 182, 337, 198, 949).\n    *   *Key Phrases:* \"kept the original notes so that another researcher could examine the same evidence\" (Replication/Transparency), \"Unexpected results were checked before the report was revised\" (Handling uncertainty/Error checking).\n\n2.  **Synthesize the Narrative for the \"Extended Plain-Language Account\":**\n    *   *Goal:* Write a detailed,",
+      "e2e_seconds": 40.516227318992605,
+      "ttft_seconds": 15.713185539992992,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.602372617300503,
+      "all_stream_overlap_tokens": 498,
+      "all_stream_overlap_tps": 20.66362559043272
+    },
+    {
+      "request": 42,
+      "start": 66531.792125786,
+      "end": 66575.216372976,
+      "first_token": 66547.517064985,
+      "last_token": 66575.216269566,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 166,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hash-like) and a series of records (Record 1 to Record 27) for \"archive 42\".\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Day Number]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in the records:\n        *   Locations: orchard, harbor, river, village, hill, forest, garden.\n        *   Actions: reviewed daily observations, checked instruments, interviewed field team, compared written records, measured water flow.\n        *   Day Numbers: Various days (e.g., 72, 242, 231, 257, 83, etc.).\n        *   Observation Counts: Various numbers (e.g., 263, 392, 16, 628, 846, etc.).\n        *   Standard Phrase: \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to *replication*, *transparency*, *auditability*.\n        *   Standard Phrase: \"Unexpected results were checked before the report was revised.\" -> This points to *uncertainty*, *error checking*, *rigor*, *handling anomalies*.\n\n2.  **Synthesize the Theme:**\n    *   The user wants an \"extended plain-language account of how careful observations support reliable decisions.\"\n    *   The explanation must discuss: observations, comparisons, uncertainty, replication, and clear communication.\n    *   It must use examples from the archive.\n\n3.  **Drafting the Explanation - Section by Section (Mental Outline & Example Mapping):**\n    *   *Introduction:* Careful research is like building a sturdy bridge. You need good materials (observations), strong connections (comparisons), checking for cracks (uncertainty), making sure others can cross too (replication), and clear signs (communication).\n    *   *Observations:*\n        *   Concept: Gathering data is the foundat",
+      "e2e_seconds": 43.42424719000701,
+      "ttft_seconds": 15.724939199004439,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.448183178180955,
+      "all_stream_overlap_tokens": 436,
+      "all_stream_overlap_tps": 18.091045697647925
+    },
+    {
+      "request": 43,
+      "start": 66531.792951704,
+      "end": 66574.422410988,
+      "first_token": 66547.508061438,
+      "last_token": 66574.422330074,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 159,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides an \"Archive identity\" string (hashes) which seems irrelevant to the content but might be a distractor or a key for a specific format. I should ignore it for the content generation unless instructed otherwise, but the prompt asks to \"Read this fictional research archive\" and then write an account.\n    *   The archive contains 27 records.\n    *   Each record follows a pattern: \"Record [N] for archive 43: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements in Records:*\n        *   Locations: Harbor, Orchard, River, Garden, Village, Forest, Hill.\n        *   Actions: Compared written records, Reviewed daily observations, Interviewed field team, Checked instruments, Measured water flow.\n        *   Days: Various numbers (e.g., 67, 231, 285, 311, 184, 256, 359, 261, 23, 146, 350, 295, 173, 320, 24, 220, 21, 76, 259, 34, 224, 144, 131, 3, 184, 261, 23, 146, 350, 295, 173, 320, 24, 320, 220, 21, 76, 259, 34, 224, 144, 131, 3, 184). Note: Some days repeat across locations or actions.\n        *   Observation Counts: Vary widely (e.g., 815, 358, 456, 731, 470, 796, 963, 40, 153, 3",
+      "e2e_seconds": 42.629459283998585,
+      "ttft_seconds": 15.715109733995632,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.986211622949767,
+      "all_stream_overlap_tokens": 447,
+      "all_stream_overlap_tps": 18.547471162496837
+    },
+    {
+      "request": 44,
+      "start": 66531.793135788,
+      "end": 66578.800210446,
+      "first_token": 66547.513544972,
+      "last_token": 66578.799986874,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 210,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\n\n</think>\n\nThe fictional research archive provided offers a compelling, albeit repetitive, snapshot of scientific rigor in action. While the records themselves are uniform in their procedural language, they collectively illustrate a robust framework for ensuring that research findings are trustworthy, transparent, and useful. The core message of this archive is that reliable decisions are not made in a vacuum; they are the result of a disciplined cycle of careful observation, verification, and clear communication.\n\n### The Foundation: Meticulous Observation\n\nThe first pillar of reliable research, as demonstrated by the archive, is the act of careful observation. In Record 1, the team near the forest recorded 842 observations after interviewing the field team. In Record 8, the same team measured water flow and recorded 928 observations. These numbers are not just statistics; they represent the raw data upon which all conclusions are built.\n\nIn plain language, observation is the act of paying close attention to the world and recording what is seen, heard, or measured. It is easy to glance at a river and say, \"The water is high.\" But careful observation requires more. It requires noting the specific level, the speed of the current, the color of the water, and the presence of debris. By recording hundreds of specific data points (as seen in Records 1, 8, and 20), researchers create a detailed picture of reality. This detail is crucial because it allows others to understand exactly what was studied. If a decision is made to build a bridge based on water flow data, the precision of that initial observation determines whether the bridge will stand or fail.\n\n### Verification: Checking the Unexpected\n\nA critical component of the archive is the repeated statement: \"Unexpected results were checked before the report was revised.\" This appears in every single record, from Record 1 to Record 27. This practice is vital because science is often driven by surprise",
+      "e2e_seconds": 47.00707465800224,
+      "ttft_seconds": 15.720409183995798,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 16.33295347552014,
+      "all_stream_overlap_tokens": 351,
+      "all_stream_overlap_tps": 14.564121651088122
+    },
+    {
+      "request": 45,
+      "start": 66531.793258942,
+      "end": 66574.048363071,
+      "first_token": 66547.513933939,
+      "last_token": 66574.048287517,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 156,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Archive:**\n    *   I need to read through the provided records to understand the context, patterns, and specific details.\n    *   *Archive Identity:* 68c655e77c... (This is metadata, likely irrelevant for the content analysis but good to note).\n    *   *Archive ID:* 45.\n    *   *Structure:* Each record follows a pattern: \"Record [N] for archive 45: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   *Key Elements:*\n        *   **Locations:** Village, Harbor, Forest, River, Hill, Orchard, Garden.\n        *   **Actions:** Measured water flow, Checked instruments, Compared written records, Interviewed field team, Reviewed daily observations.\n        *   **Days:** Various days (1, 32, 34, 59, 67, 70, 77, 112, 142, 144, 153, 181, 189, 193, 212, 221, 223, 242, 255, 291, 312, 321, 326, 342).\n        *   **Observation Counts:** Ranges from very low (24, 35, 53, 82, 92, 102) to very high (938, 972, 975, 995, 860, 828, 796, 719, 718, 702, 686, 652, 634, 567, 530ish, 509, 494, 490, 356, 295, 278, 137).\n        *   **Standard Phrases:** \"kept the original notes so that another researcher",
+      "e2e_seconds": 42.25510412899894,
+      "ttft_seconds": 15.720674997006427,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 19.25805347011448,
+      "all_stream_overlap_tokens": 457,
+      "all_stream_overlap_tps": 18.96240340326858
+    },
+    {
+      "request": 46,
+      "start": 66531.793370144,
+      "end": 66577.129410471,
+      "first_token": 66547.515965702,
+      "last_token": 66577.129253252,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 190,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\n\n</think>\n\nThe archive records provided offer a compelling look into the daily mechanics of scientific inquiry, illustrating how rigorous methodology transforms raw data into reliable knowledge. At its core, this research process is built on the principle that careful observation is not merely about collecting data, but about ensuring that data is accurate, verifiable, and open to scrutiny. By examining the specific activities recorded—such as checking instruments, measuring water flow, and comparing written records—we can see how each step contributes to a system designed to minimize error and maximize trust in the final conclusions.\n\nOne of the most critical aspects of this research practice is the maintenance of original notes and the allowance for independent examination. Every single record in the archive, from the team near the garden on day 200 to the team near the forest on day 143, explicitly states that the team \"kept the original notes so that another researcher could examine the same evidence.\" This practice, known as maintaining an audit trail or raw data preservation, is fundamental to scientific integrity. It ensures that the conclusions drawn are not based on selective memory or edited summaries, but on the complete, unaltered record of what was actually observed. When another researcher can look at the same evidence, they can verify that the interpretation matches the data. This transparency allows for replication, which is the gold standard of scientific proof. If a finding cannot be reproduced by someone else using the same raw data, it is likely flawed.\n\nThe variety of tasks recorded in the archive highlights the importance of multi-faceted verification. The teams did not rely on a single type of measurement. Instead, they engaged in a diverse set of activities: checking instruments, measuring water flow, interviewing field teams, comparing written records, and reviewing daily observations. Each of these tasks serves a different purpose ",
+      "e2e_seconds": 45.33604032699077,
+      "ttft_seconds": 15.722595557992463,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 17.25576733542796,
+      "all_stream_overlap_tokens": 365,
+      "all_stream_overlap_tps": 15.14502678816856
+    },
+    {
+      "request": 47,
+      "start": 66531.793479938,
+      "end": 66572.786216323,
+      "first_token": 66547.502204873,
+      "last_token": 66572.786029472,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 147,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a \"fictional research archive\" with 27 records.\n    *   Each record follows a pattern: \"Record [N] for archive 47: The team near [Location] [Action] on day [Day]. They recorded [Count] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: orchard, harbor, river, village, forest, hill, garden.\n        *   Action: reviewed daily observations, compared written records, interviewed field team, checked instruments, measured water flow.\n        *   Day: Various numbers (e.g., 114, 39, 72, 263, 348, 167, 20, 69, 176, 184, 325, 238, 196, 232, 101, 334, 130, 267, 82, 74, 6, 210, 313, 362, 354, 101, 27).\n        *   Count: Various numbers of observations (e.g., 995, 336, 368, 105, 115, 526, 996, 991, 73, 877, 463, 111, 777, 48, 48, 402, 598, 655, 642, 473, 643, 926, 462, 269, 350, 530).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **Handling Uncertainty/Anomalies**.",
+      "e2e_seconds": 40.99273638500017,
+      "ttft_seconds": 15.708724935000646,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 20.210549950589183,
+      "all_stream_overlap_tokens": 497,
+      "all_stream_overlap_tps": 20.622132366355547
+    },
+    {
+      "request": 48,
+      "start": 66531.793583332,
+      "end": 66575.319934506,
+      "first_token": 66547.518462465,
+      "last_token": 66575.319858105,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 167,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\n<think>\nThinking Process:\n\n1.  **Deconstruct and Analyze the Input:**\n    *   The user provides a list of 27 records from \"Archive 48\".\n    *   Each record follows a pattern: \"Record X for archive 48: The team near [Location] [Action] on day [Day Number]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: village, harbor, forest, river, hill, orchard, garden.\n        *   Action: reviewed daily observations, interviewed field team, checked instruments, measured water flow, compared written records.\n        *   Day Number: varies (e.g., 178, 46, 123, 1, 300, etc.).\n        *   Observation Count: varies (e.g., 870, 903, 476, 213, etc.).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to transparency, reproducibility, and audit trails.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to handling anomalies, verification, and avoiding premature conclusions.\n\n2.  **Synthesize the Theme:**\n    *   The prompt asks for an \"extended plain-language account of how careful observations support reliable decisions\" and a \"detailed, continuous explanation of careful research practice.\"\n    *   The themes to cover: observations, comparisons, uncertainty, replication, clear communication.\n    *   I need to map the archive details to these themes.\n        *   *Observations:* The records mention recording specific numbers of observations. The variety of actions (measuring, interviewing, checking instruments) shows diverse ways of gathering data.\n        *   *Comparisons:* Records mention \"compared written records\" and \"reviewed daily observations.\" This supports the theme of comparison and cross-checking.\n        *   *Uncertainty:* \"Unexpected results",
+      "e2e_seconds": 43.52635117400496,
+      "ttft_seconds": 15.724879133005743,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.380372216453353,
+      "all_stream_overlap_tokens": 438,
+      "all_stream_overlap_tps": 18.174032145802272
+    },
+    {
+      "request": 49,
+      "start": 66531.793686342,
+      "end": 66575.118028057,
+      "first_token": 66547.508721561,
+      "last_token": 66575.117887815,
+      "usage": {
+        "prompt_tokens": 2048,
+        "total_tokens": 2560,
+        "completion_tokens": 512
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 165,
+      "stream_token_count": 512,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "\nassistant\n\n<think>\nThinking Process:\n\n1.  **Deconstruct the Input:**\n    *   The user provides a \"fictional research archive\" with 27 records (though Record 27 is cut off).\n    *   Each record follows a pattern: \"The team near [Location] [Action] on day [Number]. They recorded [Number] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n    *   Key elements in every record:\n        *   Location: hill, village, orchard, garden, harbor, forest, river.\n        *   Action: reviewed daily observations, compared written records, checked instruments, interviewed field team, measured water flow.\n        *   Day: Various numbers (312, 34, 160, etc.).\n        *   Observations count: Various numbers (932, 599, 112, etc.).\n        *   *Crucial Phrase:* \"kept the original notes so that another researcher could examine the same evidence.\" -> This points to **Replication/Transparency**.\n        *   *Crucial Phrase:* \"Unexpected results were checked before the report was revised.\" -> This points to **Uncertainty/Error Checking/Verification**.\n\n2.  **Analyze the Request:**\n    *   Goal: Write an extended plain-language account of how careful observations support reliable decisions.\n    *   Requirements: Discuss observations, comparisons, uncertainty, replication, and clear communication.\n    *   Constraint: Use examples from the archive.\n    *   Style: Detailed, continuous explanation, plain language.\n\n3.  **Drafting - Section by Section (Mental Outline & Integration):**\n\n    *   *Introduction:* Start with the core theme. Careful observations lead to reliable decisions. The archive shows a systematic approach.\n        *   *Plain language hook:* Science isn't just guessing; it's about paying attention and double-checking.\n\n    *   *Topic 1: Observations (The Foundation).*\n        *   *Concept:* You need good data. The archive mentions recording observations.\n        *   *",
+      "e2e_seconds": 43.32434171499335,
+      "ttft_seconds": 15.715035218992853,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "decode_tps": 18.508345934785194,
+      "all_stream_overlap_tokens": 451,
+      "all_stream_overlap_tps": 18.713444058805536
+    }
+  ],
+  "server_models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen-lab",
+        "object": "model",
+        "created": 1789719710,
+        "owned_by": "vllm",
+        "root": "/lab/models/unsloth",
+        "parent": null,
+        "max_model_len": 139264,
+        "permission": [
+          {
+            "id": "modelperm-9235857015a07f9f",
+            "object": "model_permission",
+            "created": 1789719710,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "prompts": [
+    {
+      "request": 0,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "724a958bc9b8683b8fe8052643277b80a08df4bd481ccb648a0daa1825c5e12c",
+      "prefix_256_sha256": "671c46d2954109d3f9d68e98d4e121f8109a477c51f74cc491e2d8d2d68bfcb4",
+      "prompt_sha256": "59b47c2ab881aa9c981aa14a4f8868ab4378a4eccff89f96ab193e86040c2a90",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 1,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "775037cc694f2e77f21e0c8d8d232988e4b31f860eef079a2b2d8c4320e349d3",
+      "prefix_256_sha256": "5b3dcbf0c55dda834689c73430c870280d4fc14d796bd2aa19c2929a31ecd796",
+      "prompt_sha256": "9644c5bf9b21b6f35e2db2b87e290ec0e377d87f2a643a9b0f5d845e7539b4c2",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 2,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "92382c09ba6e8e9c5d9c607c6ae099d3716fed391877b697153eaffb630c944d",
+      "prefix_256_sha256": "16ac6f9a62b9b9a830297f831e23dcdde4d33b7d77be9b94dc785e30cff94467",
+      "prompt_sha256": "efa05a9c22b3379a97d2d47e6282965334ea1e5c0eef802bee72fe1b53b4abbf",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 3,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "9d4013a593523e114d7146af4de460b498c02b83880a2bca10f87c038c35f62f",
+      "prefix_256_sha256": "bad33af8eb6e446c1f7dc9ed03d3e59531ce1d80436db45c4530d53828f46366",
+      "prompt_sha256": "61d0cf0f589ed41f17dfd3ab0458a9df109b87b65a82ed6d2197b266515c2789",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 4,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "e02bdf7286bc9ec4e71e1473d59584a6a4a0ee795c9b44b5ae34a3c581a6e527",
+      "prefix_256_sha256": "c9cd23298226feb2f919c85edcfaf6248c69c9f369b86b94e8eabe55b23c3d3f",
+      "prompt_sha256": "b3342d593b63ed4c444f79e922b1de05caf5231cdf49ed28064af3f00ac229e6",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 5,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "c5aee740176b925d83a1fd69d8f7c37fec8cd5170c3fb418d44c76a17c87244b",
+      "prefix_256_sha256": "692046518c1f04168971675e158989cec40285ada2a50108a2bb7f750e99efa2",
+      "prompt_sha256": "f3d0b4c75062fbfcfd095b62a7688b9576b0e363a3ffe1ce0acb0f88aa31ea85",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 6,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "55648fec617124dbfa5faefb2d83774b54a30b547b9c8929294be21c52c41859",
+      "prefix_256_sha256": "ae696af308ad01028467052fc9337c8289bed73899191d659555f8cc00793599",
+      "prompt_sha256": "f1a0bf0d9e1707974003bd452244bd1357034c536a7aee342f74dfdbf24e0bb1",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 7,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "27c8cad2a59af9d54e2dab2d157ec669e843eabd2a3cd35934efa456fad52789",
+      "prefix_256_sha256": "5ce681cfafa33cff71266675d56de015928104614db0b302f684900f3a85b921",
+      "prompt_sha256": "c4b34768d54d21276957b3bd2698b6199ed75badcb5e68be9aaeedac62854fa2",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 8,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "e2974b50a9d24d221defdc1df958d64cdfc949f876e6a9e82a34fb4cd2eb1a91",
+      "prefix_256_sha256": "81a6c50f0450066789b01b0b2e8fc2fa51714dcac461ef19be54499c857401f6",
+      "prompt_sha256": "19e3f1caf7c43898c0fef492b4f60fe6a7c4b8b6bf01bce0259d323a4bf11739",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 9,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "fc08c239ae109e6e13a33b3191809233308a58adcb12a9de145e68123c0a6f40",
+      "prefix_256_sha256": "ccceab4ac831289dd809c55f8bc82ed64c84d47f6464c1caf41ca34f8e51739a",
+      "prompt_sha256": "8ba117f2642ddb223dc661bad4d3d43df6e7d23fc76be1534a8f78606ef0466c",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 10,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "3dede632f21a7e0f0566116dbd71c233f3af40298c6129a4df0959a015be6a77",
+      "prefix_256_sha256": "ca7afddd70d3ff961ab943fe45a77457c88e3fbb48c1a46520132c5021f3217a",
+      "prompt_sha256": "493026a743ed533958957cadf520b3997c82636ccfca61f09154d36ccaa95bb6",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 11,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "681af64dcf1e242c333943764a54fc314d4d1f0d19c0b479c6d5428229ebc97b",
+      "prefix_256_sha256": "0e57f07582b1f32a496eac6ba2dd8e13aaaf38cdca85798e9fafe9144e81430f",
+      "prompt_sha256": "35cc815678cd3c1d5c0a0b8e66fdf5158ec3c21616aefab97f2bba3a250620b4",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 12,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "a094b0ca79f2c8e4eba7b4248ef4c3d6365569a7dbf909e397fdea0ee5618390",
+      "prefix_256_sha256": "ff6196d426fecde70566f0b703693e45b24a814d8b86330a4b5fc88ad4445c2e",
+      "prompt_sha256": "1f5d6724a3a50a58c76f85d53e77d88c83e45aa455fadaf41de97797e1f24966",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 13,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "2f37bcc05a7d7e0aef007353865487b8694080a1b0495955987f217803b7941a",
+      "prefix_256_sha256": "35e18c5e02cfb34fb634d75fe59b0de0e8c26e49039d8412cc27cfcb6c04ef89",
+      "prompt_sha256": "da795565124706edfc266f210d2fa188984d4f94483adbfbe90786e92286e24a",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 14,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "dabad5f75e6560b4699b6dcae89ce8a42e27cb17674a70f6a8b531ca785144d3",
+      "prefix_256_sha256": "94d780ea1c25d8061c00a6919ffe4495caffb2f745fb4e58ec51c640ab2ace6c",
+      "prompt_sha256": "05556b9f038e0b1ddca7af280e3aae43d44c02310180718ca4cb12c3fa49665b",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 15,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "5e62e2872845181c780b2473b628deb313fa3c420e8df54a1bebecfd3c7f452a",
+      "prefix_256_sha256": "42e08adffbd3e1f3c8514ac20a9e35129f0e4a52f4e54ac1bae1c306984b56bc",
+      "prompt_sha256": "cbf5981ac451dabedac823bf9911fd85381f49e2c9a8a3a126417996db680448",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 16,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "7ba8f08c69a3fd7b4ec5f8ac4ee04058e7981b6033e36edcd8caf6f61c0dbd3c",
+      "prefix_256_sha256": "9378e51086f4a6a74519d0374c2752f4c28bd19bfaa096340026fc8a1f0e4ec4",
+      "prompt_sha256": "1f0a97e4b0835ca0588a458fc636784c1d1bc5e365f1604816ceb03d043b8cd4",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 17,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "450efd08113af8d55840e43c69d9f5c7b25fab3b2ed56c16a0ccdfae789da2f3",
+      "prefix_256_sha256": "554d57bbd6226685eb6224be6f611d4634db052e73037ff834b5f10f5f8d69f3",
+      "prompt_sha256": "bf9c3ca1c08ed4e5c53482b704e6129f552437c73c7a6c6ee3b64e46a2305cf7",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 18,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "e9db2e28da8c042e36efa40e65f134cce62bf3f2651ff988441b18739aeffa3c",
+      "prefix_256_sha256": "a2bcf1af13a2d72445cc896f89ae88281bfa67cb5009b526a72049ea28c99056",
+      "prompt_sha256": "db2c2b8b4879d03b37bf8af5cee9fa315ce268ed779c1d1e4cdb0c2ea23e91a6",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 19,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "0b8d7a0ba9782aeaae9ed9daf7e7a505b6a03c6798095c6894a01a0b13284405",
+      "prefix_256_sha256": "2ba5699642e1c21301abedd7ed8f23694bcb10cde808e451f6a000b4b4467348",
+      "prompt_sha256": "e6c6b857c8d72eff686107d45376e8266f374dcab5bdd7460ed27384774eff37",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 20,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "ead56ec43da0b5abb0893999576d29be6cdcabc3b14c54c75088548a46fd46f3",
+      "prefix_256_sha256": "9b7f871784d7158a5b9c7a15634bee868fdda76ca7a617abe2d1d855194847ae",
+      "prompt_sha256": "4a084038af51cb514364a7d50a5db93e8a1cbe2a8027fcecd8ff8309b3093903",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 21,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "aa67d477f912df2ff6c8ae72d9618986e0b206810cdc1261c5c2d1ac8dbd0dac",
+      "prefix_256_sha256": "14ca2e74af7e6b6d37e8a95c2c509211add3d580d4c82abc428a59d3a99cf887",
+      "prompt_sha256": "6032c418816df60867cc1d6a28633630a5f075f35fd0a71fabf2a1ddcca8e7fc",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 22,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "34693a6f526d1adb8fca800db6aa1c66adf90e2fab4aff4c81e64a237000fb31",
+      "prefix_256_sha256": "00fcd1c5e85deadc281131a85c8e9b2b27033af89d6b51a7bbeebf5ba8b1386c",
+      "prompt_sha256": "65b249d14f66eff8b07a51448ecd3c05dc49ca4d1c598050b1307655710cbd1d",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 23,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "1bf2737c70399b6e03e905fd58a9d3e04abd993882c25867f05a1f5a662fbae0",
+      "prefix_256_sha256": "93f2dd82418cc31b0c376d9f941bf773800fac64e1887467ce03a876fe357bc4",
+      "prompt_sha256": "e46959adc42d1bc4a7c63f706da767655292f659940f62e694ee77707a9f60c7",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 24,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "e5908c46ec9fd805a744948776f96a7ebff01cc5a50d009d147f1f06207cda40",
+      "prefix_256_sha256": "502fd5f1a6fef7cc331cfd06190dcc82b336bc1628b246079906068505a83c8a",
+      "prompt_sha256": "5daa9c59e899b01c823edff1a9dd09e12ae23cc105a289ab25614c2dfbfa0f98",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 25,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "90453ab6751449b85131c6a24bf17bef5c3bb0fde8c0dede0e6f06435071baab",
+      "prefix_256_sha256": "19258dc1074bf1087b5046f45070687e50410be8dec549b207378203b3de1b25",
+      "prompt_sha256": "c62f0637cf5d497946da62b00c2aeb6a94eef9f5fb92573f572447202fff2ff8",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 26,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "e4f1c84d095f6810a363ce3454a01682222ed59212c882eba3334c7a85aad706",
+      "prefix_256_sha256": "307997963082721a547fe0f129c677dfa253285f34740a12e3b44f9b3fe6cda2",
+      "prompt_sha256": "199b5fdfa4f5df918ade74ad6c3723badd031de8c05214adbe737eddf4ad4787",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 27,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "0a764e8a162dbaefeb3d8243cdf49318fcf23967a46f7340b33a63ac9029b6bd",
+      "prefix_256_sha256": "631feb1e95ae83f9e7f889f141ca3a6cf204930248f52d3c8dd9a8e3cda33f27",
+      "prompt_sha256": "cbf1170bf62a389832fc78891463ef2d98022a8bbbcf2ab32e9727c929730934",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 28,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "75529411accf511dcb9ae8c7a66f1cf23a7d21efe21aee76a502722a60ef9af3",
+      "prefix_256_sha256": "01fc68ae972a0c07b6b52717c92f8f9e4a1f3a47a267db238cb9ffdbcb8787fe",
+      "prompt_sha256": "ffd659c62e1ed69ff5d7ec9497b19be429a936690034c1f6fff3b8c5651d15aa",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 29,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "8bbda4d0ea1dd6810971550c6fe910c7ce340813f74280bb1ff28ab1ca27e8d6",
+      "prefix_256_sha256": "f693c54f5d9caa6cbc19b78e54ad367cd3816229166801f65d103df070642f2c",
+      "prompt_sha256": "4271d7d73d228b231168560f5f722c69e4386dd177cfaa36e3de31179c43509c",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 30,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "9a2e566aa0e42dca6b2540f960843b1c1b60ead02180ef6c76a4f5746bc881c9",
+      "prefix_256_sha256": "8f9d3fbaf21432ea399b47ad47e0e04fef41ef873bfbfc03040cb60a1282eb1f",
+      "prompt_sha256": "8e053aa2a70a735c9dfd433bf4157965f26112c22963a42c1d04128f87e81241",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 31,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "01bf92a18386cd2ea2d4a4851a92af3e603f27a11d825ed4c90829357dbcd436",
+      "prefix_256_sha256": "c4e2d611d448cbb4d0f424596b73e44826e39ef9ea26757101b41a3b4be2757b",
+      "prompt_sha256": "e3e91e8dcb14b1e93c8c5bbb28621fce23663ec993d0de2f1536c330490b9cc9",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 32,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "5d7ff6dbc41ceab03843ff4009e514a4670b9ca7fd4c6f01763c62335e067d89",
+      "prefix_256_sha256": "12c94bb16f63088cfa6dca3f81b663591f0a89cbb5c349ada0725b288e109319",
+      "prompt_sha256": "6524ebc1c5e000c16c715248d830c65ce763929a6eebbe200d415d630feff4ce",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 33,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "772dd70e024e9532f14090d6c94ebea44bc443ac7b059f7617f692e57c6534b1",
+      "prefix_256_sha256": "b112b3f6fb561edfcb310b47a1c484e76ec0c7f35cfc77be0abb6e4945f6cd48",
+      "prompt_sha256": "9ed7cd354a003422d655fdc6c6691da11e1ab7a3de6c0aa326cbafe8e9658f07",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 34,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "f290cc0c1642b181ad2d1776d24f52d88edd4c564fdb351ec9544924e2637f75",
+      "prefix_256_sha256": "ea3cbdd4681c4c4ba7b7d6869bc3e1751e42ba56a420a18c4a2764ac63704c21",
+      "prompt_sha256": "1f3d1c7c5d0b26c9bcdda1d0d8fbdb56432fbbaed97d4bde2b20503a3d5af3fd",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 35,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "fb555265c12156fbf7f23ae394efc7ac9a26ce2766cbded46dfc2dc924a9f88c",
+      "prefix_256_sha256": "3d64044bd0020f6adc28e3e234891176dcd9cf55c73648aa2de2cd733630c862",
+      "prompt_sha256": "a0b57f6958f84325f1122ddac84418c7b6429018500691b8245237f9699030b5",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 36,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "63b297da683e88b887bd4000abeb169de03a8833b7e46f7e813c420e0604e4c7",
+      "prefix_256_sha256": "2b70af223122784ee9a9895629ea3fbf60b0fc2f820c960195d5aff580219eb2",
+      "prompt_sha256": "4e2ecdd2fd526492fb58fa668ec61d14bbd430c24a98a4a5f01ac00e3738ff2c",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 37,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "fdd6f350d46ce7b441a032ef83395ef6a4e7f2155a83035331dd6576f12d7191",
+      "prefix_256_sha256": "b4a2db4e0c11282289df07b63f789bb0ebfe1c193cb953e931273515ea0632af",
+      "prompt_sha256": "206784261e88ac9875adf7daffd64d6f10bbe3fc2b8d0186fc4fd1db0079d9af",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 38,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "acbdcc6c2f88548e5576ddfb51684209353cce9d1cfaf909c5899c2f4c4dae4b",
+      "prefix_256_sha256": "6d642957a280f0f261b5563e49c96339c2c8e086b219d76ac5ac87463f09e0a2",
+      "prompt_sha256": "1ca972524fa4115e67f1d0f1f9c4f9954f4be4a8b52dfcda6e7914022bc1cffd",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 39,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "c6ebf65a1878b628ba2ad8936528dbaa695ef3277aa33c8ba30940086cfe440d",
+      "prefix_256_sha256": "02b87fe5c2b932d97a839921aa6a2da513b72531659335fd4e534afb53f4814a",
+      "prompt_sha256": "da22322959fab43cb2a3f18c079248e8d46bf2b0b92b5b541e9f7bc43b4c9b83",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 40,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "8bfb848345b9a17f6342a63895688a0c894ebc9711c517a553b09b223161dde6",
+      "prefix_256_sha256": "c3c0673d3279a3fcc22fe916a4925ba184f8ad1380a91b18651f299134f675b9",
+      "prompt_sha256": "034573886e9b5bde884ea9d785de43d14923dd40db949a49eeea0088622afb85",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 41,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "f38d740b2551bfb4b2282cecab3f2031787512c47310e04efa6662a40b62185f",
+      "prefix_256_sha256": "8914d276222421be0363b6305bfcbf2acd10d1e5e834600d8f8d65a67645e6fa",
+      "prompt_sha256": "0230d62fe212e44fa1eb97f5b4f53ef7607817107404d51e48ef7444ecdb87de",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 42,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "faed36cb21ccb32bcec9e22cac750bc5c61ff557f76331a118f7b058a7f607a9",
+      "prefix_256_sha256": "5fe1095878cd84e938b1fbecf587fc62b85ffa769d124d47bf7c27fb9c05c5d6",
+      "prompt_sha256": "9ff8cbf9a78a0c5adca9565f7c5142a5f4d4a6a38e48668a05c37b933a9676ea",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 43,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "1a1a25fd785b782acd12306d098d9c375e0c39846a83b6e0c7b1a13e7c067b16",
+      "prefix_256_sha256": "befb879668612d348e30b80d2ed25b46d70532ec3673bef95659265511d7e1e9",
+      "prompt_sha256": "aac703089b1f76925bd9c84e4cb7a3d9cd928b655753d3552d97c1f0bb797694",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 44,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "6a10e0a98b3e2ec661f977b8cd6ef1be5ddb42d71992f3cf854ef4fcc64348df",
+      "prefix_256_sha256": "72cf170965ab09cf9135c446e275bfddaa1decb714375f44212365a52595c6bd",
+      "prompt_sha256": "b028a44d27e94a2e03be769123851a576e5ade6ac8b26b0857e44bd18cd5fcde",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 45,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "70984c3e7e72d2dc78cc844277de8a09899d8151ee23681d6af25ce2758704b2",
+      "prefix_256_sha256": "feeeff72bd77d1960ed626a9842a3e3433373e98695c543ad637ef3d3697f8ba",
+      "prompt_sha256": "0d78cf631d7882d122eec1c931390f54b04843afc3b48d123281916193110d1e",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 46,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "a4de8d207b453eaab9e6c551951da4a58d3890d88d57427562f2df0651699c49",
+      "prefix_256_sha256": "07c7730fd386ed672e69f9dc6bcfbc749af8e549f402a5ddd3b059f86c220226",
+      "prompt_sha256": "8800d84c8550c512883b2ce3504fcd65c41df3168ea09b1a8cebc245a28e5298",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 47,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "f70faf2954ee7713f1d0b5861885a75ea4d8342027fd7d11ee5d4035a52ea37b",
+      "prefix_256_sha256": "96344216831bbe73715f87cb3e95142e003ed4404c279e8fb867e09767395b4b",
+      "prompt_sha256": "908827a84cbe583c1eed004cc0551759622673746bf10eeeb00cad82621ff190",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 48,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "0ac9b433c845d0953b2119124ee5afbb3c1252f43be4a414be8087556fc052fd",
+      "prefix_256_sha256": "925c7e01c1e3323937e4f87d4215310e69be151e56b5d17a383bd5a6f4763e60",
+      "prompt_sha256": "31c95fb7adf8a0cad3883ff9914ded819797a582ecdf8e11043ff84032ea0db1",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    },
+    {
+      "request": 49,
+      "input_tokens": 2048,
+      "prefix_16_sha256": "fe91cc00d681fb6946a00c964f7f55be9d1666ea2a21196e60e91d21fac88eb5",
+      "prefix_256_sha256": "2d92c1de7084369252271df249d77fd098831b1db57eefcc92aeb3550003b186",
+      "prompt_sha256": "832bd6bec9ed2474be121b2b7e759c1b16596555f1008c01d3251eb5cfbcb152",
+      "server_max_model_len": 139264,
+      "synthetic_input": true
+    }
+  ],
+  "prefix_warming": null,
+  "admission_barrier": {
+    "enabled": false,
+    "resume_required": false,
+    "resume_confirmed": false,
+    "all_enqueued_confirmed": false
+  },
+  "image_smoke": null,
+  "finished_utc": "2026-09-18T08:22:37.998935+00:00"
+}

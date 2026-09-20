@@ -1,0 +1,60 @@
+{
+  "tests": [
+    {
+      "concurrency": 8,
+      "source": "fp8-mtp3-c8-chat-128k-18tps.json",
+      "input_tokens_per_stream": 131072,
+      "output_tokens_per_stream": 2048,
+      "common_decode_seconds": 67.83790800301358,
+      "minimum_per_stream_tps": 20.180457214853746,
+      "maximum_per_stream_tps": 29.9390128585595,
+      "mean_per_stream_tps": 22.76566370430223,
+      "aggregate_tps": 182.12530963441785,
+      "streams_at_or_above_18_tps": 8,
+      "target18_all_streams_pass": true,
+      "raw_SSE_verification": "Counts and common-window rates independently reproduced.",
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "ttft_seconds_range": [
+        470.3153447530058,
+        470.86714956499054
+      ]
+    },
+    {
+      "concurrency": 16,
+      "source": "fp8-mtp3-c16-chat-128k-18tps.json",
+      "input_tokens_per_stream": 131072,
+      "output_tokens_per_stream": 2048,
+      "common_decode_seconds": 143.80198098400433,
+      "minimum_per_stream_tps": 12.663246970169048,
+      "maximum_per_stream_tps": 14.179220522885608,
+      "mean_per_stream_tps": 13.303884876334246,
+      "aggregate_tps": 212.86215802134794,
+      "streams_at_or_above_18_tps": 0,
+      "target18_all_streams_pass": false,
+      "raw_SSE_verification": "Counts and common-window rates independently reproduced.",
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": false,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "ttft_seconds_range": [
+        825.9720753089932,
+        827.6794047099975
+      ]
+    }
+  ],
+  "conclusion": "Eight is the highest tested concurrency at 128K where every stream exceeded 18 tok/s. Sixteen failed. Counts 9\u201315 remain untested.",
+  "limitations": "Synthetic text; native thinking tokens included; outputs capped at 2,048. Image/video enabled, but simultaneous visual workloads and 97% BF16-relative accuracy remain unverified."
+}

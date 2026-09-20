@@ -1,0 +1,27 @@
+{
+  "source": "fp8-mtp3-c45-chat-128k.json",
+  "interpretation": "All throughput checks pass except the required >=40 accepted tokens/sec per stream. No recipe success or accuracy certification is claimed.",
+  "user_requested_pause": {
+    "paused_utc": "2026-09-18T09:04:46Z",
+    "resumed_utc": "2026-09-18T09:11:12Z",
+    "duration_seconds": 386,
+    "phase": "Before every stream first token; decode throughput unaffected. Times recorded to seconds."
+  },
+  "minimum_common_stream_tps": 6.478388184410786,
+  "maximum_common_stream_tps": 7.126227002851865,
+  "mean_common_stream_tps": 6.765036866545703,
+  "aggregate_common_tps": 304.42665899455665,
+  "common_decode_seconds": 69.4617221429944,
+  "raw_ttft_seconds_range": [
+    2574.189163129995,
+    2577.8934000230074
+  ],
+  "pause_adjusted_ttft_seconds_range": [
+    2188.189163129995,
+    2191.8934000230074
+  ],
+  "raw_wall_seconds": 2653.216523762996,
+  "pause_adjusted_wall_seconds": 2267.216523762996,
+  "cold_prefill_note": "This fair-admission launch caps each long prompt chunk at128tokens to load all45 contexts together; its TTFT is specific to this scheduling policy.",
+  "quality_retention": "Unverified against BF16 base; output diagnostics are not accuracy scores."
+}

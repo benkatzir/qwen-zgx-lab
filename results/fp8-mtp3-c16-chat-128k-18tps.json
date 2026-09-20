@@ -1,0 +1,1787 @@
+{
+  "started_utc": "2026-09-18T10:59:03.764179+00:00",
+  "config": {
+    "base_url": "http://127.0.0.1:8000",
+    "model": "qwen-lab",
+    "concurrency": 16,
+    "prompt_tokens": 131072,
+    "output_tokens": 2048,
+    "out": "/home/ben/qwen-lab/results/fp8-mtp3-c16-chat-128k-18tps.json",
+    "timeout": 7200.0,
+    "metrics_interval": 1,
+    "target_tps": 18.0,
+    "min_overlap_seconds": 60.0,
+    "seed": 17491,
+    "chat_prompt": true,
+    "respect_eos": true,
+    "disable_thinking": false,
+    "warm_prefixes": false,
+    "admission_barrier": false,
+    "admission_timeout": 30,
+    "api_key_env": "VLLM_API_KEY",
+    "image_smoke": null,
+    "image_question": "Describe the visible objects and their colors precisely."
+  },
+  "trace": "/home/ben/qwen-lab/results/fp8-mtp3-c16-chat-128k-18tps.trace.jsonl",
+  "fatal_error": null,
+  "summary": {
+    "strict_throughput_pass": false,
+    "checks": {
+      "all_requests_completed_with_exact_token_counts": true,
+      "all_stream_decode_overlap_at_least_min_seconds": true,
+      "every_stream_at_target_tps_during_overlap": false,
+      "scheduler_metrics_available": true,
+      "all_streams_observed_running_during_overlap": true,
+      "no_observed_queueing_during_overlap": true,
+      "no_observed_preemptions": true
+    },
+    "not_validated": [
+      "base-model accuracy retention",
+      "multimodal quality",
+      "representative real-world prompt distribution"
+    ],
+    "all_stream_overlap_seconds": 143.80198098400433,
+    "all_stream_overlap_start": 76796.354411618,
+    "all_stream_overlap_end": 76940.156392602,
+    "minimum_stream_overlap_tps": 12.663246970169048,
+    "aggregate_overlap_output_tps": 212.86215802134794,
+    "aggregate_e2e_output_tps": 33.360124975942156,
+    "wall_seconds": 982.2505168560019,
+    "total_output_tokens": 32768,
+    "output_characteristics": {
+      "forced_output_length": false,
+      "streams_with_token_diagnostics": 16,
+      "streams_with_generated_turn_start": 0,
+      "maximum_duplicate_16gram_fraction": 0.005902606984751598,
+      "streams_stopping_naturally_before_output_target": 0,
+      "quality_verified": false
+    },
+    "metrics": {
+      "max_running": 16.0,
+      "max_waiting": 0.0,
+      "max_waiting_during_overlap": 0.0,
+      "min_running_during_overlap": 16.0,
+      "preemptions_delta": 0.0,
+      "max_cache_usage_fraction": 0.34102564102564104,
+      "scrape_count": 968,
+      "scrape_errors": []
+    },
+    "measurement_notes": [
+      "Synthetic text prompts; exact token-ID inputs; unique initial 256-token hashes; shared chat envelope recorded.",
+      "Natural EOS stopping enabled; early stopping fails the requested fixed-output-length gate while measured rates remain available.",
+      "Per-stream decode TPS excludes all tokens in the first received token event.",
+      "Overlap rates count exact tokens arriving in (latest first token, earliest last token].",
+      "SSE token-event times are receive times, not exact server generation times.",
+      "Scheduler metrics are sampled and may miss short queueing or occupancy changes.",
+      "Admission queueing before common decoding is descriptive; queueing during overlap fails.",
+      "Strict pass is a throughput result only, and does not establish accuracy or multimodality."
+    ]
+  },
+  "requests": [
+    {
+      "request": 0,
+      "start": 75968.594406882,
+      "end": 76950.564296871,
+      "first_token": 76795.982881267,
+      "last_token": 76950.564203639,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 769,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 0\". Each record follows a strict template:\n     `Record [N] for archive 0: The team near the [location] [action] on day [D]. They recorded [O] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** harbor, river, hill, village, forest, orchard, garden\n   - **Actions:** measured water flow, compared written records, reviewed the daily observations, interviewed the field team, checked the instruments\n   - **Days:** Various numbers (1-365+)\n   - **Observations:** Various numbers (1-999+)\n   - **Key Phrases:** \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it)\n   - Write an extended, plain-language account\n   - Focus on how careful observations support reliable decisions\n   - Must discuss: observations, comparisons, uncertainty, replication, clear communication\n   - Must use examples from the archive\n   - Tone: Plain language, educational, clear\n\n3.  **Deconstruct the Archive's Themes (for examples):**\n   - *Observations:* Every record mentions recording a specific number of observations (e.g., 670, 310, 878, 134, etc.). This shows systematic data collection.\n   - *Comparisons:* Many records involve \"compared written records\" or \"reviewed the daily observations\". This shows cross-checking data.\n   - *Uncertainty/Verification:* \"Unexpected ",
+      "e2e_seconds": 981.9698899890063,
+      "ttft_seconds": 827.3884743850067,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "just collect data—we build a foundation that others can stand on when it matters most.\n\n6.  **Self-Correction/Verification during drafting:**\n   - *Check against requirements:* Extended? Yes. Plain-language? Yes. Discusses observations, comparisons, uncertainty, replication, clear communication? Yes. Uses examples from the archive? Yes, explicitly references the structure and phrases from the records.\n   - *Tone:* Professional, accessible, educational.\n   - *Accuracy to prompt:* The prompt says \"Read this fictional research archive. After the archive, write an extended plain-language account...\" I will present the account directly after acknowledging the archive. I should make sure I don't just repeat the archive but analyze it as requested.\n   - *Examples:* I used specific phrases like \"compared written records\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised\", and referenced locations/actions from the text. This satisfies the requirement.\n   - *Structure:* I'll use clear headings or smooth transitions to make it readable. The prompt asks for an \"extended plain-language account\", so I'll keep it cohesive.\n   - *Check for jargon:* I'll avoid terms like \"epistemology\", \"methodological rigor\", \"triangulation\", etc. I'll stick to plain English.\n   - *Length:* It's substantial and covers all requested points thoroughly.\n\n   Everything looks solid. I will generate the response now. I'll make sure it flows naturally and directly addresses the prompt's constraints. I'll explicitly weave in the archive's recurring phrases as concrete examples. All good.✅\n   Output matches the refined draft.✅\n   Proceeds. \n   Output Generation. \n   [Self-Correction/Refinement during thought]: I should make sure the examples are explicitly tied to the archive's text. I'll quote or closely paraphrase the exact phrases used in the records to ground the analysis. The draft already does this well",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2021,
+          "duplicate_window_fraction": 0.005902606984751598,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1737,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 106
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10050,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 129,
+            "seconds": 7.119493869991857,
+            "decode_tps": 17.978806125462174
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 31.34238567799912,
+            "decode_tps": 16.303800395089198
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 72.72366003699426,
+            "decode_tps": 14.080699451582813
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.242220784435066,
+      "all_stream_overlap_tokens": 1831,
+      "all_stream_overlap_tps": 12.732787041394579
+    },
+    {
+      "request": 1,
+      "start": 75968.603250791,
+      "end": 76947.098214671,
+      "first_token": 76796.003843083,
+      "last_token": 76947.097918288,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 737,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive fictional research archive with 2225 records. Each record follows a strict template: \"Record [N] for archive 1: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Locations:** forest, orchard, garden, hill, harbor, village, river\n   - **Actions:** measured water flow, compared written records, interviewed the field team, reviewed the daily observations, checked the instruments\n   - **Key Phrases:** \"recorded [Y] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Must discuss: observations, comparisons, uncertainty, replication, clear communication.\n   - Must use examples from the provided archive.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Archive's Themes (for examples):**\n   - *Observations:* The archive repeatedly mentions recording specific numbers of observations (e.g., 375, 892, 203) across different locations and days. This shows systematic data collection.\n   - *Comparisons:* Actions like \"compared written records\" and \"reviewed the daily observations\" highlight cross-checking data.\n   - *Uncertainty:* The phrase \"Unexpected results were checked before the report was revised\" directly addresses hand",
+      "e2e_seconds": 978.4949638800026,
+      "ttft_seconds": 827.4005922920041,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "n? Yes. Uses examples from archive? Yes (specific days, locations, actions quoted). Continuous explanation? Yes, flows logically.\n   - *Tone check:* Avoids overly academic jargon. Uses clear analogies and straightforward explanations.\n   - *Accuracy to prompt:* The prompt asks to \"Read this fictional research archive. After the archive, write an extended plain-language account...\" I will present the account directly after acknowledging the archive. I'll make sure the examples are woven naturally into the text.\n   - *Structure check:* I'll ensure each required theme gets a dedicated, well-developed paragraph/section, but maintain a continuous narrative flow rather than rigid bullet points.\n   - *Refinement:* I'll explicitly quote or reference specific record details (e.g., \"day 25 near the forest,\" \"compared written records,\" \"kept the original notes\") to ground the discussion in the provided text. I'll make sure the connection between each practice and \"reliable decisions\" is explicit.\n\n   The draft looks solid. I will now generate the final response. I'll structure it with clear thematic progression but keep it as a cohesive essay-style explanation as requested. I'll ensure the language remains accessible and directly addresses the prompt's requirements. All constraints met. Proceed. \n   Output matches the refined draft.✅\n   *Self-Correction/Note during thought:* I should make sure I don't just list the themes but weave them into a single continuous explanation as requested (\"extended plain-language account... Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"). I'll use smooth transitions between paragraphs to maintain continuity. I'll also explicitly tie each concept back to \"reliable decisions.\"\n\n   Structure:\n   - Intro: The archive as a model of disciplined practice\n   - Observations: Systematic tracking builds the foundation\n   - Comparisons: Cross-checking filters out error\n   - Uncertainty",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2028,
+          "duplicate_window_fraction": 0.002459419576979833,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1708,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 108
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10279,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 130,
+            "seconds": 6.504768639002577,
+            "decode_tps": 19.831604651780587
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 31.734819288991275,
+            "decode_tps": 16.133698299571268
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 69.82196536999254,
+            "decode_tps": 14.65154976058087
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.54785088179517,
+      "all_stream_overlap_tokens": 1935,
+      "all_stream_overlap_tps": 13.456003782140092
+    },
+    {
+      "request": 2,
+      "start": 75968.612022028,
+      "end": 76940.156501914,
+      "first_token": 76796.022570747,
+      "last_token": 76940.156392602,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 700,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2226 records from \"archive 2\". Each record follows a strict template: \"Record [N] for archive 2: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Locations:** garden, forest, hill, orchard, village, river, harbor\n   - **Actions:** measured water flow, compared written records, checked the instruments, interviewed the field team, reviewed the daily observations\n   - **Days:** Various numbers (1-365, some repeated)\n   - **Observations:** Various numbers (1-999)\n   - **Key Phrases:** \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Record 1 for archive 2: ... [full archive] ... End of archive. Write a detailed, continuous explanation of careful research practice. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Task:**\n   - The user wants an extended, plain-language explanation of how careful observations support reliable decisions.\n   - Must discuss: observations, comparisons, uncertainty, replication, and clear communication.\n   - Must use examples from the provided archive.\n   - Must be detailed and continuous.\n   - Must be in plain language.\n\n3.  **Deconstruct the Archive for Examples:**\n   - The archive is highly repetitive but contains variations in location, action, day, and observation count.\n   - Key themes from the archive:\n     - *Observations:* Each record explicitly mentions recording a specific number of observ",
+      "e2e_seconds": 971.5444798859971,
+      "ttft_seconds": 827.4105487189954,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "e relevant to ground the analysis.\n   - I'll maintain a continuous narrative flow.\n\n   Let's write it out carefully. \n   Structure in mind:\n   Paragraph 1: Intro + Observations\n   Paragraph 2: Comparisons\n   Paragraph 3: Uncertainty\n   Paragraph 4: Replication\n   Paragraph 5: Clear Communication\n   Paragraph 6: Conclusion tying to reliable decisions\n   All in plain language, continuous, detailed.\n   I'll weave in specific record references like \"Record 1 shows...\", \"Record 3 mentions...\", etc., but naturally.\n   I'll ensure the tone matches the request: extended, plain-language, detailed, continuous.\n   Ready. Output matches the response. \n   Proceeds. \n   *Self-Correction/Verification during thought:* \n   The prompt says \"After the archive, write an extended plain-language account...\". The archive is already provided in the prompt. I just need to output the explanation. I will start directly with the explanation. I'll make sure it's one cohesive piece. I'll explicitly use the required terms. I'll ground it in the archive's repetitive but structured nature. All good. \n   Output generation. \n   [Output matches the final response]\n   *Check:* \n   - Plain language? Yes.\n   - Extended? Yes, ~600-800 words.\n   - Covers all 5 topics? Yes.\n   - Uses archive examples? Yes, explicitly references locations, actions, days, and the exact phrases from the records.\n   - Continuous? Yes, flows as a single essay.\n   - Directly answers prompt? Yes.\n   All constraints met. Proceeds. \n   *Output Generation* (matches the response)\n   \"Careful research practice is the quiet engine behind every reliable decision...\" etc.✅\n   I will now generate the response. \n   [Done.] \n   *Self-Correction/Note during generation prep:* I should make sure I don't just say \"Record 1 says X\" but actually explain the *principle* using the archive as a case study. The prompt says \"using examples from the archive.\" I'll do exactly that. I'll structure it as a continuous narrative. All good. \n   Output matches",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2028,
+          "duplicate_window_fraction": 0.002459419576979833,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1060,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 89
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 9675,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 129,
+            "seconds": 7.480015830005868,
+            "decode_tps": 17.11226325037063
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 31.303096405012184,
+            "decode_tps": 16.324263689076453
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 70.6303417730087,
+            "decode_tps": 14.498018476123535
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 14.202079523425015,
+      "all_stream_overlap_tokens": 2039,
+      "all_stream_overlap_tps": 14.179220522885608
+    },
+    {
+      "request": 3,
+      "start": 75968.620719506,
+      "end": 76945.996745377,
+      "first_token": 76796.039898319,
+      "last_token": 76945.996660625,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 730,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2226 records from \"archive 3\". Each record follows a strict template:\n     `Record [N] for archive 3: The team near [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** garden, harbor, forest, hill, river, orchard, village\n   - **Actions:** checked the instruments, measured water flow, reviewed the daily observations, interviewed the field team, compared written records\n   - **Key Phrases:** \"recorded [Y] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Specifically discuss: observations, comparisons, uncertainty, replication, and clear communication.\n   - Use examples from the archive to illustrate these points.\n   - Maintain a clear, accessible tone.\n\n3.  **Deconstruct the Archive's Themes:**\n   - The archive is highly repetitive but structured around scientific/research practices:\n     - *Observations:* Recording specific numbers of observations (e.g., 224, 488, 959).\n     - *Documentation/Communication:* \"kept the original notes so that another researcher could examine the same evidence.\"\n     - *Verification/Handling Uncertainty:* \"Unexpected results were checked",
+      "e2e_seconds": 977.3760258709954,
+      "ttft_seconds": 827.4191788129974,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "lage) over hundreds of days. Though fictional, it perfectly mirrors the core practices that make scientific and operational research trustworthy. Below is a plain-language explanation of how the habits shown in these records turn raw notes into reliable decisions.\n\n### 1. Careful Observations: The Starting Point of Every Decision\nEvery record begins with a team performing a specific task and recording a precise number of observations. Whether the team near the river measured water flow and logged 831 observations, or the team near the garden checked instruments and logged 224, the consistent habit is the same: **observe, count, and record**. \n\nIn real-world decision-making, vague impressions lead to shaky conclusions. Careful observation replaces guesswork with measurable facts. By specifying exactly what was measured and how many data points were collected, researchers create a solid foundation. When a manager later decides to adjust irrigation schedules, allocate maintenance crews, or issue flood warnings, they can trace that decision back to a clear, quantified set of observations rather than a hunch.\n\n### 2. Comparisons: Finding Patterns and Catching Errors\nSeveral records explicitly note that teams \"compared written records.\" This is one of the most powerful yet simple practices in research. When data from different days, locations, or methods are placed side by side, patterns emerge and inconsistencies stand out. \n\nFor example, if the orchard team compares written records on day 102 and again on day 199, they are looking for consistency in how measurements were taken, whether instruments drifted over time, or whether environmental conditions changed in predictable ways. Comparisons act as a reality check. They help researchers distinguish between a true trend (like steadily rising water levels) and a one-time glitch (like a sensor misread). Decisions built on compared data are far more resilient because they account for context, not just isolated numbers.\n\n###",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2029,
+          "duplicate_window_fraction": 0.001967535661583866,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1398,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 91
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10106,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 130,
+            "seconds": 7.062352578010177,
+            "decode_tps": 18.2658680057497
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 31.904420393999317,
+            "decode_tps": 16.047932972206528
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 73.6840014269983,
+            "decode_tps": 13.897182294239517
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.650601470195292,
+      "all_stream_overlap_tokens": 1967,
+      "all_stream_overlap_tps": 13.67853201006179
+    },
+    {
+      "request": 4,
+      "start": 75968.628889529,
+      "end": 76950.513402891,
+      "first_token": 76796.051361143,
+      "last_token": 76950.513308684,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 768,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 4\". Each record follows a strict template:\n     `Record [N] for archive 4: The team near the [location] [action] on day [D]. They recorded [M] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n   - **Key Requirements:**\n     - Extended plain-language account\n     - Focus on: careful observations supporting reliable decisions\n     - Discuss: observations, comparisons, uncertainty, replication, clear communication\n     - Use examples from the archive\n     - Maintain a continuous, detailed explanation\n\n2.  **Deconstruct the Archive's Pattern:**\n   - The archive is highly repetitive but contains variations in:\n     - Location: village, garden, harbor, river, orchard, hill, forest\n     - Action: reviewed daily observations, checked instruments, interviewed field team, compared written records, measured water flow\n     - Day: varies widely (1 to 365+)\n     - Number of observations: varies widely (1 to 998)\n     - Consistent phrases: \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - This pattern perfectly maps to the required discussion points:\n     - *Observations*: The core activity (\"recorded X observations\")\n     - *Comparisons*: \"compared written records\", \"reviewed daily observations\"\n     - *Uncertainty*: \"Unexpected results were checked before the report was revised.\"\n     - *Replication*: \"kept the original notes so that another researcher cou",
+      "e2e_seconds": 981.8845133619907,
+      "ttft_seconds": 827.4224716140016,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "referred narrative, the teams in this archive treat unexpected results as critical clues. By mandating that these anomalies be investigated before any final report is issued, the process ensures that decisions are not made on incomplete or misleading information. Uncertainty is not a flaw in the system; it is a feature that is actively managed.\n\n   This management of uncertainty relies heavily on replication and independent verification. The archive explicitly states that teams “kept the original notes so that another researcher could examine the same evidence.” This is a direct application of the scientific principle of replicability. When raw notes, instrument readings, and field interviews are preserved and made available, other experts can trace the path from raw data to final conclusion. If a decision about water flow or instrument calibration seems questionable, a second researcher can review the original notes to confirm whether the observation was recorded correctly, whether the comparison was valid, and whether the unexpected results were properly addressed. Replication turns a single team’s work into a shared, auditable resource, which is essential for high-stakes decisions.\n\n   Finally, all of these practices depend on clear communication. The archive’s uniform structure is itself a communication tool. Each record follows the same logical sequence: location, action, day, observation count, verification method, and revision protocol. This consistency eliminates ambiguity. When a decision-maker reads Record 400, they immediately know what was done, where, when, how much data was collected, and how it was validated. Clear communication also extends to the revision process mentioned in every entry. Reports are not static; they are living documents that are updated once unexpected results are checked. This transparency ensures that decisions are based on the most current, thoroughly vetted information available.\n\n   In sum, the archive illustrates that careful",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 101
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10373,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 7.051072201997158,
+            "decode_tps": 18.436912327061204
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 31.687048349995166,
+            "decode_tps": 16.158021231411986
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 71.62794941799075,
+            "decode_tps": 14.296095425325726
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.2524549417367,
+      "all_stream_overlap_tokens": 1876,
+      "all_stream_overlap_tps": 13.045717361909464
+    },
+    {
+      "request": 5,
+      "start": 75968.633272828,
+      "end": 76943.200118976,
+      "first_token": 76796.062680736,
+      "last_token": 76943.200027568,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 715,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2226 records from \"archive 5\". Each record follows a highly repetitive template:\n     `Record [N] for archive 5: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** river, forest, orchard, harbor, village, garden, hill\n   - **Actions:** reviewed the daily observations, checked the instruments, compared written records, interviewed the field team, measured water flow\n   - **Key Phrases:** \"recorded [Y] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Task:**\n   - The user wants an extended, plain-language explanation about how careful observations support reliable decisions.\n   - Must discuss: observations, comparisons, uncertainty, replication, clear communication.\n   - Must use examples from the provided archive.\n   - The archive is highly repetitive and fictional, but I need to extract its themes to illustrate the concepts.\n\n3.  **Deconstruct the Archive's Themes:**\n   - *Observations:* Teams record daily observations, check instruments, measure water flow, interview field teams. Numbers vary widely (e.g., 13 to 997 observations).\n   - *Comparisons:* Teams \"compare written records\" across locations and days.\n   - *Uncertainty/Verification:* \"Unexpected results were checked before the report was revised.\" This highlights handling anomalies/uncerta",
+      "e2e_seconds": 974.5668461480091,
+      "ttft_seconds": 827.4294079079991,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": " - Record 7: orchard, compared written records, day 37, 552 observations.\n   - Record 19: harbor, compared written records, day 341, 371 observations.\n   - All match the template. I'll use these accurately.\n\n   I'll draft the response carefully, ensuring it flows as a single extended account (as requested: \"extended plain-language account\") rather than a rigid list, though I can use subtle headings or clear transitions for readability. The prompt says \"Write an extended plain-language account... Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\" I'll structure it logically but keep it cohesive.\n\n   Let's write it out carefully. \n   Self-Correction/Refinement during thought:\n   - I should avoid making it sound like a rigid academic paper. Keep it plain-language.\n   - Ensure every required concept is explicitly addressed.\n   - Use the archive's repetitive structure as a strength: it shows consistency, which is a key part of reliable research.\n   - I'll explicitly quote or reference the archive's phrasing to ground the examples.\n   - Check that I don't overcomplicate. Plain language means avoiding jargon, using active voice, and explaining concepts clearly.\n\n   Structure:\n   - Introduction: The archive as a mirror of real research practice\n   - Observations: Gathering facts systematically\n   - Comparisons: Finding meaning in patterns\n   - Uncertainty: Handling the unexpected\n   - Replication: Building trust through transparency\n   - Clear Communication: Making findings usable\n   - Conclusion: How it all leads to reliable decisions\n   - Weave examples throughout naturally.\n\n   All set. Draft matches the refined structure. Proceed. \n   Output generation. \n   *Self-Correction/Verification during drafting mental simulation*:\n   - I need to make sure I don't just list things but explain *how* they support reliable decisions.\n   - I'll explicitly connect each practice to decision-making.\n   - Example: \"When",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2029,
+          "duplicate_window_fraction": 0.001967535661583866,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1732,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 114
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 9779,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 130,
+            "seconds": 7.439588274006383,
+            "decode_tps": 17.339669246310407
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 33.12081471001147,
+            "decode_tps": 15.458556937164866
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 73.04685904600774,
+            "decode_tps": 14.018398783649891
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.912171478374697,
+      "all_stream_overlap_tokens": 1988,
+      "all_stream_overlap_tps": 13.824566159635403
+    },
+    {
+      "request": 6,
+      "start": 75968.637467535,
+      "end": 76949.206667233,
+      "first_token": 76796.075995794,
+      "last_token": 76949.206540082,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 754,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 6\". Each record follows a strict template:\n     \"Record [N] for archive 6: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Task:** Read the fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions.\n   - **Key Requirements:** \n     - Discuss: observations, comparisons, uncertainty, replication, and clear communication.\n     - Use examples from the archive.\n     - Write in plain language.\n     - Make it detailed and continuous.\n     - The archive itself is just a long list of identical-structure records with varying locations, actions, days, and observation counts.\n\n2.  **Deconstruct the Archive's Pattern:**\n   - Locations: forest, village, garden, orchard, harbor, river, hill.\n   - Actions: measured water flow, checked the instruments, reviewed the daily observations, compared written records, interviewed the field team.\n   - Days: random numbers (1-365+).\n   - Observation counts: random numbers (1-999).\n   - Consistent phrases: \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - This structure inherently highlights: systematic data collection, documentation, verification of anomalies, and openness for peer review.\n\n3.  **Map Requirements to Archive Elements:**\n   - *Observations:* The core of every record. Teams record specific numbers of observations (e.g., 560, 997, 10). This shows systematic tracking.\n   - *Comparisons:* \"compared written records\" is a direct action in many records. Also, reviewing daily observations implies cross-checking.\n   - *Uncertainty:* \"Unexpec",
+      "e2e_seconds": 980.5691996980022,
+      "ttft_seconds": 827.4385282590083,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "ople who depend on them.\n\n6.  **Self-Correction/Verification during drafting:**\n   - *Check against requirements:* \n     - Extended plain-language account? Yes.\n     - Discuss observations, comparisons, uncertainty, replication, clear communication? Yes, each has a dedicated section.\n     - Use examples from the archive? Yes, referenced specific record numbers, locations, actions, and exact phrases.\n     - Continuous explanation? Yes, flows logically from one concept to the next.\n   - *Tone:* Plain language, accessible, avoids jargon, explains concepts clearly.\n   - *Accuracy to archive:* The archive is highly repetitive by design. I correctly identified the recurring phrases and used them as evidence for the requested concepts. I didn't invent data; I stuck to what's in the text.\n   - *Structure:* Logical progression. Each paragraph builds on the last.\n   - *Potential improvement:* Make sure the examples are explicitly tied to the concepts. I'll weave the record numbers naturally into the text. I'll also ensure the language stays grounded and avoids academic stiffness.\n\n   Everything looks solid. I'll generate the response now. \n   One minor check: The prompt says \"After the archive, write an extended plain-language account...\" I will just provide the account directly, as the archive is already in the prompt. I'll make sure it's a single, cohesive piece. I'll also ensure I explicitly hit all 5 requested topics. All good.✅\n   Output matches the refined draft. \n   Proceeds. \n   [Output Generation] -> *See response.* \n   Self-Correction/Note during thought: I should make sure I don't just list the concepts but weave them into a continuous narrative as requested. I'll adjust the structure slightly to flow more naturally as a single extended explanation rather than rigidly headed sections, though clear thematic breaks are fine. I'll keep it cohesive. The prompt says \"extended plain-language account\", so a well-structured essay format is perfect. I'll ensure the examples",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 101
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 9888,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 130,
+            "seconds": 7.22884301499289,
+            "decode_tps": 17.845179336783104
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 33.10788731399225,
+            "decode_tps": 15.434388644425468
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 73.24041942499753,
+            "decode_tps": 13.967697181849317
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.367679253788545,
+      "all_stream_overlap_tokens": 1882,
+      "all_stream_overlap_tps": 13.087441404644784
+    },
+    {
+      "request": 7,
+      "start": 75968.64153917,
+      "end": 76949.531978644,
+      "first_token": 76796.089684595,
+      "last_token": 76949.531880148,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 757,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 7\". Each record follows a strict template:\n     `Record [N] for archive 7: The team near the [location] [action] on day [D]. They recorded [M] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n   - **Key Requirements:**\n     - Extended plain-language account\n     - Focus on how careful observations support reliable decisions\n     - Must discuss: observations, comparisons, uncertainty, replication, clear communication\n     - Use examples from the archive\n     - Maintain a continuous, detailed explanation\n\n2.  **Deconstruct the Archive Data:**\n   - The archive is highly repetitive and structured. It's clearly fictional/generated for this prompt.\n   - Common elements across records:\n     - Locations: hill, forest, harbor, orchard, village, river, garden\n     - Actions: checked instruments, compared written records, reviewed daily observations, interviewed field team, measured water flow\n     - Consistent phrasing: \"recorded [X] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - This structure perfectly aligns with the required discussion points:\n     - *Observations*: The core activity (checking instruments, measuring flow, reviewing records, etc.)\n     - *Comparisons*: \"compared written records\" is explicitly mentioned\n     - *Uncertainty*: \"Unexpected results were checked before the report was revised\"\n     - *Replication*: \"kept th",
+      "e2e_seconds": 980.8904394739948,
+      "ttft_seconds": 827.4481454250054,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "ut crucial step prevents conclusions from being drawn in a vacuum. By cross-referencing notes from the hill with those from the forest, or checking today’s measurements against yesterday’s, researchers can spot patterns, verify consistency, and identify anomalies. Comparisons act as a reality check. They ensure that a single measurement isn’t mistaken for a trend, and they help decision-makers understand how different pieces of information fit together. When leaders compare data across locations and time, they move from reacting to isolated events to understanding broader systems.\n\n   Even with careful observation and comparison, uncertainty is inevitable. The natural world is complex, and instruments can drift, weather can shift, and human error can slip in. The archive handles this reality head-on with a consistent rule: “Unexpected results were checked before the report was revised.” This phrase captures a vital principle of reliable research. When something doesn’t match the expected pattern, it isn’t ignored or smoothed over. Instead, it triggers a pause for investigation. Researchers go back to the raw data, recheck their methods, and look for alternative explanations. Only after the unexpected finding is thoroughly examined is the final report updated. This approach builds trust. It shows that decisions are not being forced to fit a preconceived narrative, but are instead being adjusted to match the evidence. Uncertainty, when handled honestly, becomes a tool for refinement rather than a reason to doubt the entire process.\n\n   For observations to truly support reliable decisions, they must also be replicable. The archive emphasizes this through a simple but powerful practice: teams “kept the original notes so that another researcher could examine the same evidence.” Replication in research isn’t just about repeating an experiment to get the same result; it’s about making the entire process transparent so others can verify the steps, trace the logic, and build",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 104
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10503,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 7.413125437989947,
+            "decode_tps": 17.53646300571021
+          },
+          "512": {
+            "observed_tokens": 514,
+            "seconds": 33.30365344999882,
+            "decode_tps": 15.403715414292428
+          },
+          "1024": {
+            "observed_tokens": 1026,
+            "seconds": 73.22684476799623,
+            "decode_tps": 13.9975988757606
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.340528611590287,
+      "all_stream_overlap_tokens": 1883,
+      "all_stream_overlap_tps": 13.094395411767335
+    },
+    {
+      "request": 8,
+      "start": 75968.64564431,
+      "end": 76950.195941839,
+      "first_token": 76796.128354654,
+      "last_token": 76950.195720559,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 764,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 8\". Each record follows a strict template:\n     `Record [N] for archive 8: The team near the [location] [action] on day [D]. They recorded [O] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** garden, river, forest, village, hill, orchard, harbor\n   - **Actions:** measured water flow, interviewed the field team, checked the instruments, reviewed the daily observations, compared written records\n   - **Days:** Various numbers (1-365+)\n   - **Observations:** Various numbers\n   - **Key Phrases:** \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, I've processed it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Specifically discuss: observations, comparisons, uncertainty, replication, clear communication.\n   - Use examples from the archive.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Archive's Themes (for examples):**\n   - *Observations:* Every record mentions recording a specific number of observations (e.g., 736, 720, 14, 951, etc.). This shows systematic data collection.\n   - *Comparisons:* Several records explicitly mention \"compared written records\" or \"reviewed the daily observations\". This shows cross-checking and verification.\n   - *Unc",
+      "e2e_seconds": 981.5502975290001,
+      "ttft_seconds": 827.4827103440039,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "munication)* Finally, careful observation only matters if it’s communicated clearly. The archive itself is a model of clear communication. Every record follows the same structure: location, action, day, number of observations, preservation of notes, and verification of surprises. This consistency removes ambiguity. When a report says “the team near the river measured water flow on day 154” and specifies exactly how many observations were recorded, anyone reading it knows precisely what was done, when, and how thoroughly. Clear communication also means avoiding jargon, stating facts plainly, and making sure that the evidence is accessible to others. In the archive, the standardized format ensures that a decision-maker in a distant office can quickly grasp what happened near the forest, the harbor, or the garden without needing to decode messy or inconsistent notes. When information is shared clearly, decisions can be made faster and with greater confidence.\n\n   *(Conclusion)* Together, these practices show that reliable decisions don’t come from intuition or rushed judgments. They come from a disciplined cycle: observe carefully, compare thoroughly, question the unexpected, preserve everything for replication, and communicate clearly. The archive demonstrates that when teams near the river, the garden, the orchard, and beyond follow this routine, they build a foundation of trust. Each recorded observation, each compared record, each checked anomaly, and each preserved note adds a layer of reliability. In the end, careful observation isn’t just about collecting data; it’s about building a shared, verifiable understanding of the world. And that understanding is what allows us to make decisions that are not just quick, but sound, defensible, and lasting.\n\n6.  **Self-Correction/Verification during drafting:**\n   - *Check against constraints:* \"extended plain-language account\" - Yes, written in accessible terms, avoiding overly technical jargon.\n   - \"Discuss observations",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 134
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10240,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 6.973785859998316,
+            "decode_tps": 18.64123771647204
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 30.77949766299571,
+            "decode_tps": 16.601960356693663
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 70.93962687898602,
+            "decode_tps": 14.420713006358321
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.286395778728988,
+      "all_stream_overlap_tokens": 1868,
+      "all_stream_overlap_tps": 12.99008530492904
+    },
+    {
+      "request": 9,
+      "start": 75968.649699497,
+      "end": 76947.890227657,
+      "first_token": 76796.101868201,
+      "last_token": 76947.890084474,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 743,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2225 records from \"archive 9\". Each record follows a strict template:\n     `Record [N] for archive 9: The team near the [location] [action] on day [D]. They recorded [M] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** forest, orchard, hill, garden, harbor, village, river\n   - **Actions:** reviewed daily observations, measured water flow, interviewed field team, checked instruments, compared written records\n   - **Key Phrases:** \"recorded [M] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Must discuss: observations, comparisons, uncertainty, replication, clear communication.\n   - Use examples from the archive.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Archive's Themes (for examples):**\n   - *Observations:* Every record mentions recording a specific number of observations (ranging from 10 to 999). This shows systematic data collection.\n   - *Comparisons:* Several records explicitly mention \"compared written records\" or \"reviewed the daily observations.\" This shows cross-checking and synthesis.\n   - *Uncertainty/Verification:* The phrase \"Unexpected results were checked before the r",
+      "e2e_seconds": 979.2405281600077,
+      "ttft_seconds": 827.4521687040105,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": ", write an extended plain-language account...\" I will present the account directly after acknowledging the archive. I won't repeat the massive archive (it's already in the prompt), but I'll reference it naturally.\n   - *Refinement:* I'll make sure the examples are woven in smoothly and explicitly tie back to the requested themes. I'll avoid jargon. I'll ensure the connection between careful observation and reliable decision-making is the central thread.\n\n   The draft looks solid. I will now generate the final response. All constraints met. The response will be structured as a continuous, detailed explanation with clear thematic sections, using the archive's specific phrasing and activities as concrete examples. I'll maintain a plain-language style throughout.✅\n   Proceed. \n   Output matches the refined draft. \n   Self-Correction/Note during thought: The prompt says \"After the archive, write an extended plain-language account...\" I should just output the account directly, as the archive is already provided. I'll make sure the transition is smooth. I'll explicitly use the exact phrases from the archive as examples. All good. \n   Generating. \n   [Output Generation] -> *Proceeds*\n   *(Self-Correction/Verification during output generation prep)*: I need to make sure I don't just list the sections but write it as a continuous, flowing explanation as requested (\"extended plain-language account... continuous explanation\"). I'll blend the themes into a cohesive narrative rather than rigidly labeled sections, though I'll keep the thematic focus clear. I'll weave the examples naturally throughout.\n\n   Revised structure for flow:\n   - Opening: Acknowledge archive, state thesis.\n   - Paragraph 1: Observations (systematic recording, examples)\n   - Paragraph 2: Comparisons (cross-referencing, examples)\n   - Paragraph 3: Uncertainty (unexpected results, checking, examples)\n   - Paragraph 4: Replication (original notes, transparency, examples)\n   - Paragraph 5: Clear Communication (",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2032,
+          "duplicate_window_fraction": 0.0004918839153959665,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1802,
+          "longest_identical_token_run": 3,
+          "most_common_token_count": 91
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10086,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 129,
+            "seconds": 7.203260351001518,
+            "decode_tps": 17.76973117210782
+          },
+          "512": {
+            "observed_tokens": 515,
+            "seconds": 32.46040981900296,
+            "decode_tps": 15.834673772328479
+          },
+          "1024": {
+            "observed_tokens": 1027,
+            "seconds": 72.80642594999517,
+            "decode_tps": 14.09216269872492
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.485895349863135,
+      "all_stream_overlap_tokens": 1907,
+      "all_stream_overlap_tps": 13.261291582708608
+    },
+    {
+      "request": 10,
+      "start": 75968.653868621,
+      "end": 76945.82851357,
+      "first_token": 76796.115294235,
+      "last_token": 76945.828434371,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 729,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 219 records from \"archive 10\". Each record follows a strict template:\n     `Record [N] for archive 10: The team near the [location] [action] on day [N]. They recorded [M] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n     - Locations: forest, orchard, harbor, village, river, hill, garden\n     - Actions: measured water flow, checked the instruments, compared written records, interviewed the field team, reviewed the daily observations\n     - Days: various numbers (1-365)\n     - Observations: various numbers (10-998)\n     - Constant phrases: \"kept the original notes so that another researcher could examine the same evidence.\" and \"Unexpected results were checked before the report was revised.\"\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n   - **Key Requirements:**\n     - Extended plain-language account\n     - Focus on: careful observations supporting reliable decisions\n     - Must discuss: observations, comparisons, uncertainty, replication, clear communication\n     - Must use examples from the provided archive\n     - Format: After the archive (which is already provided, so I just need to write the explanation)\n\n2.  **Deconstruct the Archive's Themes:**\n   - The archive is highly repetitive but structured to illustrate scientific/research practices.\n   - *Observations:* Each record mentions recording a specific number of observations (e.g., 969, 141, 815). This shows systematic data collection.\n   - *Comparisons:* Several records mention \"compared written records\" or \"reviewed the daily observations.\" This shows cross-",
+      "e2e_seconds": 977.174644949002,
+      "ttft_seconds": 827.4614256140048,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "\n   Structure of response:\n   - Opening: How careful observation builds reliable decisions\n   - Observations: Systematic data collection (examples from archive)\n   - Comparisons: Contextualizing data (examples)\n   - Uncertainty: Managing anomalies (examples)\n   - Replication: Transparency and verification (examples)\n   - Clear Communication: Structured reporting and revision (examples)\n   - Conclusion: Synthesis\n   All requirements met. Plain language maintained. Examples integrated. Ready. \n   Output generation. \n   [Proceeds]\n</think>\n\nThe archive you provided may look repetitive at first glance, but its consistent structure actually demonstrates a disciplined, real-world approach to research. When teams collect data in this way, they are not just filling out forms; they are building a reliable foundation for decision-making. Below is a plain-language explanation of how careful observations, when paired with comparison, uncertainty management, replication, and clear communication, lead to decisions you can actually trust.\n\n**Observations: The Starting Point of Reliable Decisions**\nEvery reliable decision begins with careful observation. In this archive, teams across different locations (forests, orchards, harbors, villages, rivers, hills, and gardens) systematically recorded specific numbers of observations on set days. Whether they were measuring water flow, checking instruments, interviewing field staff, or reviewing daily logs, each entry captures a deliberate act of data collection. The variation in observation counts (ranging from 10 to 998) shows that careful observation isn’t about forcing a specific number; it’s about recording what actually happens, in full, without skipping steps. When decisions are based on complete, methodical observations rather than guesses or partial snapshots, the resulting choices are far more grounded in reality.\n\n**Comparisons: Turning Raw Data into Meaningful Insight**\nObservations alone are just pieces of a puzzle. Comparisons",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2032,
+          "duplicate_window_fraction": 0.0004918839153959665,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1387,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 91
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10323,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 128,
+            "seconds": 6.986667782999575,
+            "decode_tps": 18.17747801162449
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 32.86111668200465,
+            "decode_tps": 15.58072432396616
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 74.01315849699313,
+            "decode_tps": 13.821866554196044
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.672814544805945,
+      "all_stream_overlap_tokens": 1966,
+      "all_stream_overlap_tps": 13.671578002939237
+    },
+    {
+      "request": 11,
+      "start": 75968.658055024,
+      "end": 76950.435463144,
+      "first_token": 76796.324769785,
+      "last_token": 76950.435359976,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 766,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2189 records from \"archive 11\". Each record follows a strict template:\n     `Record [N] for archive 11: The team near the [location] [action] on day [D]. They recorded [X] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** village, hill, garden, orchard, river, harbor, forest\n   - **Actions:** reviewed the daily observations, compared written records, interviewed the field team, measured water flow, checked the instruments\n   - **Key Phrases:** \"recorded [X] observations\", \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Specifically discuss: observations, comparisons, uncertainty, replication, clear communication.\n   - Use examples from the archive to illustrate these points.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Archive's Themes:**\n   - The archive is highly repetitive but structured to demonstrate scientific rigor.\n   - *Observations:* Every record mentions recording a specific number of observations.\n   - *Replication/Verification:* \"kept the original notes so that another researcher could examine the same evidence\" directly points to transparency and replicability.\n   - *Uncertainty/Quality",
+      "e2e_seconds": 981.7774081199896,
+      "ttft_seconds": 827.6667147609987,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "  *(Conclusion)* Together, these practices form a feedback loop that turns raw fieldwork into dependable knowledge. Careful observations provide the foundation. Comparisons reveal patterns. Checking unexpected results manages uncertainty. Preserving original notes enables replication. And clear communication ensures that the findings can actually guide action. The archive shows that reliable decisions don’t come from a single “aha” moment; they come from a disciplined, repeatable process of watching, recording, questioning, verifying, and sharing. In any field, from environmental monitoring to public health, adopting this same careful approach ensures that the choices we make are grounded in evidence, not assumption.\n\n6.  **Self-Correction/Verification during Drafting:**\n   - *Check against requirements:* Extended? Yes. Plain-language? Yes. Discusses observations, comparisons, uncertainty, replication, clear communication? Yes. Uses examples from archive? Yes (river day 4, garden day 312, hill day 264, harbor day 158, etc.). Continuous explanation? Yes, flows logically.\n   - *Tone/Style:* Accessible, avoids jargon, explains concepts clearly.\n   - *Accuracy to prompt:* The prompt says \"After the archive, write an extended plain-language account...\". I will place the account after the archive text (which is already provided in the prompt, so I just need to output the account).\n   - *Integration of examples:* I used specific record numbers/dates/locations from the text to ground the discussion. I should make sure the examples are accurate to the provided text. Let's verify a few:\n     - \"team near the river measured water flow on day 4 and logged 992 observations\" -> Record 46 matches.\n     - \"team near the garden checked instruments on day 312 and logged 559\" -> Record 48 matches.\n     - \"team near the hill compared records from day 264\" -> Record 47 matches.\n     - \"team near the harbor reviewed daily observations on day 158\" -> Record 79 matches.\n     All accurate.\n",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2029,
+          "duplicate_window_fraction": 0.001967535661583866,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1938,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 116
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10065,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 7.582736105003278,
+            "decode_tps": 16.616693269446905
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 33.69124843299505,
+            "decode_tps": 15.048418315762875
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 73.602715393994,
+            "decode_tps": 13.844597913885533
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.256713879739873,
+      "all_stream_overlap_tokens": 1821,
+      "all_stream_overlap_tps": 12.663246970169048
+    },
+    {
+      "request": 12,
+      "start": 75968.662209139,
+      "end": 76943.581567162,
+      "first_token": 76794.634284448,
+      "last_token": 76943.581489882,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 718,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2188 records from \"archive 12\". Each record follows a strict template:\n     `Record [N] for archive 12: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** village, hill, harbor, garden, orchard, river, forest\n   - **Actions:** reviewed the daily observations, checked the instruments, interviewed the field team, compared written records, measured water flow\n   - **Key Phrases (repeated in every record):**\n     - \"They recorded [Y] observations\"\n     - \"and kept the original notes so that another researcher could examine the same evidence.\"\n     - \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Specifically discuss: observations, comparisons, uncertainty, replication, and clear communication.\n   - Use examples from the archive to illustrate these points.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Themes & Map to Archive Examples:**\n   - *Observations:* The archive repeatedly mentions recording specific numbers of observations (e.g., 344, 766, 998). This shows systematic data collection. Example: \"The team near the river compared written records on day 116. They recorded 766 observations...\"\n   - *Comparisons:* Actions ",
+      "e2e_seconds": 974.9193580229912,
+      "ttft_seconds": 825.9720753089932,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "s/Conclusion: Tie it all together. Show how these five elements create a feedback loop that turns raw fieldwork into trustworthy decisions.\n\n   All points align perfectly with the prompt. I will now generate the response. \n   I'll ensure the language is accessible, the examples are drawn directly from the text, and the explanation is thorough and continuous. No fluff, just clear, structured reasoning.✅\n   Proceed. \n   Output matches the response. \n   *Self-Correction/Verification during generation prep:* \n   - Check: \"plain-language account\" -> Yes, will avoid heavy jargon.\n   - Check: \"Discuss observations, comparisons, uncertainty, replication, and clear communication\" -> All 5 will be explicit sections/themes.\n   - Check: \"using examples from the archive\" -> I will quote/reference specific record patterns (e.g., \"team near the river compared written records on day 116\", \"kept the original notes...\", \"Unexpected results were checked...\").\n   - Check: \"how careful observations support reliable decisions\" -> This will be the central thesis.\n   - The archive is fictional but highly structured. I'll treat it as a case study in methodological rigor.\n   - Ready. Output matches the final response. \n   [Proceeds]\n</think>\n\nThe archive you provided is a fictional but highly structured record of field research. At first glance, it may look like a repetitive list of routine tasks, but when read closely, it reveals a complete system for turning raw information into trustworthy knowledge. Every single entry follows the same careful pattern: a team works at a specific location on a specific day, records a precise number of observations, preserves the original notes for verification, and investigates any surprises before finalizing a report. This consistency isn't accidental; it demonstrates exactly how careful observation supports reliable decisions. Below is a plain-language breakdown of how each core practice in the archive builds a foundation for sound decision-making.\n\n**1.",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 91
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10013,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 8.670438826011377,
+            "decode_tps": 14.993474103063745
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 32.27361207699869,
+            "decode_tps": 15.833368721816802
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 75.49420196400024,
+            "decode_tps": 13.550709503331426
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.74312457917877,
+      "all_stream_overlap_tokens": 1993,
+      "all_stream_overlap_tps": 13.859336195248169
+    },
+    {
+      "request": 13,
+      "start": 75968.666518278,
+      "end": 76950.844923738,
+      "first_token": 76796.335716531,
+      "last_token": 76950.844830235,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 775,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2188 records from \"archive 13\". Each record follows a strict template:\n     `Record [N] for archive 13: The team near the [location] [action] on day [D]. They recorded [X] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.`\n   - **Locations:** hill, harbor, river, garden, forest, orchard, village\n   - **Actions:** measured water flow, interviewed the field team, reviewed the daily observations, checked the instruments, compared written records\n   - **Key Phrases (repeated in every record):**\n     - \"They recorded [X] observations\"\n     - \"and kept the original notes so that another researcher could examine the same evidence.\"\n     - \"Unexpected results were checked before the report was revised.\"\n   - **User Request:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n\n2.  **Identify Core Requirements:**\n   - Acknowledge/read the archive (implicitly, by referencing it).\n   - Write an extended, plain-language account.\n   - Focus on how careful observations support reliable decisions.\n   - Specifically discuss: observations, comparisons, uncertainty, replication, and clear communication.\n   - Use examples from the provided archive.\n   - Maintain a continuous, detailed explanation.\n\n3.  **Deconstruct the Archive for Examples:**\n   - The archive is highly repetitive but structured. I can extract patterns and specific examples to illustrate the required concepts.\n   - *Observations:* Every record mentions recording a specific number of observations (e.g., 339, 71, 807, 12, 997). This shows systematic data collection.\n   - *Comparisons:* Several r",
+      "e2e_seconds": 982.1784054599993,
+      "ttft_seconds": 827.6691982530028,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": " how it was measured. They can see exactly what was observed, how it was checked, and what was done with unexpected findings.\n\n   *(Conclusion)* Together, these practices form a complete system for turning raw fieldwork into trustworthy decisions. Careful observation provides the raw material. Comparisons reveal patterns and catch mistakes. Checking unexpected results manages uncertainty. Preserving original notes enables replication. And clear, structured communication ensures everyone understands the evidence. The archive shows that reliability isn’t a product of genius or luck; it’s the result of disciplined habits. When teams consistently record, compare, verify, share, and communicate, they build a chain of evidence that can withstand scrutiny. In any field, from environmental monitoring to community planning, that chain is what turns careful observation into confident, reliable decisions.\n\n6.  **Self-Correction/Verification during drafting:**\n   - *Check against requirements:* Extended? Yes. Plain-language? Yes. Discusses observations, comparisons, uncertainty, replication, clear communication? Yes. Uses examples from archive? Yes (specific record numbers, locations, actions, counts, and exact phrases).\n   - *Tone:* Professional, accessible, analytical but not overly academic.\n   - *Accuracy to input:* The archive is highly repetitive, so I correctly extracted the recurring phrases and used them as structural pillars. I referenced specific record numbers and locations/actions to ground the discussion.\n   - *Flow:* Logical progression from data collection -> analysis -> handling anomalies -> verification -> communication -> synthesis.\n   - *Potential issue:* The archive has 2188 records. I should make sure I don't overclaim specific details that aren't there, but the prompt explicitly says \"using examples from the archive.\" I'll stick to the exact phrases and patterns present.\n   - *Refinement:* I'll ensure the examples are woven naturally into the explanation.",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2031,
+          "duplicate_window_fraction": 0.000983767830791933,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 856,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 126
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 10160,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 7.3679876910027815,
+            "decode_tps": 17.10100576767541
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 32.22668990500097,
+            "decode_tps": 15.763331620389847
+          },
+          "1024": {
+            "observed_tokens": 1026,
+            "seconds": 70.73157698799332,
+            "decode_tps": 14.434854183631657
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.222520995841498,
+      "all_stream_overlap_tokens": 1824,
+      "all_stream_overlap_tps": 12.684108991536707
+    },
+    {
+      "request": 14,
+      "start": 75968.670796537,
+      "end": 76946.636925798,
+      "first_token": 76796.345097362,
+      "last_token": 76946.63682799,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 733,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2189 records from \"archive 14\". Each record follows a strict template: \"Record [N] for archive 14: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n   - **Key Requirements:**\n     - Extended plain-language account\n     - Focus on how careful observations support reliable decisions\n     - Discuss: observations, comparisons, uncertainty, replication, clear communication\n     - Use examples from the provided archive\n     - Maintain a continuous, detailed explanation\n\n2.  **Deconstruct the Archive's Core Themes (from the repetitive template):**\n   - *Observations:* Teams record specific numbers of observations (ranging from 10 to 998) across various locations (village, forest, harbor, garden, hill, river, orchard) and activities (measuring water flow, checking instruments, comparing written records, interviewing field teams, reviewing daily observations).\n   - *Documentation/Communication:* \"kept the original notes so that another researcher could examine the same evidence.\"\n   - *Uncertainty/Verification:* \"Unexpected results were checked before the report was revised.\"\n   - *Replication/Consistency:* The same rigorous process is repeated across hundreds of records, days, locations, and activities. This implies systematic, repeated data collection.\n   - *Comparisons:* \"compared written records\" is a recurring action.\n\n3.  **Map to Required Discussion Points:**\n   - **Observations:** The foundation of the archiv",
+      "e2e_seconds": 977.9661292609962,
+      "ttft_seconds": 827.674300825005,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "her about water management, field operations, or policy—can be made with confidence. The archive shows that reliability isn’t about being perfect; it’s about being thorough, honest, and open to verification.\n\n6.  **Self-Correction/Verification during Drafting:**\n   - *Check against requirements:* Extended? Yes. Plain-language? Yes. Discusses observations, comparisons, uncertainty, replication, clear communication? Yes. Uses examples from archive? Yes, integrated throughout. Continuous explanation? Yes, flows logically.\n   - *Tone check:* Avoids overly technical jargon. Uses clear analogies and direct language.\n   - *Accuracy to prompt:* The prompt says \"After the archive, write an extended plain-language account...\" I will place the account after the archive text (which is already provided in the prompt, so I just need to output the account).\n   - *Example integration:* I'll make sure to explicitly reference specific record numbers or details from the prompt to ground the discussion. For instance, I'll mention Record 1 (day 15, village, 58 observations), Record 2 (day 291, village, 923 observations), and the recurring phrases.\n   - *Structure:* I'll use clear headings or smooth transitions to keep it continuous but readable. The prompt says \"continuous explanation,\" so I'll avoid bullet points and keep it in paragraph form, but I can use subtle thematic breaks.\n\n   Let's draft it carefully, ensuring it meets all constraints. I'll weave the examples naturally into the narrative. I'll make sure the language is accessible but substantive. I'll explicitly hit all five required concepts. I'll maintain a professional, instructive tone.\n\n   *Self-Correction/Refinement during thought:* \n   - The prompt says \"After the archive, write an extended plain-language account...\" I will just output the account directly, as the archive is already in the prompt.\n   - I need to ensure I don't just list the concepts but explain *how* they support reliable decisions.\n   - I'll explicitly",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2031,
+          "duplicate_window_fraction": 0.000983767830791933,
+          "most_common_window_occurrences": 2,
+          "first_duplicate_window_start_token": 1986,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 109
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 9838,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 6.757239278987981,
+            "decode_tps": 18.646668380059314
+          },
+          "512": {
+            "observed_tokens": 513,
+            "seconds": 32.63124187498761,
+            "decode_tps": 15.567902746275509
+          },
+          "1024": {
+            "observed_tokens": 1025,
+            "seconds": 73.3786973929964,
+            "decode_tps": 13.900492053397414
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.593562276934652,
+      "all_stream_overlap_tokens": 1920,
+      "all_stream_overlap_tps": 13.351693675301798
+    },
+    {
+      "request": 15,
+      "start": 75968.675006908,
+      "end": 76947.231569359,
+      "first_token": 76796.354411618,
+      "last_token": 76947.231493455,
+      "usage": {
+        "prompt_tokens": 131072,
+        "total_tokens": 133120,
+        "completion_tokens": 2048
+      },
+      "error": null,
+      "finish_reason": "length",
+      "http_status": 200,
+      "done_received": true,
+      "content_chunks": 737,
+      "stream_token_count": 2048,
+      "token_count_basis": [
+        "token_ids"
+      ],
+      "text_preview": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Input Data:** A massive list of 2190 records from \"archive 15\". Each record follows a strict template: \"Record [N] for archive 15: The team near the [location] [action] on day [X]. They recorded [Y] observations and kept the original notes so that another researcher could examine the same evidence. Unexpected results were checked before the report was revised.\"\n   - **Task:** \"Read this fictional research archive. After the archive, write an extended plain-language account of how careful observations support reliable decisions. Discuss observations, comparisons, uncertainty, replication, and clear communication, using examples from the archive.\"\n   - **Key Requirements:**\n     - Extended plain-language account\n     - Focus on: careful observations supporting reliable decisions\n     - Discuss: observations, comparisons, uncertainty, replication, clear communication\n     - Use examples from the archive\n     - Maintain a continuous, detailed explanation\n\n2.  **Deconstruct the Archive's Core Themes:**\n   - The archive is highly repetitive but contains variations in:\n     - Location: harbor, river, hill, forest, village, orchard, garden\n     - Action: checked instruments, measured water flow, interviewed field team, reviewed daily observations, compared written records\n     - Day: varies widely (1 to 365+)\n     - Number of observations: varies (1 to 997)\n     - Consistent phrases: \"kept the original notes so that another researcher could examine the same evidence\", \"Unexpected results were checked before the report was revised\"\n   - These consistent phrases directly map to the required discussion points:\n     - \"kept the original notes...\" -> Clear communication, transparency, replication\n     - \"Unexpected results were checked...\" -> Uncertainty, careful observation, revision\n     - \"compared written records\", \"reviewed daily observations\" -> Comparisons, replication\n     - \"recorded [X] observations\" -> Obs",
+      "e2e_seconds": 978.5565624510054,
+      "ttft_seconds": 827.6794047099975,
+      "prompt_tokens_verified": true,
+      "output_tokens_verified": true,
+      "event_tokens_verified": true,
+      "text_tail": "on isn’t a one-time event but an ongoing conversation. By keeping records open to review and updating them when new evidence emerges, the teams ensure that decisions are based on the most accurate, up-to-date information available.\n\n   *(Conclusion)* In summary, this archive demonstrates that reliable decisions don’t come from luck or intuition. They come from a disciplined cycle of careful observation, thoughtful comparison, honest handling of uncertainty, open replication, and clear communication. Each record, whether it logged 10 observations or 997, followed the same principles. By treating every data point as important, checking surprises before drawing conclusions, preserving notes for others, and revising reports as needed, the teams built a foundation of trust. In any field, from environmental monitoring to public policy, following these same steps ensures that decisions are not just made quickly, but made correctly.\n\n6.  **Self-Correction/Verification during Drafting:**\n   - *Check against requirements:* Extended? Yes. Plain-language? Yes, avoided jargon, explained concepts simply. Discusses observations, comparisons, uncertainty, replication, clear communication? Yes, each has a dedicated section. Uses examples from the archive? Yes, referenced specific record numbers, locations, days, and actions. Continuous explanation? Yes, flows logically from one concept to the next.\n   - *Tone:* Professional, accessible, analytical but not academic.\n   - *Accuracy to prompt:* The prompt says \"After the archive, write an extended plain-language account...\". I'll make sure the response directly follows the archive text (which is already provided in the prompt, so I just output the explanation).\n   - *Examples:* I used specific examples like \"Record 1 (day 128, harbor, 873 observations)\", \"Record 17 (day 151, forest, compared written records)\", \"Record 306 (day 293, river, unexpected results checked)\", \"Record 10 (day 341, orchard, kept original notes)\". I should verify",
+      "output_diagnostics": {
+        "not_a_quality_score": true,
+        "token_diagnostics_available": true,
+        "token_ids_observed": 2048,
+        "special_turn_markers": {
+          "<|im_start|>": {
+            "token_id": 248045,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|im_end|>": {
+            "token_id": 248046,
+            "count": 0,
+            "first_output_token_index": null
+          },
+          "<|endoftext|>": {
+            "token_id": 248044,
+            "count": 0,
+            "first_output_token_index": null
+          }
+        },
+        "new_turn_start_count": 0,
+        "repetition": {
+          "ngram_tokens": 16,
+          "total_windows": 2033,
+          "distinct_windows": 2033,
+          "duplicate_window_fraction": 0.0,
+          "most_common_window_occurrences": 1,
+          "first_duplicate_window_start_token": null,
+          "longest_identical_token_run": 2,
+          "most_common_token_count": 138
+        },
+        "visible_role_label_matches": 0,
+        "escaped_role_label_matches": 0,
+        "visible_output_characters": 9892,
+        "early_decode_rates": {
+          "128": {
+            "observed_tokens": 131,
+            "seconds": 7.148650254006498,
+            "decode_tps": 17.625704926518495
+          },
+          "512": {
+            "observed_tokens": 512,
+            "seconds": 32.62203201900411,
+            "decode_tps": 15.541643748759885
+          },
+          "1024": {
+            "observed_tokens": 1024,
+            "seconds": 70.50818215300387,
+            "decode_tps": 14.452223399955964
+          }
+        },
+        "interpretation": "Turn markers, repetition, and early/full rate differences require review. An end marker at natural stopping is normal. No quality pass is inferred."
+      },
+      "natural_stop_before_requested_length": false,
+      "decode_tps": 13.540823928495723,
+      "all_stream_overlap_tokens": 1910,
+      "all_stream_overlap_tps": 13.282153604076267
+    }
+  ],
+  "server_models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen-lab",
+        "object": "model",
+        "created": 1789729143,
+        "owned_by": "vllm",
+        "root": "/lab/models/unsloth",
+        "parent": null,
+        "max_model_len": 139264,
+        "permission": [
+          {
+            "id": "modelperm-90d938d45975a219",
+            "object": "model_permission",
+            "created": 1789729143,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "prompts": [
+    {
+      "request": 0,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "0bf523f284c51ded2ac6057bd99dadcde0e1b2ac6e89aa189040610c26086086",
+      "prompt_sha256": "d42fe49c7ca9a5312a5f91621786e0a07d20789bdc17df919c9e76aba8a6d16e",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 1,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "0542e3369732e7d32b993583f4ed53c4bfce4c55f4f293ee59915e3904bb63e9",
+      "prompt_sha256": "508a7076f986370bc9c031a1a6140d8c0fa1aa43697b5b954f4ed826001d01fc",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 2,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "fd7e01cc2c6cb1a1b2d56c1a84b9efa86fba17a1a204272c44227151b642eeda",
+      "prompt_sha256": "362954af35425764b992906cf8e1d2e2064b832e7cc3f8436ac1fbe65c4b95d0",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 3,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "daae8529253efaaaa0c68b627d3cacf2b6ef78c1b9ff7693c0d33424653244da",
+      "prompt_sha256": "4e76b5035e2927a0597c7ccedc97a3f6393947e06f6b99127ed163756b1a8bf4",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 4,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "0ed53198a5633e6fac1e0ba97951207c885b1ab0e78cc5728f7f0f27d8436b9a",
+      "prompt_sha256": "25594eeaf5347580599fc6f669a2ceacf67420bf6a3a334f1e6a9cc08e5847e1",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 5,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "0c5513e27e72537f4ba1d3dc143328b61756679dca11b2b25ecc0bee9941f0b2",
+      "prompt_sha256": "e4e5e6b650e800de232729ff95b43e5e114d4b21b2841c665000365877623717",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 6,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "aa69c11a7a9fc8f33463270f9ccd7c5332be494d925afc845af86da4c909a0f5",
+      "prompt_sha256": "f08841f5e1ac83e725414eabe42ad7ef08ca75fe794e69cfb428b7082c28d84e",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 7,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "be847af2e7c88b9bd6c0ee679352c88f2a95bfd38efde1d9a0516b26d458f804",
+      "prompt_sha256": "05193141bfdd06b4dded61a85a21c66b142c0e9921d0c638f45c2fb6b255cbe5",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 8,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "a2b765ccd05aa35b9fbc7a78576918c87c8337ee6e129c81f7eb777cb7b07aa7",
+      "prompt_sha256": "d82362c11696b0f1c6ab720ad55e52531b75c275e046fe8734424401eb9a3fb0",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 9,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "18bd054adb1a96442b85c853c56c49144b73881ff5eed096a31245962796ef02",
+      "prompt_sha256": "075a4965f3610edb42784f7cb62d69543fe1d229d73978bfa8e4426eb2379c76",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 10,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "58f9b4bda9cf10ebfe32fe8e1634ae0c14aa66b6babdb28db779d677ec2c0ca9",
+      "prompt_sha256": "6505174890a2facc0e00417492350a56bdb519addf8beba6fd513a99d22e023c",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 11,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "a0a8e7d127059a5bf37a5f3d7e802c2d7a679e84cc85b506c4a3f83f7af3cb39",
+      "prompt_sha256": "cf8431b73600b9be38fb153c9d34da6b630817dc496f95f3695e81d20cab0f07",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 12,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "43221bf1c59f243e76fe496f223ba65d252fd07a83049fe8ca426b933ebe8f6f",
+      "prompt_sha256": "0bd91e8bd79d93396dd04ede781b4ce4840d0c20aba6b7e581a5fc9dc3701a9f",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 13,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "1c68dc940bd5a25f263f08b4eaf979ce61c7a22beca6d27e94997f21caac7dae",
+      "prompt_sha256": "304acd0d4dea696c3a0fe27940e540c506d0d230feaafc457a95db1e268c2a87",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 14,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "ded9d2f47868739bbbebc941eadb057c4c15a0118aa781c88e783c5e7d7eea9c",
+      "prompt_sha256": "4903e5b387d226b20fd11602e9823705d35d171e4ac2825ad1fff66ec2088fdf",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    },
+    {
+      "request": 15,
+      "input_tokens": 131072,
+      "prefix_16_sha256": "4d86fac52924088f6978a0af6b8ab927d68e3cfc63afea5c42694a5c47f53661",
+      "prefix_256_sha256": "1b4a14ac31334503825191fd85e12751dcd6a1dc142e0c029b9aff51577f5f0c",
+      "prompt_sha256": "e687c1498a53affa31524c729be7d029fdd085a45744c3097c9ec50679e6d382",
+      "server_max_model_len": 139264,
+      "synthetic_input": true,
+      "chat_prompt": true,
+      "thinking_disabled": false,
+      "shared_chat_prefix_tokens": 17,
+      "assistant_suffix_tokens": 7,
+      "turn_token_ids": {
+        "<|im_start|>": 248045,
+        "<|im_end|>": 248046,
+        "<|endoftext|>": 248044
+      }
+    }
+  ],
+  "prefix_warming": null,
+  "admission_barrier": {
+    "enabled": false,
+    "resume_required": false,
+    "resume_confirmed": false,
+    "all_enqueued_confirmed": false
+  },
+  "image_smoke": null,
+  "finished_utc": "2026-09-18T11:15:30.099991+00:00"
+}

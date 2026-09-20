@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "event": "metadata",
+    "utc": "2026-09-18T08:43:02Z",
+    "hostname": "4e3408ad6084",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130",
+    "torch_cuda": "13.0",
+    "flashinfer": "0.6.16.post3",
+    "gpu": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ],
+    "device_total_GiB": 121.62528610229492,
+    "l2_cache_size_bytes_if_exposed": 25165824,
+    "args": {
+      "batches": [
+        45,
+        50
+      ],
+      "query_lengths": [
+        4
+      ],
+      "context": 131072,
+      "layers": 10,
+      "page_size": 16,
+      "backend": "auto",
+      "kernel": "xqa",
+      "decode_use_tensor_cores": 1,
+      "timing": "both",
+      "warmup": 3,
+      "repeats": 7,
+      "max_measurement_seconds": 30,
+      "workspace_mib": 128,
+      "memory_cap_gib": 12,
+      "skip_reference_check": false,
+      "seed": 73021,
+      "output": "/lab/results/attention-xqa-checked.json"
+    },
+    "flashinfer_decode_init_signature": "(self, float_workspace_buffer: torch.Tensor, kv_layout: str = 'NHD', use_cuda_graph: bool = False, use_tensor_cores: bool = False, paged_kv_indptr_buffer: Optional[torch.Tensor] = None, paged_kv_indices_buffer: Optional[torch.Tensor] = None, paged_kv_last_page_len_buffer: Optional[torch.Tensor] = None, backend: str = 'auto', jit_args: Optional[List[Any]] = None) -> None",
+    "flashinfer_decode_plan_signature": "(self, indptr: torch.Tensor, indices: torch.Tensor, last_page_len: torch.Tensor, num_qo_heads: int, num_kv_heads: int, head_dim: int, page_size: int, *deprecated_positional_args: Any, **kwargs: Any) -> None",
+    "flashinfer_prefill_init_signature": "(self, float_workspace_buffer: torch.Tensor, kv_layout: str = 'NHD', use_cuda_graph: bool = False, qo_indptr_buf: Optional[torch.Tensor] = None, paged_kv_indptr_buf: Optional[torch.Tensor] = None, paged_kv_indices_buf: Optional[torch.Tensor] = None, paged_kv_last_page_len_buf: Optional[torch.Tensor] = None, custom_mask_buf: Optional[torch.Tensor] = None, mask_indptr_buf: Optional[torch.Tensor] = None, backend: str = 'auto', jit_args: Optional[List[Any]] = None, jit_kwargs: Optional[Dict[str, Any]] = None) -> None",
+    "flashinfer_prefill_plan_signature": "(self, qo_indptr: torch.Tensor, paged_kv_indptr: torch.Tensor, paged_kv_indices: torch.Tensor, paged_kv_last_page_len: torch.Tensor, num_qo_heads: int, num_kv_heads: int, head_dim_qk: int, page_size: int, head_dim_vo: Optional[int] = None, custom_mask: Optional[torch.Tensor] = None, packed_custom_mask: Optional[torch.Tensor] = None, causal: bool = False, pos_encoding_mode: str = 'NONE', use_fp16_qk_reduction: bool = False, sm_scale: Optional[float] = None, window_left: int = -1, logits_soft_cap: Optional[float] = None, rope_scale: Optional[float] = None, rope_theta: Optional[float] = None, q_data_type: Union[str, torch.dtype] = 'float16', kv_data_type: Union[str, torch.dtype, NoneType] = None, o_data_type: Union[str, torch.dtype, NoneType] = None, non_blocking: bool = True, prefix_len_ptr: Optional[torch.Tensor] = None, token_pos_in_items_ptr: Optional[torch.Tensor] = None, token_pos_in_items_len: int = 0, max_item_len_ptr: Optional[torch.Tensor] = None, seq_lens: Optional[torch.Tensor] = None, seq_lens_q: Optional[torch.Tensor] = None, block_tables: Optional[torch.Tensor] = None, max_token_per_sequence: Optional[int] = None, max_sequence_kv: Optional[int] = None, fixed_split_size: Optional[int] = None, disable_split_kv: bool = False) -> None",
+    "limitations": [
+      "Measured attention kernel only; excludes weights, projections, recurrent layers, vision, drafting, scheduling and prefill.",
+      "One layer cache reused ten times; request caches are distinct. No full-model memory/capacity claim.",
+      "GPU-event elapsed time and effective payload bandwidth, not profiler DRAM counters.",
+      "q>1 rates assume all positions yield accepted tokens; actual speculative acceptance is not measured.",
+      "No positional encoding inside kernel: matches attention after externally applied RoPE.",
+      "Torch memory fraction cap does not govern allocations made outside the Torch allocator."
+    ]
+  },
+  "results": [
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "full_attention_layer_calls": 10,
+      "kernel": "xqa",
+      "backend_requested": "auto",
+      "backend_resolved": "xqa",
+      "public_api": "flashinfer.decode.xqa_batch_decode_with_kv_cache",
+      "draft_mask": "packed causal uint16",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 5.6256866455078125,
+      "one_layer_valid_kv_payload_bytes": 6039982080,
+      "full_10_layer_distinct_cache_GiB_projected": 56.25171661376953,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.98193907737732e-05,
+        "relative_rmse": 0.0023255411069840193,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          258.1625061035156,
+          258.5509338378906,
+          256.9646301269531,
+          259.1290283203125,
+          259.6352844238281,
+          255.98092651367188,
+          255.5082550048828
+        ],
+        "block_gpu_ms_median": 258.1625061035156,
+        "block_gpu_ms_p95": 259.48340759277346,
+        "one_attention_layer_ms_median": 25.816250610351563,
+        "effective_kv_payload_GBps": 233.96046820130204,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 15.494116711107992,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 697.2352519998597,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 2.581625061035156
+      },
+      "graph_reference_check": {
+        "passed": true,
+        "max_abs_error": 6.98193907737732e-05,
+        "relative_rmse": 0.0023255411069840193,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          257.8437805175781,
+          255.49859619140625,
+          256.1290283203125,
+          259.440673828125,
+          256.4085388183594,
+          255.53733825683594,
+          255.91661071777344
+        ],
+        "block_gpu_ms_median": 256.1290283203125,
+        "block_gpu_ms_p95": 258.96160583496095,
+        "one_attention_layer_ms_median": 25.61290283203125,
+        "effective_kv_payload_GBps": 235.81794377662095,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 15.617128703575288,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 702.770791660888,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 2.5612902832031246
+      },
+      "torch_peak_allocated_GiB": 6.381709098815918,
+      "torch_peak_reserved_GiB": 6.408203125
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "full_attention_layer_calls": 10,
+      "kernel": "xqa",
+      "backend_requested": "auto",
+      "backend_resolved": "xqa",
+      "public_api": "flashinfer.decode.xqa_batch_decode_with_kv_cache",
+      "draft_mask": "packed causal uint16",
+      "query_dtype": "torch.bfloat16",
+      "kv_dtype": "torch.float8_e4m3fn",
+      "layout": "NHD",
+      "cache_allocation_GiB": 6.250762939453125,
+      "one_layer_valid_kv_payload_bytes": 6711091200,
+      "full_10_layer_distinct_cache_GiB_projected": 62.50190734863281,
+      "reference_check": {
+        "passed": true,
+        "max_abs_error": 6.617046892642975e-05,
+        "relative_rmse": 0.0023665851913392544,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "eager": {
+        "block_gpu_ms_samples": [
+          305.23101806640625,
+          306.28533935546875,
+          304.00909423828125,
+          302.69415283203125,
+          303.2073059082031,
+          306.2667541503906,
+          303.303466796875
+        ],
+        "block_gpu_ms_median": 304.00909423828125,
+        "block_gpu_ms_p95": 306.27976379394534,
+        "one_attention_layer_ms_median": 30.400909423828125,
+        "effective_kv_payload_GBps": 220.75297506527454,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 13.157501126807785,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 657.8750563403893,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 3.040090942382813
+      },
+      "graph_reference_check": {
+        "passed": true,
+        "max_abs_error": 6.617046892642975e-05,
+        "relative_rmse": 0.0023665851913392544,
+        "scope": "stream 0, same FP8 KV values, independent FP32 attention"
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          303.9984130859375,
+          304.4755554199219,
+          305.9516296386719,
+          303.3146667480469,
+          307.41595458984375,
+          303.30224609375,
+          303.4310302734375
+        ],
+        "block_gpu_ms_median": 303.9984130859375,
+        "block_gpu_ms_p95": 306.9766571044922,
+        "one_attention_layer_ms_median": 30.39984130859375,
+        "effective_kv_payload_GBps": 220.76073134312176,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 13.157963422885492,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 657.8981711442746,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 3.039984130859375
+      },
+      "torch_peak_allocated_GiB": 7.007166862487793,
+      "torch_peak_reserved_GiB": 7.064453125
+    }
+  ],
+  "errors": []
+}

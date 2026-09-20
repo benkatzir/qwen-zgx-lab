@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "event": "metadata",
+    "utc": "2026-09-18T08:35:10Z",
+    "hostname": "688ae69f1aba",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130",
+    "vllm": "0.28.0",
+    "torch_cuda": "13.0",
+    "gpu": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ],
+    "args": {
+      "batches": [
+        1,
+        50
+      ],
+      "query_lengths": [
+        1,
+        4
+      ],
+      "context": 131072,
+      "layers": 10,
+      "page_size": 128,
+      "preset": "turboquant_4bit_nc",
+      "timing": "both",
+      "warmup": 2,
+      "repeats": 5,
+      "max_measurement_seconds": 30,
+      "memory_cap_gib": 12,
+      "seed": 73021,
+      "skip_reference_check": false,
+      "output": "/lab/results/attention-128k-tq4.json"
+    },
+    "decode_signature": "(query: torch.Tensor, kv_cache: torch.Tensor, block_table: torch.Tensor, seq_lens: torch.Tensor, Pi: torch.Tensor, centroids: torch.Tensor, scale: float, mse_bits: int, key_packed_size: int, value_quant_bits: int, key_fp8: bool = False, norm_correction: bool = False, PiT: torch.Tensor | None = None, mid_o_buf: torch.Tensor | None = None, output_buf: torch.Tensor | None = None, lse_buf: torch.Tensor | None = None, buf_holder: Any = None, max_num_kv_splits: int = 32) -> torch.Tensor",
+    "limitations": [
+      "One layer cache reused ten times; not a full-model memory/capacity test.",
+      "Excludes KV updates, recurrent GDN layers, model projections/MoE, drafting, vision, sampling and scheduling.",
+      "q>1 faithfully loops requests like stock v0.28 CUDA TQ; do not equate with one flattened B*q decode call.",
+      "Manual fixed-shape CUDA graph is an optimistic kernel experiment, not evidence stock serving captures the same q>1 path.",
+      "Random-tensor quantization error is not downstream task accuracy or a97% quality certificate.",
+      "Nominal payload bandwidth is not measured DRAM traffic.",
+      "Torch allocation cap does not govern external library allocations."
+    ]
+  },
+  "results": [
+    {
+      "event": "case_result",
+      "batch": 1,
+      "query_length": 1,
+      "historical_tokens": 131072,
+      "kv_length": 131073,
+      "preset": "turboquant_4bit_nc",
+      "slot_bytes_per_kv_head": 262,
+      "cache_GiB": 0.06402730941772461,
+      "stock_path": "batch_decode",
+      "finite_all_streams": true,
+      "eager_exact_dequant_reference": {
+        "max_abs_error": 4.631839692592621e-05,
+        "rmse": 7.647693564649671e-06,
+        "relative_rmse": 0.0016405994538217783,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "quantization_only_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0026498734951019287,
+        "rmse": 0.0006567556993104517,
+        "relative_rmse": 0.1412903517484665,
+        "finite": true
+      },
+      "kernel_plus_quantization_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0026487838476896286,
+        "rmse": 0.0006566574447788298,
+        "relative_rmse": 0.14126920700073242,
+        "finite": true
+      },
+      "reference_scope": "Stream0; synthetic seeded Gaussian QKV, not model accuracy. Quantization error is descriptive only.",
+      "eager": {
+        "ten_layer_gpu_ms_samples": [
+          31.40665626525879,
+          31.67571258544922,
+          31.47113609313965,
+          30.730688095092773,
+          31.472063064575195
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 31.47113609313965,
+        "one_layer_gpu_ms_median": 3.1471136093139647,
+        "attention_only_all_accepted_tps_per_stream": 31.775147774788742,
+        "attention_only_all_accepted_tps_aggregate": 31.775147774788742,
+        "nominal_one_pass_kv_payload_GBps": 21.823887068052798,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "graph_exact_dequant_reference": {
+        "max_abs_error": 4.631839692592621e-05,
+        "rmse": 7.647693564649671e-06,
+        "relative_rmse": 0.0016405994538217783,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "graph": {
+        "ten_layer_gpu_ms_samples": [
+          31.333311080932617,
+          31.302719116210938,
+          30.631711959838867,
+          31.35865592956543,
+          30.62112045288086
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 31.302719116210938,
+        "one_layer_gpu_ms_median": 3.1302719116210938,
+        "attention_only_all_accepted_tps_per_stream": 31.946106543892018,
+        "attention_only_all_accepted_tps_aggregate": 31.946106543892018,
+        "nominal_one_pass_kv_payload_GBps": 21.941305400664405,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "torch_peak_allocated_GiB": 1.3953619003295898,
+      "torch_peak_reserved_GiB": 1.498046875
+    },
+    {
+      "event": "case_result",
+      "batch": 1,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "preset": "turboquant_4bit_nc",
+      "slot_bytes_per_kv_head": 262,
+      "cache_GiB": 0.06402730941772461,
+      "stock_path": "per_request_synthetic_decode_continuation",
+      "finite_all_streams": true,
+      "eager_exact_dequant_reference": {
+        "max_abs_error": 3.053061664104462e-05,
+        "rmse": 7.501681011490291e-06,
+        "relative_rmse": 0.0016554667381569743,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "quantization_only_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.002667080843821168,
+        "rmse": 0.0006758731324225664,
+        "relative_rmse": 0.15015172958374023,
+        "finite": true
+      },
+      "kernel_plus_quantization_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0026627585757523775,
+        "rmse": 0.0006759878597222269,
+        "relative_rmse": 0.1501772105693817,
+        "finite": true
+      },
+      "reference_scope": "Stream0; synthetic seeded Gaussian QKV, not model accuracy. Quantization error is descriptive only.",
+      "eager": {
+        "ten_layer_gpu_ms_samples": [
+          102.0080337524414,
+          100.23136138916016,
+          100.4854736328125,
+          100.95145416259766,
+          102.40975952148438
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 100.95145416259766,
+        "one_layer_gpu_ms_median": 10.095145416259765,
+        "attention_only_all_accepted_tps_per_stream": 39.623005267040455,
+        "attention_only_all_accepted_tps_aggregate": 39.623005267040455,
+        "nominal_one_pass_kv_payload_GBps": 6.8036488002811994,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "graph_exact_dequant_reference": {
+        "max_abs_error": 3.053061664104462e-05,
+        "rmse": 7.501681011490291e-06,
+        "relative_rmse": 0.0016554667381569743,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "graph": {
+        "ten_layer_gpu_ms_samples": [
+          100.83609771728516,
+          99.6435546875,
+          101.35033416748047,
+          101.10108947753906,
+          99.1242904663086
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 100.83609771728516,
+        "one_layer_gpu_ms_median": 10.083609771728515,
+        "attention_only_all_accepted_tps_per_stream": 39.668333965231646,
+        "attention_only_all_accepted_tps_aggregate": 39.668333965231646,
+        "nominal_one_pass_kv_payload_GBps": 6.811432171102981,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "torch_peak_allocated_GiB": 1.4737520217895508,
+      "torch_peak_reserved_GiB": 1.6171875
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 1,
+      "historical_tokens": 131072,
+      "kv_length": 131073,
+      "preset": "turboquant_4bit_nc",
+      "slot_bytes_per_kv_head": 262,
+      "cache_GiB": 3.2013654708862305,
+      "stock_path": "batch_decode",
+      "finite_all_streams": true,
+      "eager_exact_dequant_reference": {
+        "max_abs_error": 4.630349576473236e-05,
+        "rmse": 7.860825462557841e-06,
+        "relative_rmse": 0.0016615481581538916,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "quantization_only_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.002586682792752981,
+        "rmse": 0.0006929629598744214,
+        "relative_rmse": 0.14780467748641968,
+        "finite": true
+      },
+      "kernel_plus_quantization_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0025874576531350613,
+        "rmse": 0.0006928942166268826,
+        "relative_rmse": 0.14779001474380493,
+        "finite": true
+      },
+      "reference_scope": "Stream0; synthetic seeded Gaussian QKV, not model accuracy. Quantization error is descriptive only.",
+      "eager": {
+        "ten_layer_gpu_ms_samples": [
+          1212.6578369140625,
+          1211.495849609375,
+          1201.4217529296875,
+          1201.15234375,
+          1203.8380126953125
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 1203.8380126953125,
+        "one_layer_gpu_ms_median": 120.38380126953125,
+        "attention_only_all_accepted_tps_per_stream": 0.8306765440651497,
+        "attention_only_all_accepted_tps_aggregate": 41.53382720325749,
+        "nominal_one_pass_kv_payload_GBps": 28.526367864985858,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "graph_exact_dequant_reference": {
+        "max_abs_error": 4.630349576473236e-05,
+        "rmse": 7.860825462557841e-06,
+        "relative_rmse": 0.0016615481581538916,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "graph": {
+        "ten_layer_gpu_ms_samples": [
+          1209.609619140625,
+          1197.86376953125,
+          1201.8988037109375,
+          1207.2574462890625,
+          1206.3662109375
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 1206.3662109375,
+        "one_layer_gpu_ms_median": 120.63662109375,
+        "attention_only_all_accepted_tps_per_stream": 0.8289356838193211,
+        "attention_only_all_accepted_tps_aggregate": 41.446784190966056,
+        "nominal_one_pass_kv_payload_GBps": 28.466584763935472,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "torch_peak_allocated_GiB": 4.557920455932617,
+      "torch_peak_reserved_GiB": 4.6640625
+    },
+    {
+      "event": "case_result",
+      "batch": 50,
+      "query_length": 4,
+      "historical_tokens": 131072,
+      "kv_length": 131076,
+      "preset": "turboquant_4bit_nc",
+      "slot_bytes_per_kv_head": 262,
+      "cache_GiB": 3.2013654708862305,
+      "stock_path": "per_request_synthetic_decode_continuation",
+      "finite_all_streams": true,
+      "eager_exact_dequant_reference": {
+        "max_abs_error": 5.06620854139328e-05,
+        "rmse": 7.657088644918986e-06,
+        "relative_rmse": 0.0016577556962147355,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "quantization_only_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0028272748459130526,
+        "rmse": 0.0006677351775579154,
+        "relative_rmse": 0.14615218341350555,
+        "finite": true
+      },
+      "kernel_plus_quantization_vs_original_BF16_KV_attention": {
+        "max_abs_error": 0.0028281542472541332,
+        "rmse": 0.0006678102072328329,
+        "relative_rmse": 0.14616860449314117,
+        "finite": true
+      },
+      "reference_scope": "Stream0; synthetic seeded Gaussian QKV, not model accuracy. Quantization error is descriptive only.",
+      "eager": {
+        "ten_layer_gpu_ms_samples": [
+          5069.857421875,
+          5069.41455078125,
+          5064.33056640625,
+          5071.96484375,
+          5062.0341796875
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 5069.41455078125,
+        "one_layer_gpu_ms_median": 506.941455078125,
+        "attention_only_all_accepted_tps_per_stream": 0.789045748760783,
+        "attention_only_all_accepted_tps_aggregate": 39.45228743803915,
+        "nominal_one_pass_kv_payload_GBps": 6.77433491697923,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "graph_exact_dequant_reference": {
+        "max_abs_error": 5.06620854139328e-05,
+        "rmse": 7.657088644918986e-06,
+        "relative_rmse": 0.0016577556962147355,
+        "finite": true,
+        "passed_kernel_numeric_check": true,
+        "numeric_tolerance": {
+          "rtol": 0.02,
+          "atol": 0.002
+        }
+      },
+      "graph": {
+        "ten_layer_gpu_ms_samples": [
+          5060.30615234375,
+          5070.7666015625,
+          5060.97900390625,
+          5071.892578125,
+          5065.18310546875
+        ],
+        "layer_calls": 10,
+        "block_gpu_ms_median": 5065.18310546875,
+        "one_layer_gpu_ms_median": 506.518310546875,
+        "attention_only_all_accepted_tps_per_stream": 0.789704916231222,
+        "attention_only_all_accepted_tps_aggregate": 39.4852458115611,
+        "nominal_one_pass_kv_payload_GBps": 6.779994184794999,
+        "nominal_payload_note": "Counts each cache once per call block; NOT actual DRAM traffic, and queries/heads issue separate logical loads."
+      },
+      "torch_peak_allocated_GiB": 4.639402389526367,
+      "torch_peak_reserved_GiB": 4.783203125
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,240 @@
+{
+  "status": "complete",
+  "started_utc": "2026-09-18T19:50:48.077619+00:00",
+  "wrapper_pid": 42087,
+  "concurrency_sweep": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "input_tokens": 260096,
+  "output_cap": 2048,
+  "server_context_limit": 262144,
+  "completed": [
+    {
+      "concurrency": 1,
+      "result": "/home/ben/qwen-lab/results/native262k-c1-260096in-2048out.json",
+      "input_tokens": 260096,
+      "output_cap": 2048,
+      "all_reached_native_window": true,
+      "minimum_tps": 57.539397438773634,
+      "maximum_tps": 57.539397438773634,
+      "mean_tps": 57.539397438773634,
+      "aggregate_tps": 57.539397438773634,
+      "overlap_seconds": 35.57562454800063,
+      "ttft_min_seconds": 298.40282882800966,
+      "ttft_max_seconds": 298.40282882800966,
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "metrics": {
+        "max_running": 1.0,
+        "max_waiting": 0.0,
+        "max_waiting_during_overlap": 0.0,
+        "min_running_during_overlap": 1.0,
+        "preemptions_delta": 0.0,
+        "max_cache_usage_fraction": 0.03852739726027399,
+        "scrape_count": 331,
+        "scrape_errors": []
+      }
+    },
+    {
+      "concurrency": 2,
+      "result": "/home/ben/qwen-lab/results/native262k-c2-260096in-2048out.json",
+      "input_tokens": 260096,
+      "output_cap": 2048,
+      "all_reached_native_window": true,
+      "minimum_tps": 39.84522530105938,
+      "maximum_tps": 40.86331472508444,
+      "mean_tps": 40.35427001307191,
+      "aggregate_tps": 80.70854002614382,
+      "overlap_seconds": 50.09383144200547,
+      "ttft_min_seconds": 569.4882319909957,
+      "ttft_max_seconds": 569.5169784089958,
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "metrics": {
+        "max_running": 2.0,
+        "max_waiting": 0.0,
+        "max_waiting_during_overlap": 0.0,
+        "min_running_during_overlap": 2.0,
+        "preemptions_delta": 0.0,
+        "max_cache_usage_fraction": 0.07705479452054798,
+        "scrape_count": 619,
+        "scrape_errors": []
+      }
+    },
+    {
+      "concurrency": 4,
+      "result": "/home/ben/qwen-lab/results/native262k-c4-260096in-2048out.json",
+      "input_tokens": 260096,
+      "output_cap": 2048,
+      "all_reached_native_window": true,
+      "minimum_tps": 25.594358242490493,
+      "maximum_tps": 26.787537853180368,
+      "mean_tps": 26.14833449031079,
+      "aggregate_tps": 104.59333796124317,
+      "overlap_seconds": 76.2668077670096,
+      "ttft_min_seconds": 802.1082992429874,
+      "ttft_max_seconds": 802.5196435559919,
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "metrics": {
+        "max_running": 4.0,
+        "max_waiting": 0.0,
+        "max_waiting_during_overlap": 0.0,
+        "min_running_during_overlap": 4.0,
+        "preemptions_delta": 0.0,
+        "max_cache_usage_fraction": 0.15410958904109584,
+        "scrape_count": 870,
+        "scrape_errors": []
+      }
+    },
+    {
+      "concurrency": 8,
+      "result": "/home/ben/qwen-lab/results/native262k-c8-260096in-2048out.json",
+      "input_tokens": 260096,
+      "output_cap": 2048,
+      "all_reached_native_window": true,
+      "minimum_tps": 13.997661090126854,
+      "maximum_tps": 15.891964643089112,
+      "mean_tps": 15.284467704485438,
+      "aggregate_tps": 122.2757416358835,
+      "overlap_seconds": 128.807233465006,
+      "ttft_min_seconds": 1455.1544788159954,
+      "ttft_max_seconds": 1455.3432054519944,
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": false,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "metrics": {
+        "max_running": 8.0,
+        "max_waiting": 0.0,
+        "max_waiting_during_overlap": 0.0,
+        "min_running_during_overlap": 8.0,
+        "preemptions_delta": 0.0,
+        "max_cache_usage_fraction": 0.3082191780821918,
+        "scrape_count": 1568,
+        "scrape_errors": []
+      }
+    },
+    {
+      "concurrency": 16,
+      "result": "/home/ben/qwen-lab/results/native262k-c16-260096in-2048out.json",
+      "input_tokens": 260096,
+      "output_cap": 2048,
+      "all_reached_native_window": true,
+      "minimum_tps": 8.186965465241245,
+      "maximum_tps": 9.029481846631912,
+      "mean_tps": 8.620905512462747,
+      "aggregate_tps": 137.93448819940394,
+      "overlap_seconds": 226.70182351200492,
+      "ttft_min_seconds": 2586.5497457610036,
+      "ttft_max_seconds": 2588.7775228239916,
+      "checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": false,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "metrics": {
+        "max_running": 16.0,
+        "max_waiting": 0.0,
+        "max_waiting_during_overlap": 0.0,
+        "min_running_during_overlap": 16.0,
+        "preemptions_delta": 0.0,
+        "max_cache_usage_fraction": 0.6164383561643836,
+        "scrape_count": 2791,
+        "scrape_errors": []
+      }
+    }
+  ],
+  "models_at_start": {
+    "object": "list",
+    "data": [
+      {
+        "id": "qwen-lab",
+        "object": "model",
+        "created": 1789761048,
+        "owned_by": "vllm",
+        "root": "/lab/models/unsloth",
+        "parent": null,
+        "max_model_len": 262144,
+        "permission": [
+          {
+            "id": "modelperm-a28a34e9d276011d",
+            "object": "model_permission",
+            "created": 1789761048,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "telemetry_pid": null,
+  "updated_utc": "2026-09-18T21:35:29.820758+00:00",
+  "current_concurrency": null,
+  "client_pid": null,
+  "current_started_utc": "2026-09-18T20:48:11.068269+00:00",
+  "current_command": [
+    "/home/ben/qwen-lab/venv/bin/python",
+    "/home/ben/qwen-lab/scripts/bench_streams.py",
+    "--model",
+    "qwen-lab",
+    "--concurrency",
+    "16",
+    "--prompt-tokens",
+    "260096",
+    "--output-tokens",
+    "2048",
+    "--respect-eos",
+    "--target-tps",
+    "18",
+    "--min-overlap-seconds",
+    "10",
+    "--timeout",
+    "14400",
+    "--out",
+    "/home/ben/qwen-lab/results/native262k-c16-260096in-2048out.json"
+  ],
+  "client_exit_code": 2,
+  "finished_utc": "2026-09-18T21:35:29.782658+00:00"
+}

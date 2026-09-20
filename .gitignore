@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+bench-venv/
+.env
+.env.*
+*.sock
+models/
+hf/
+cache/
+.DS_Store

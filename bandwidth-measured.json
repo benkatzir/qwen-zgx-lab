@@ -1,0 +1,9 @@
+{
+  "device": "NVIDIA GB10",
+  "bytes_per_copy": 1073741824,
+  "copies": 80,
+  "total_ms": 708.481,
+  "payload_GBps": 121.244,
+  "read_plus_write_GBps": 242.489,
+  "not_attention_benchmark": true
+}

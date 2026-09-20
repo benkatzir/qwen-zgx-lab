@@ -1,0 +1,13 @@
+# Quality gate for the Qwen3.6-35B-A3B recipe
+
+**A few successful text, image, or video probes cannot establish 97% native accuracy retention.** They establish that the serving path accepts those inputs and, after inspecting the answers, handles those particular examples. The throughput harness tests speed and occupied context, not quality.
+
+Treat the user's stricter stated threshold, **97% of the unmodified base model's score**, as the gate. The accompanying “90+ preferred” phrase is ambiguous and must not silently lower that threshold. “97% retention” means candidate score / base score ≥ 0.97; it does not mean 97% exact agreement, nor an absolute score of 97%.
+
+Use paired evaluation: run the same frozen examples against the official unquantized base checkpoint and the proposed weights/cache/runtime, with matching chat templates, image/video processing, context lengths, output budgets, sampling settings, and scoring. Record checkpoint revisions, software versions, flags, seeds, and raw answers. Evaluate the actual quantized/compressed configuration used for the performance claim. Do not use the evaluation examples for calibration or tuning.
+
+Include separately scored strata for representative text tasks, image understanding/OCR, video temporal understanding, and long-context tasks at approximately 128K occupied tokens. Long-context evaluation must test information from multiple positions and realistic distracting material. Short visual smoke tests do not establish long-context multimodal behavior. A model's vision modules remaining loaded establishes neither their correctness nor their quality retention.
+
+Report each stratum's base score, candidate score, relative retention, sample count, paired changes, and uncertainty. Predeclare a paired bootstrap or other suitable confidence interval and require the lower confidence bound on retention to reach 0.97 before calling the threshold certified. Required sample size depends on baseline score, variance, and how many paired outcomes change; dozens of convenient questions are not automatically sufficient. Do not average away a failing required modality with stronger text results. For stochastic tasks, include controlled repeated runs.
+
+Until those paired results exist, the honest status is **accuracy retention unverified**. Published quantization evaluations can justify a candidate configuration but do not certify this workstation's complete recipe, especially after changing KV-cache precision, attention behavior, or context compression. Keep the quality gate separate from the simultaneous-stream throughput gate; both must pass for the combined claim.

@@ -1,0 +1,42 @@
+[
+  {
+    "source": "fp8-mtp3-c2-chat-128k-natural.json",
+    "actual_successful_natural_responses_verified": true,
+    "requested_output_allowance": 8192,
+    "actual_output_tokens": [
+      4031,
+      3532
+    ],
+    "per_stream_common_tps": [
+      53.693392639989945,
+      54.26198323177003
+    ],
+    "common_decode_seconds": 65.0731836490013,
+    "measured_speed_and_context_conditions_met": true,
+    "harness_strict_flag": false,
+    "fixed_length_gate_note": "The harness requested an 8,192-token allowance; natural EOS produced fewer tokens. Actual usage matches observed token IDs. Failure of fixed requested output length is expected here and is distinct from failing speed.",
+    "quality_retention": "Not evaluated against BF16 base. Synthetic text, native thinking and answer tokens counted; repeated draft/final text can affect speculative acceptance.",
+    "maximum_duplicate_16gram_fraction": 0.18949203187250996
+  },
+  {
+    "source": "fp8-mtp3-c3-chat-128k-natural.json",
+    "actual_successful_natural_responses_verified": true,
+    "requested_output_allowance": 8192,
+    "actual_output_tokens": [
+      3133,
+      3407,
+      3257
+    ],
+    "per_stream_common_tps": [
+      38.777246015202685,
+      43.272604912860004,
+      41.375130477304936
+    ],
+    "common_decode_seconds": 78.52543212599994,
+    "measured_speed_and_context_conditions_met": false,
+    "harness_strict_flag": false,
+    "fixed_length_gate_note": "The harness requested an 8,192-token allowance; natural EOS produced fewer tokens. Actual usage matches observed token IDs. Failure of fixed requested output length is expected here and is distinct from failing speed.",
+    "quality_retention": "Not evaluated against BF16 base. Synthetic text, native thinking and answer tokens counted; repeated draft/final text can affect speculative acceptance.",
+    "maximum_duplicate_16gram_fraction": 0.21403301886792453
+  }
+]

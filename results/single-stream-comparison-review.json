@@ -1,0 +1,40 @@
+{
+  "method": "Single stream, exact occupied input, native chat and thinking, natural EOS enabled, 2048 output cap; same unchanged Unsloth NVFP4-Fast / vLLM0.28 / FP8KV / MTP3 / FP32 GDN / no prefix caching server. Short exploratory tests, not 60-second sustained certification or an exact reproduction of SPEED-Bench/Atlas. Rates include thinking.",
+  "results": [
+    {
+      "input_tokens": 8192,
+      "output_tokens": 2048,
+      "decode_tps": 90.457332736106,
+      "decode_seconds": 22.629453445988474,
+      "ttft_seconds": 5.501720104002743,
+      "all_checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "raw_trace_audited": true
+    },
+    {
+      "input_tokens": 131072,
+      "output_tokens": 2048,
+      "decode_tps": 73.86603779676979,
+      "decode_seconds": 27.712329793997924,
+      "ttft_seconds": 120.16695082299702,
+      "all_checks": {
+        "all_requests_completed_with_exact_token_counts": true,
+        "all_stream_decode_overlap_at_least_min_seconds": true,
+        "every_stream_at_target_tps_during_overlap": true,
+        "scheduler_metrics_available": true,
+        "all_streams_observed_running_during_overlap": true,
+        "no_observed_queueing_during_overlap": true,
+        "no_observed_preemptions": true
+      },
+      "raw_trace_audited": true
+    }
+  ],
+  "finished_utc": "2026-09-18T11:38:19.812017+00:00"
+}

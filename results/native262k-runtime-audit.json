@@ -1,0 +1,183 @@
+{
+  "audit_type": "read-only runtime configuration check; no inference requests or mutations",
+  "collected_utc": "2026-09-18T21:18:54.713238+00:00",
+  "server_pid": 39359,
+  "pid_identity_unchanged_during_audit": true,
+  "launcher_prefix": [
+    "/usr/bin/python3",
+    "/usr/local/bin/vllm",
+    "serve"
+  ],
+  "saved_args_source": "outputs/qwen-zgx-lab/results/native262k-args.json",
+  "runtime_serve_arguments_exactly_equal_saved": true,
+  "argument_differences": [],
+  "documented_launch": {
+    "script": "outputs/qwen-zgx-lab/start_server.sh",
+    "environment_overrides": {
+      "MAX_MODEL_LEN": "262144",
+      "GPU_UTIL": "0.87",
+      "PREFILL_CAP": "128",
+      "GRAPH_MAX": "192",
+      "KV_DTYPE": "fp8",
+      "ATTENTION_BACKEND": "FLASHINFER"
+    },
+    "positional_arguments": [
+      "unsloth",
+      "3",
+      "auto"
+    ],
+    "overrides_note": "Bare script defaults use graph64, prefillcap0 and no MTP; README supplies graph192, prefillcap128 and positional MTP3. Runtime matches that documented explicit invocation.",
+    "script_sha256": "9e3dabed3958e65658fed73faa00a934df85fbd82359d7eb05bbea6a080ce64d",
+    "work_and_packaged_script_identical": true,
+    "container_environment_expected": {
+      "CUTE_DSL_ARCH": "sm_121a",
+      "VLLM_USE_DEEP_GEMM": "0",
+      "HF_HOME": "/lab/hf",
+      "VLLM_SERVER_DEV_MODE": "1"
+    },
+    "container_environment_verified": null
+  },
+  "settings": {
+    "model_root": "/lab/models/unsloth",
+    "served_name": "qwen-lab",
+    "max_model_len_total_input_plus_output": 262144,
+    "models_endpoint_max_model_len": 262144,
+    "max_num_seqs": 50,
+    "kv_cache_dtype": "fp8",
+    "attention_backend": "FLASHINFER",
+    "speculative_config": {
+      "method": "mtp",
+      "num_speculative_tokens": 3,
+      "moe_backend": "triton"
+    },
+    "multimodal_limits": {
+      "image": 2,
+      "video": 1
+    },
+    "skip_mm_profiling": true,
+    "text_only_flag_present": false,
+    "prefix_caching_disabled": true,
+    "chunked_prefill": true,
+    "async_scheduling": true,
+    "long_prefill_token_threshold": 128,
+    "max_num_batched_tokens": 8192,
+    "max_cudagraph_capture_size": 192,
+    "gpu_memory_utilization": 0.87
+  },
+  "models_endpoint_matches_saved_model_and_context": true,
+  "limitations": [
+    "Launch options confirm multimodal capacity is enabled, not image/video correctness or quality.",
+    "No requests generating tokens, GPU probes, sudo commands, server restarts or remote file writes were used.",
+    "Direct process environment and Docker metadata were inaccessible without escalation; actual container environment could not be independently verified. Expected environment is documented, not asserted as observed."
+  ],
+  "evidence": {
+    "collected_utc": "2026-09-18T21:18:54.713238+00:00",
+    "server_pid": 39359,
+    "server_before": {
+      "pid": 39359,
+      "comm": "vllm",
+      "state": "S",
+      "starttime_clock_ticks": 7992506
+    },
+    "cmdline": [
+      "/usr/bin/python3",
+      "/usr/local/bin/vllm",
+      "serve",
+      "/lab/models/unsloth",
+      "--served-model-name",
+      "qwen-lab",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--tensor-parallel-size",
+      "1",
+      "--max-model-len",
+      "262144",
+      "--max-num-seqs",
+      "50",
+      "--max-num-batched-tokens",
+      "8192",
+      "--gpu-memory-utilization",
+      "0.87",
+      "--max-cudagraph-capture-size",
+      "192",
+      "--kv-cache-dtype",
+      "fp8",
+      "--attention-backend",
+      "FLASHINFER",
+      "--enable-chunked-prefill",
+      "--async-scheduling",
+      "--no-enable-prefix-caching",
+      "--limit-mm-per-prompt",
+      "{\"image\":2,\"video\":1}",
+      "--skip-mm-profiling",
+      "--reasoning-parser",
+      "qwen3",
+      "--tool-call-parser",
+      "qwen3_xml",
+      "--enable-auto-tool-choice",
+      "--long-prefill-token-threshold",
+      "128",
+      "--speculative-config",
+      "{\"method\":\"mtp\",\"num_speculative_tokens\":3,\"moe_backend\":\"triton\"}"
+    ],
+    "process_environment_error": {
+      "type": "PermissionError",
+      "message": "[Errno 13] Permission denied: '/proc/39359/environ'"
+    },
+    "container_inspect_error": {
+      "exit_code": 1,
+      "stderr": "permission denied while trying to connect to the docker API at unix:///var/run/docker.sock"
+    },
+    "models_http_status": 200,
+    "models": {
+      "object": "list",
+      "data": [
+        {
+          "id": "qwen-lab",
+          "object": "model",
+          "created": 1789766334,
+          "owned_by": "vllm",
+          "root": "/lab/models/unsloth",
+          "parent": null,
+          "max_model_len": 262144,
+          "permission": [
+            {
+              "id": "modelperm-893bb8da92bba4ea",
+              "object": "model_permission",
+              "created": 1789766334,
+              "allow_create_engine": false,
+              "allow_sampling": true,
+              "allow_logprobs": true,
+              "allow_search_indices": false,
+              "allow_view": true,
+              "allow_fine_tuning": false,
+              "organization": "*",
+              "group": null,
+              "is_blocking": false
+            }
+          ]
+        }
+      ]
+    },
+    "server_after": {
+      "pid": 39359,
+      "comm": "vllm",
+      "state": "S",
+      "starttime_clock_ticks": 7992506
+    },
+    "process_42087": {
+      "pid": 42087,
+      "comm": "python",
+      "state": "S",
+      "starttime_clock_ticks": 10786888
+    },
+    "process_43019": {
+      "pid": 43019,
+      "comm": "python",
+      "state": "S",
+      "starttime_clock_ticks": 11131189
+    }
+  }
+}

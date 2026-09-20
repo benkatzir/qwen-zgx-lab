@@ -1,0 +1,400 @@
+{
+  "metadata": {
+    "event": "metadata",
+    "hostname": "635111b45764",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "torch": "2.13.0+cu130",
+    "flashinfer": "0.6.16.post3",
+    "cuda": "13.0",
+    "gpu": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ],
+    "utc": "2026-09-18T08:42:33Z",
+    "xqa_signature": "(query: torch.Tensor, kv_cache: Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]], workspace_buffer: torch.Tensor, block_tables: torch.Tensor, seq_lens: torch.Tensor, max_seq_len: int, bmm1_scale: Union[float, torch.Tensor] = 1.0, bmm2_scale: Union[float, torch.Tensor] = 1.0, window_left: int = -1, out: Optional[torch.Tensor] = None, sinks: Optional[torch.Tensor] = None, kv_layout: str = 'NHD', enable_pdl: bool = None, q_len_per_req: Optional[int] = 1, o_scale: Optional[float] = 1.0, mask: Optional[torch.Tensor] = None, kv_cache_sf: Union[torch.Tensor, Tuple[torch.Tensor, torch.Tensor], NoneType] = None, q_cu_seq_lens: Optional[torch.Tensor] = None) -> torch.Tensor",
+    "args": {
+      "batches": [
+        45
+      ],
+      "query_lengths": [
+        8,
+        16
+      ],
+      "context": 131072,
+      "layers": 10,
+      "page_size": 64,
+      "timing": "both",
+      "warmup": 3,
+      "repeats": 7,
+      "max_measurement_seconds": 30,
+      "workspace_mib": 128,
+      "memory_cap_gib": 12,
+      "reference_streams": 3,
+      "reference_max_relative_rmse": 0.2,
+      "reference_max_abs_error": 0.1,
+      "seed": 73021,
+      "output": "/lab/results/attention-nvfp4-page64.json"
+    },
+    "limitations": [
+      "Kernel-only synthetic attention, not model accuracy or model throughput.",
+      "One-layer distinct-request cache reused ten times; cache reuse may favor timings.",
+      "All-accepted rates assume perfect speculation and omit weights/GDN/draft work.",
+      "Reference checks quantized KV semantics, not accuracy against original BF16 KV.",
+      "Torch allocator cap does not control CUDA allocations outside PyTorch."
+    ]
+  },
+  "results": [
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 8,
+      "historical_tokens": 131072,
+      "kv_length": 131080,
+      "full_attention_layer_calls": 10,
+      "cache_allocation_GiB": 3.165607452392578,
+      "query_dtype": "bfloat16",
+      "kv_dtype": "NVFP4",
+      "layout": "NHD",
+      "data_shape": [
+        92205,
+        2,
+        64,
+        2,
+        128
+      ],
+      "scale_shape": [
+        92205,
+        2,
+        64,
+        2,
+        16
+      ],
+      "k_global_scale": 0.000744047619047619,
+      "v_global_scale": 0.0011160714285714285,
+      "reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.2920390367507935e-05,
+            "relative_rmse": 0.0023523420095443726,
+            "reference_rms": 0.0023442942183464766
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 2.9919669032096863e-05,
+            "relative_rmse": 0.0023884610272943974,
+            "reference_rms": 0.0022940095514059067
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 2.829916775226593e-05,
+            "relative_rmse": 0.0023010093718767166,
+            "reference_rms": 0.0024315009359270334
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "one_layer_valid_kv_payload_bytes": 3397593600,
+      "eager": {
+        "block_gpu_ms_samples": [
+          193.9496612548828,
+          192.66639709472656,
+          189.671875,
+          189.49002075195312,
+          189.9984893798828,
+          190.8203887939453,
+          191.62594604492188
+        ],
+        "block_gpu_ms_median": 190.8203887939453,
+        "block_gpu_ms_p95": 193.56468200683594,
+        "one_attention_layer_ms_median": 19.08203887939453,
+        "effective_kv_payload_GBps": 178.0519168561617,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 41.92424117025926,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1886.5908526616665,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.9541019439697265
+      },
+      "graph_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.2920390367507935e-05,
+            "relative_rmse": 0.0023523420095443726,
+            "reference_rms": 0.0023442942183464766
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 2.9919669032096863e-05,
+            "relative_rmse": 0.0023884610272943974,
+            "reference_rms": 0.0022940095514059067
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 2.829916775226593e-05,
+            "relative_rmse": 0.0023010093718767166,
+            "reference_rms": 0.0024315009359270334
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph_mutated_input_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.416184335947037e-05,
+            "relative_rmse": 0.0023583625443279743,
+            "reference_rms": 0.002349765971302986
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 2.9521994292736053e-05,
+            "relative_rmse": 0.002388935536146164,
+            "reference_rms": 0.0022955243475735188
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 3.2978132367134094e-05,
+            "relative_rmse": 0.0023103775456547737,
+            "reference_rms": 0.0024456242099404335
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph_restored_context_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.3663585782051086e-05,
+            "relative_rmse": 0.0023605693131685257,
+            "reference_rms": 0.002349262125790119
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 2.8889626264572144e-05,
+            "relative_rmse": 0.002380138263106346,
+            "reference_rms": 0.0022909538820385933
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 3.124307841062546e-05,
+            "relative_rmse": 0.0022926281671971083,
+            "reference_rms": 0.0024442763533443213
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          192.05516052246094,
+          192.52374267578125,
+          187.1091766357422,
+          191.9334716796875,
+          193.66444396972656,
+          190.3335418701172,
+          191.6873321533203
+        ],
+        "block_gpu_ms_median": 191.9334716796875,
+        "block_gpu_ms_p95": 193.32223358154297,
+        "one_attention_layer_ms_median": 19.19334716796875,
+        "effective_kv_payload_GBps": 177.01933749576264,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 41.681109240554875,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 1875.6499158249694,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.9596673583984374
+      },
+      "torch_peak_allocated_GiB": 4.236801624298096,
+      "torch_peak_reserved_GiB": 4.294921875
+    },
+    {
+      "event": "case_result",
+      "batch": 45,
+      "query_length": 16,
+      "historical_tokens": 131072,
+      "kv_length": 131088,
+      "full_attention_layer_calls": 10,
+      "cache_allocation_GiB": 3.165607452392578,
+      "query_dtype": "bfloat16",
+      "kv_dtype": "NVFP4",
+      "layout": "NHD",
+      "data_shape": [
+        92205,
+        2,
+        64,
+        2,
+        128
+      ],
+      "scale_shape": [
+        92205,
+        2,
+        64,
+        2,
+        16
+      ],
+      "k_global_scale": 0.000744047619047619,
+      "v_global_scale": 0.0011160714285714285,
+      "reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.438536077737808e-05,
+            "relative_rmse": 0.0023211557418107986,
+            "reference_rms": 0.0023834556341171265
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 3.389082849025726e-05,
+            "relative_rmse": 0.002351273549720645,
+            "reference_rms": 0.0023397759068757296
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 3.712717443704605e-05,
+            "relative_rmse": 0.0023844896350055933,
+            "reference_rms": 0.0022868579253554344
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "one_layer_valid_kv_payload_bytes": 3397800960,
+      "eager": {
+        "block_gpu_ms_samples": [
+          341.4287109375,
+          339.3606262207031,
+          344.621826171875,
+          341.3292236328125,
+          345.3067321777344,
+          340.84039306640625,
+          344.5132141113281
+        ],
+        "block_gpu_ms_median": 341.4287109375,
+        "block_gpu_ms_p95": 345.10126037597655,
+        "one_attention_layer_ms_median": 34.14287109375,
+        "effective_kv_payload_GBps": 99.51714226581203,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 46.8619055382512,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 2108.7857492213043,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.85357177734375
+      },
+      "graph_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.438536077737808e-05,
+            "relative_rmse": 0.0023211557418107986,
+            "reference_rms": 0.0023834556341171265
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 3.389082849025726e-05,
+            "relative_rmse": 0.002351273549720645,
+            "reference_rms": 0.0023397759068757296
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 3.712717443704605e-05,
+            "relative_rmse": 0.0023844896350055933,
+            "reference_rms": 0.0022868579253554344
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph_mutated_input_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.589317202568054e-05,
+            "relative_rmse": 0.002330056158825755,
+            "reference_rms": 0.0023699409794062376
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 3.4525059163570404e-05,
+            "relative_rmse": 0.00234885117970407,
+            "reference_rms": 0.002343022031709552
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 3.339257091283798e-05,
+            "relative_rmse": 0.0023965025320649147,
+            "reference_rms": 0.002293892204761505
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph_restored_context_reference_check": {
+        "passed": true,
+        "checks": [
+          {
+            "stream": 0,
+            "passed": true,
+            "max_abs_error": 3.741122782230377e-05,
+            "relative_rmse": 0.0023342003114521503,
+            "reference_rms": 0.0023717146832495928
+          },
+          {
+            "stream": 22,
+            "passed": true,
+            "max_abs_error": 2.7608126401901245e-05,
+            "relative_rmse": 0.0023670599330216646,
+            "reference_rms": 0.0023393298033624887
+          },
+          {
+            "stream": 44,
+            "passed": true,
+            "max_abs_error": 2.8366222977638245e-05,
+            "relative_rmse": 0.002390753012150526,
+            "reference_rms": 0.002289859112352133
+          }
+        ],
+        "scope": "Independent manual NVFP4 dequantization, FP32 GQA causal attention"
+      },
+      "graph": {
+        "block_gpu_ms_samples": [
+          343.503173828125,
+          342.3944396972656,
+          339.46246337890625,
+          342.2157287597656,
+          346.4576110839844,
+          344.0860290527344,
+          343.4707336425781
+        ],
+        "block_gpu_ms_median": 343.4707336425781,
+        "block_gpu_ms_p95": 345.7461364746094,
+        "one_attention_layer_ms_median": 34.34707336425781,
+        "effective_kv_payload_GBps": 98.92548701211362,
+        "attention_only_all_accepted_tokens_per_second_per_stream": 46.58329934057756,
+        "attention_only_all_accepted_tokens_per_second_aggregate": 2096.24847032599,
+        "required_acceptance_fraction_for_40_tps_ignoring_other_work": 0.8586768341064454
+      },
+      "torch_peak_allocated_GiB": 4.24229621887207,
+      "torch_peak_reserved_GiB": 4.3125
+    }
+  ],
+  "errors": []
+}

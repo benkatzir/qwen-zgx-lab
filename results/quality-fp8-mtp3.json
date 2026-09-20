@@ -1,0 +1,915 @@
+{
+  "notice": "This is a small deterministic rejection screen, not an accuracy benchmark, base-model comparison, or certification of 97% accuracy retention. A pass only establishes correctness on these examples under this configuration.",
+  "not_accuracy_certification": true,
+  "base_reference_evaluated": false,
+  "started_utc": "2026-09-18T08:30:14.032061+00:00",
+  "configuration": {
+    "base_url": "http://127.0.0.1:8000",
+    "model": "qwen-lab",
+    "out": "/home/ben/qwen-lab/results/quality-fp8-mtp3.json",
+    "long_context": true,
+    "max_tokens": 128,
+    "long_output_tokens": 256,
+    "timeout": 180,
+    "long_timeout": 1800,
+    "seed": 7319,
+    "api_key_env": "VLLM_API_KEY"
+  },
+  "screen_pass": false,
+  "results": [
+    {
+      "name": "arithmetic_multiply",
+      "expected": "391",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_multiply.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-b1f0ab10fb88ad0f",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "391",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 47,
+          "total_tokens": 51,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "391",
+        "expected": "391",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_multiply.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.3042177909956081
+    },
+    {
+      "name": "arithmetic_add",
+      "expected": "4055",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_add.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-ba74c3c61e9df643",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "4055",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 49,
+          "total_tokens": 54,
+          "completion_tokens": 5,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "4055",
+        "expected": "4055",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_add.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.16707875599968247
+    },
+    {
+      "name": "arithmetic_subtract",
+      "expected": "569",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_subtract.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-a2248f43b6e8e2a3",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "569",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 47,
+          "total_tokens": 51,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "569",
+        "expected": "569",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_subtract.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.12950622801145073
+    },
+    {
+      "name": "arithmetic_precedence",
+      "expected": "33",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_precedence.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-a7e13e47253e6d99",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "27",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 56,
+          "total_tokens": 59,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": false,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "27",
+        "expected": "33",
+        "reason": "answer or format mismatch"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/arithmetic_precedence.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.16384345998812933
+    },
+    {
+      "name": "logic_entailment",
+      "expected": "NO",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/logic_entailment.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-a55a5bb0cd936f7a",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "NO",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 61,
+          "total_tokens": 63,
+          "completion_tokens": 2,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "NO",
+        "expected": "NO",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/logic_entailment.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.13540937901416328
+    },
+    {
+      "name": "logic_order",
+      "expected": "Dana",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/logic_order.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-bfa5981821579c47",
+        "object": "chat.completion",
+        "created": 1789720214,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Dana",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 57,
+          "total_tokens": 60,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "Dana",
+        "expected": "Dana",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/logic_order.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.1367585840052925
+    },
+    {
+      "name": "extract_identifier",
+      "expected": "LM-7306",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/extract_identifier.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-9e37c48fe09a0336",
+        "object": "chat.completion",
+        "created": 1789720215,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "LM-7306",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 79,
+          "total_tokens": 86,
+          "completion_tokens": 7,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "LM-7306",
+        "expected": "LM-7306",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/extract_identifier.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.1685217689955607
+    },
+    {
+      "name": "extract_place",
+      "expected": "Maple Room",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/extract_place.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-b833ca861b5cea0e",
+        "object": "chat.completion",
+        "created": 1789720215,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Maple Room",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 75,
+          "total_tokens": 79,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "Maple Room",
+        "expected": "Maple Room",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/extract_place.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.13866568100638688
+    },
+    {
+      "name": "code_sum",
+      "expected": "30",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/code_sum.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-be0827fc3f8fa76f",
+        "object": "chat.completion",
+        "created": 1789720215,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "30",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 59,
+          "total_tokens": 62,
+          "completion_tokens": 3,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "30",
+        "expected": "30",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/code_sum.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.13759765900613274
+    },
+    {
+      "name": "code_loop",
+      "expected": "6-12",
+      "scorer": "exact_text",
+      "schema": null,
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/code_loop.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-8bfb73ae1e4e2b1e",
+        "object": "chat.completion",
+        "created": 1789720215,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "6-12",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 89,
+          "total_tokens": 94,
+          "completion_tokens": 5,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Exact text after trimming outer whitespace; explanations and code fences fail.",
+        "observed": "6-12",
+        "expected": "6-12",
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/code_loop.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.1741240370029118
+    },
+    {
+      "name": "json_extract",
+      "expected": {
+        "name": "Mira",
+        "count": 7,
+        "active": false
+      },
+      "scorer": "strict_json",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "count",
+          "active"
+        ],
+        "additionalProperties": false
+      },
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/json_extract.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-9bc312f9111edd6f",
+        "object": "chat.completion",
+        "created": 1789720215,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"name\": \"Mira\",\n  \"count\": 7,\n  \"active\": false\n}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 63,
+          "total_tokens": 90,
+          "completion_tokens": 27,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Standalone JSON, exact schema types/keys, and exact expected values.",
+        "observed": {
+          "name": "Mira",
+          "count": 7,
+          "active": false
+        },
+        "expected": {
+          "name": "Mira",
+          "count": 7,
+          "active": false
+        },
+        "schema_errors": [],
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/json_extract.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.8427771569986362
+    },
+    {
+      "name": "json_transform",
+      "expected": {
+        "sorted": [
+          1,
+          2,
+          9,
+          9
+        ],
+        "distinct": 3
+      },
+      "scorer": "strict_json",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "sorted": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "distinct": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sorted",
+          "distinct"
+        ],
+        "additionalProperties": false
+      },
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/json_transform.request.json",
+      "layout_file": null,
+      "http_status": 200,
+      "response": {
+        "id": "chatcmpl-902ac1e05c360851",
+        "object": "chat.completion",
+        "created": 1789720216,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"sorted\": [1, 2, 9, 9],\n  \"distinct\": 3\n}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 78,
+          "total_tokens": 106,
+          "completion_tokens": 28,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Standalone JSON, exact schema types/keys, and exact expected values.",
+        "observed": {
+          "sorted": [
+            1,
+            2,
+            9,
+            9
+          ],
+          "distinct": 3
+        },
+        "expected": {
+          "sorted": [
+            1,
+            2,
+            9,
+            9
+          ],
+          "distinct": 3
+        },
+        "schema_errors": [],
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/json_transform.response.txt",
+      "finish_reason": "stop",
+      "seconds": 0.32265238800027873
+    },
+    {
+      "name": "long_context_131072",
+      "expected": {
+        "KEY_2a024707d66e": "VALUE_e813c90cd240",
+        "KEY_29ba991495d6": "VALUE_9e4235aec899",
+        "KEY_985fe249fa5c": "VALUE_0fde1493ee8f"
+      },
+      "scorer": "strict_json",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "KEY_2a024707d66e": {
+            "type": "string"
+          },
+          "KEY_29ba991495d6": {
+            "type": "string"
+          },
+          "KEY_985fe249fa5c": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "KEY_2a024707d66e",
+          "KEY_29ba991495d6",
+          "KEY_985fe249fa5c"
+        ],
+        "additionalProperties": false
+      },
+      "request_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/long_context_131072.request.json",
+      "layout_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/long_context_layout.json",
+      "http_status": 200,
+      "response": {
+        "id": "cmpl-9b45a434256fb8fb",
+        "object": "text_completion",
+        "created": 1789720217,
+        "model": "qwen-lab",
+        "choices": [
+          {
+            "index": 0,
+            "text": "{\n  \"KEY_2a024707d66e\": \"VALUE_e813c90cd240\",\n  \"KEY_29ba991495d6\": \"VALUE_9e4235aec899\",\n  \"KEY_985fe249fa5c\": \"VALUE_0fde1493ee8f\"\n}",
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "prompt_logprobs": null,
+            "prompt_token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.28.0-056ac6d5",
+        "usage": {
+          "prompt_tokens": 131072,
+          "total_tokens": 131169,
+          "completion_tokens": 97,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      },
+      "scoring": {
+        "pass": true,
+        "rule": "Standalone JSON, exact schema types/keys, and exact expected values.",
+        "observed": {
+          "KEY_2a024707d66e": "VALUE_e813c90cd240",
+          "KEY_29ba991495d6": "VALUE_9e4235aec899",
+          "KEY_985fe249fa5c": "VALUE_0fde1493ee8f"
+        },
+        "expected": {
+          "KEY_2a024707d66e": "VALUE_e813c90cd240",
+          "KEY_29ba991495d6": "VALUE_9e4235aec899",
+          "KEY_985fe249fa5c": "VALUE_0fde1493ee8f"
+        },
+        "schema_errors": [],
+        "reason": "match"
+      },
+      "raw_response_file": "/home/ben/qwen-lab/results/quality-fp8-mtp3_artifacts/long_context_131072.response.txt",
+      "finish_reason": "stop",
+      "prompt_tokens_verified": true,
+      "seconds": 119.34462148399325
+    }
+  ],
+  "preparation_errors": [],
+  "passed": 12,
+  "required": 13,
+  "finished_utc": "2026-09-18T08:32:16.522710+00:00"
+}

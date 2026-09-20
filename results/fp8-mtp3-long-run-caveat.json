@@ -1,0 +1,8 @@
+{
+  "status": "excluded_from_useful_throughput_claims",
+  "c1_8192_output_run": "Forced-length raw completion eventually repeated synthetic conversation turns; late speculative acceptance approached100%. Full-run rate must not be treated as useful-answer throughput.",
+  "c1_first_512_output_tokens_tps": 64.65153370908017,
+  "c1_first_1024_output_tokens_tps": 65.17855617042079,
+  "c4_run": "Client canceled during prefill after identifying the benchmark-format issue. No completed result claimed.",
+  "replacement": "Subsequent serving tests use actual chat templates and respect natural stopping."
+}

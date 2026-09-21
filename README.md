@@ -11,9 +11,21 @@
 - GB10/SM121, TP1; FlashInfer, FP8 KV, native FP32 GDN state; MTP3 with Triton drafting and automatic target MoE backend.
 - Native **262,144 total input + output tokens**; 50 maximum sequences; 8,192 batched tokens; GPU utilization 0.87; graph capture 192; long-prefill cap 128.
 - Chunked prefill and async scheduling enabled; prefix caching disabled. Vision retained: two images / one video per prompt. Multimodal profiling skipped; development admission endpoints enabled.
+- **Authentication:** every route except `GET/HEAD /health` requires `Authorization: Bearer <key>`, enforced inside the vLLM server by the ASGI middleware in [auth/private_auth.py](auth/private_auth.py) (loaded with `--middleware`). That covers `/invocations`, `/metrics` and the development admin endpoints, which vLLM's own `--api-key` leaves open. The key is a root-only file mounted read-only as a secret, never an environment variable or argument; the launcher refuses to start without it. The port is still published on the ZGX's loopback only.
 - Full flags: [start_server.sh](start_server.sh). Node weights: `/home/ben/qwen-lab/models/unsloth`; scripts: `/home/ben/qwen-lab/scripts`; results: `/home/ben/qwen-lab/results`.
 
 ## Start and connect
+
+0. One time on the ZGX, install the middleware and create a key (32 to 512 non-whitespace ASCII characters, mode 0600):
+
+```bash
+sudo install -d -m 700 /home/ben/qwen-lab-auth
+sudo install -m 644 auth/private_auth.py /home/ben/qwen-lab-auth/private_auth.py
+sudo sh -c 'umask 077; openssl rand -hex 32 > /home/ben/qwen-lab-auth/api-key'
+python3 auth/test_private_auth.py   # contract tests, no GPU or network
+```
+
+   Keep the key directory outside `/home/ben/qwen-lab`, which is mounted into the container read-write. `AUTH_DIR` and `API_KEY_FILE` override the paths.
 
 1. On the ZGX, restart the existing container with the bundled launcher:
 
@@ -30,8 +42,10 @@ sudo env MAX_MODEL_LEN=262144 GPU_UTIL=0.87 PREFILL_CAP=128 GRAPH_MAX=192 \
 ```bash
 sudo docker logs -f qwen-lab-server
 # In another terminal:
-curl -fsS http://127.0.0.1:8000/health
-curl -fsS http://127.0.0.1:8000/v1/models
+curl -fsS http://127.0.0.1:8000/health                       # public
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8000/v1/models   # 401 without the key
+KEY=$(sudo cat /home/ben/qwen-lab-auth/api-key)
+curl -fsS -H "Authorization: Bearer $KEY" http://127.0.0.1:8000/v1/models
 ```
 
 3. From your computer, replace `ZGX_HOST` with its SSH address:
@@ -40,7 +54,9 @@ curl -fsS http://127.0.0.1:8000/v1/models
 ssh -N -L 18000:127.0.0.1:8000 ben@ZGX_HOST
 ```
 
-- OpenAI-compatible base URL: `http://127.0.0.1:18000/v1`; model: `qwen-lab`.
+- OpenAI-compatible base URL: `http://127.0.0.1:18000/v1`; model: `qwen-lab`; API key: the contents of the key file. The tunnel alone is no longer enough.
+- The benchmark and quality clients read the key from the `VLLM_API_KEY` environment variable: `export VLLM_API_KEY=$(sudo cat /home/ben/qwen-lab-auth/api-key)` before running them.
+- A reverse proxy in front of the server for LAN access must forward the client's `Authorization` header unchanged, and the server and proxy must agree on the key.
 - Stop: `sudo docker stop qwen-lab-server` on the ZGX.
 
 ## Measured serving results

@@ -10,3 +10,5 @@ models/
 hf/
 cache/
 .DS_Store
+api-key
+*.key
